@@ -10,8 +10,8 @@
     Lorem ipsum dolor sit amet.
   image: ./assets/images/cards/003-athena.png
 
-- title: Poseidon
+- title: Mark Fernandes
   content: |
-    [:custom-orcid:](https://orcid.org/) [:simple-github:](https://github.com/) [:simple-linkedin:](https://linkedin.com/)<br>
-    Lorem ipsum dolor sit amet.
-  image: ./assets/images/cards/007-poseidon.png
+    [:custom-orcid:](https://orcid.org/) [:simple-github:](https://github.com/mfernandes61) [:simple-linkedin:](https://www.linkedin.com/in/mark-fernandes-a5533641/)<br>
+    Mark Fernandes, Teaching assistant, Bioinformatics Training Facility, Dept. of Genetics, University of Cambridge
+  image: ./assets/images/cards/mark_photo.jpg
