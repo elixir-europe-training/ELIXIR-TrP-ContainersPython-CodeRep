@@ -1,4 +1,4 @@
-# ELIXIR Lesson Title 
+# Containers: Achieving Portability & Reproducibility of Research Computational Environments (python stream)
 
 ## Authors
 
