@@ -84,7 +84,6 @@ and transferring data in and out of it.
 ![hypervisor host os of a virtual machine diagram
 ](/sources/media/virtual.jpg){width="3.071084864391951in"
 height="3.0833333333333335in"}\
-*Lifted diagram (Redraw for final)*
 
 -   Examples of software to host VMs Microsoft Hyper-V, Virtualbox (Mac
     OS, Windows & Linux)
