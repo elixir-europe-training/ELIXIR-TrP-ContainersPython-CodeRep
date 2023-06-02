@@ -82,7 +82,7 @@ computer. A layer, called the hypervisor, has the role of running the VM
 and transferring data in and out of it.
 
 ![hypervisor host os of a virtual machine diagram
-](/sources/media/virtual.jpg){width="3.071084864391951in"
+](./../assets/images/virtual.jpg){width="3.071084864391951in"
 height="3.0833333333333335in"}\
 
 -   Examples of software to host VMs Microsoft Hyper-V, Virtualbox (Mac
@@ -102,26 +102,26 @@ throughout the world.
 
 ![A large orange truck drives down the road Description automatically
 generated with medium
-confidence](/sources/media/container_lorry.jpg){width="2.2303258967629045in"
+confidence](./../assets/images/container_lorry.jpg){width="2.2303258967629045in"
 height="2.7559055118110236in"}
 
 Photo by [Nur
 Alamin](https://unsplash.com/@nuralamin12?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/xifUN_Mkf8Y?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 ![A picture containing sky, outdoor, outdoor object Description
-automatically generated](/sources/media/container_ship2.jpg){width="2.7559055118110236in"
+automatically generated](./../assets/images/container_ship2.jpg){width="2.7559055118110236in"
 height="1.8371686351706036in"}
 
 Photo by [Ian
 Taylor](https://unsplash.com/@carrier_lost?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/jOqJbvo1P9g?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-![](/sources/media/container_train.jpg){width="2.7559055118110236in"
+![](./../assets/images/container_train.jpg){width="2.7559055118110236in"
 height="1.8371686351706036in"}
 
 Photo by [Michael
 SKOPAL](https://unsplash.com/@michael_skopal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/z5tiShyxZnc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-![](/sources/media/container_ship.jpg){width="2.099737532808399in"
+![](./../assets/images/container_ship.jpg){width="2.099737532808399in"
 height="3.1496062992125986in"}
 
 Photo by [Nathan
@@ -148,7 +148,7 @@ functions from the Host OS,
 
 -   **Multiple containers can be run on a Host OS**
 
-![container elements diagram](/sources/media/container.jpg){width="4.5462959317585305in"
+![container elements diagram](./../assets/images/container.jpg){width="4.5462959317585305in"
 height="2.5290223097112863in"}
 
 | Pros  | Cons  |
