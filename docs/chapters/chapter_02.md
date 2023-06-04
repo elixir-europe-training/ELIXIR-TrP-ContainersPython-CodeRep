@@ -1,3 +1,222 @@
+## Learning outcomes
+
+**After having completed this chapter you will be able to:**
+
+- fetch and run Docker containers on their computer.
+*- interpret the instructions of a Dockerfile
+- create simple Docker containers to run simple python/R scripts.
+
+## Material
+
+TODO: add overview of necessary files, video, etc
+
+[:fontawesome-solid-file-pdf: Download the presentation](../assets/pdf/docker_dance.pdf){: .md-button }
+
+* Unix command line [E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
+
+## Docker Dance
+
+We will use Docker as an example to illustrate the development and use of containers.
+
+### Install Docker
+
+Please follow the installation of the latest version of Docker Desktop for your operating system. It is described at [Get Docker](https://docs.docker.com/get-docker/)
+
+TODO: add screenshots of the desired end points per OS
+
+### Introducing the Dockerfile
+
+TODO: add notes about good documentation of the recipe and how to freeze versions of tools in a container image
+
+The Dockerfile is the starting point of the Docker Dance which is schematically drawn here.
+
+TODO: add image with ELIXIR colors (build, tag, push, pull, save, load etc)
+
+Now, let's focus on the instructions for building Docker container images which are saved in a text file, named by default **Dockerfile**.
+
+**Basic instructions**
+
+Each row in the recipe corresponds to a **layer** of the final image.
+
+TODO: add image like e.g. https://www.google.com/url?q=https://houseofnasheats.com/wp-content/uploads/2019/02/Layered-Rainbow-Jello-11.jpg&sa=D&source=docs&ust=1685897875842731&usg=AOvVaw2Bc7qDiD4TfX0PN_ZJYk5v
+
+FROM: parent image. Typically, an “operating” system but you can also use an image of other parties as a starting point. This instruction creates the base layer.
+
+FROM ubuntu:18.04
+
+Recommendation: pin the version of the OS of the base layer
+
+RUN: the command to execute inside the image filesystem.
+
+Think about it this way: every RUN line is essentially what you would run to install programs on a freshly installed Ubuntu OS. This command will be executed as root in the container.
+
+RUN apt install wget
+
+A basic recipe:
+
+FROM ubuntu:18.04
+
+RUN apt update && apt -y upgrade
+RUN apt install -y wget
+			
+### Anatomy of the commands
+
+Building Docker image
+		 								
+Implicitly looks for a Dockerfile file in the current directory:
+
+docker build .
+docker build --file Dockerfile .
+Syntax: –file / -f
+. stands for the context (in this case, current directory) of the build process. This makes sense if copying files from filesystem, for instance. IMPORTANT: Avoid contexts (directories) overpopulated with files (even if not actually used in the recipe).
+You can define a specific name for the image during the build process.
+Syntax: -t imagename:tag. If not defined :tag default is latest.
+docker build -t mytestimage:v1 .
+The last line of installation should be Successfully built …: then you are good to go.
+
+Check with docker images that you see the newly built image in the list…
+Then let’s check the ID of the image and run it!
+docker images
+
+Additional statements for the Dockerfile	
+
+TODO: add table with following content:
+
+| command | what does it do?                 | Example                                               |   |   |
+|---------|----------------------------------|-------------------------------------------------------|---|---|
+| LABEL   | Who is maintaining the container | LABEL  maintainer=”your name <your.email@domain.org>” |   |   |
+|         |                                  |                                                       |   |   |
+|         |                                  |                                                       |   |   |
+
+### A more complex recipe
+
+A more complex recipe (save it in a text file named Dockerfile:
+FROM ubuntu:18.04
+
+LABEL 
+WORKDIR ~
+
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get install -y wget
+
+ENTRYPOINT ["/usr/bin/wget"]
+CMD ["https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png"]
+
+
+Tips for Docker files
+						
+You should try to separate the Dockerfile into as many stages as possible, because this will allow for better caching
+apt-get:
+You must run apt-get update and apt-get install in the same command, otherwise you will encounter caching issues
+Remember to use apt-get install -y, because you will have no control over the process while it’s building
+
+
+Useful resources:
+
+[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+[Best practices](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
+[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
+
+???? difficult examples from BioInformatics ???? see Biocontainers community
+
+### Running our Docker container
+
+Now we want to use what is inside the image.
+docker run creates a fresh container (active instance of the image) from a Docker (static) image, and runs it.
+
+The format is:
+docker run [docker options] <IMAGE NAME> [image arguments]
+This means that arguments that affect the way Docker runs must always go before the image name, but arguments that are passed to the image itself must go after the image name.
+docker run ubuntu:18.04 /bin/ls
+
+TODO: add command which is from the example we use here
+
+Note: What happens if you execute ls in your current working directory: is the result the same?
+
+You can execute any program/command that is stored inside the image.
+docker run ubuntu:18.04 /bin/whoami
+docker run ubuntu:18.04 cat /etc/issue
+	 			
+								
+List running containers:
+docker ps
+List all containers (whether they are running or not):
+docker ps -a
+
+The IDs that are shown can be useful for other docker commands like docker stop and docker exec
+
+Volumes
+
+Docker containers are fully isolated. It is necessary to mount volumes in order to handle input/output files.
+By default, Docker containers cannot access data on the host system. This means
+You can’t use host data in your containers
+All data stored in the container will be lost when the container exits
+You can solve this in two ways:
+-v /path/in/host:/path/in/container: This bind mounts a host file or directory into the container. Writes to one will affect the other. Note that both paths have to be absolute paths, so you often want to use`pwd`/some/path
+-v volume_name:/path/in/container. This mounts a named volume into the container, which will live separately from the rest of your files. This is preferred, unless you need to access or edit the files from the host.
+mkdir datatest
+touch datatest/test
+docker run --detach --volume $(pwd)/datatest:/scratch --name fastqc_container biocontainers/fastqc:v0.11.9_cv7 tail -f /dev/null
+docker exec -ti fastqc_container /bin/bash
+> ls -l /scratch
+> exit
+
+TODO: Insert example exercise 
+
+### Container registries (e.g. Docker Hub)
+
+Images can be stored locally or shared in a registry. Docker hub is the main public registry for Docker images.
+Let’s search the keyword “ubuntu”
+
+TODO: insert screenshot of the output
+
+There are a lot of alternatives to Docker hub for image registries depending on the needs of the organisation or company. Some examples are shown below:
+
+TODO: insert image of the registries
+
+
+1. Get the latest image or latest release
+docker pull ubuntu
+
+TODO: add output
+
+2. Check the versions of Ubuntu present and fetch version 18.04 using tags
+
+TODO: add screenshot
+
+docker pull ubuntu:18.04
+
+When you ran this command, Docker first looked for the image on your local machine, and when it couldn’t find it, pulled it down from a cloud registry of Docker images called Docker Hub
+		 			
+								
+What other repositories are possible?
+Have a look at the web site https://biocontainers.pro/ which is a specific directory of Bioinformatics related tools.
+the images are stored in Docker hub and/or Quay.io (RedHat registry)
+these images are normally created from [Bioconda](https://bioconda.github.io)
+
+Example: FastQC
+https://biocontainers.pro/#/tools/fastqc
+
+TODO: Open solution
+docker pull biocontainers/fastqc:v0.11.9_cv7
+
+Images can be listed by the command
+docker images
+docker image ls
+
+Each image has a unique IMAGE ID.
+
+TODO: add image with example
+
+Where are these images stored? On Linux, they usually go to /var/lib/.
+Docker is very greedy in storage so regular cleaning is necessary. We will see later on how you can do the purging.
+Sometimes, it is also useful to get more information about the images. You can do this via
+
+docker image inspect
+
+
+ 
+
 ## 2.1 First subtopic
 Here you can enter text and if you need to cite[@creative_commons_2022]
 
