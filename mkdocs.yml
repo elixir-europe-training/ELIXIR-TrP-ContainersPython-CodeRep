@@ -2,8 +2,8 @@ site_name: ELIXIR Training Lesson
 nav:
     - About: index.md
     - Course Content:
-      - "1. title of first chapter": chapters/chapter_01.md
-      - "2. title of second chapter": chapters/chapter_02.md
+      - "1. The Rocky Road to Reproducibility": chapters/chapter_01.md
+      - "2. The Docker Dance": chapters/chapter_02.md
       - "References": chapters/references.md
     - "Follow up training": follow_up_training.md
 
