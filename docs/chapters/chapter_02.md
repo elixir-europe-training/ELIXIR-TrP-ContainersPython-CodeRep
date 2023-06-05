@@ -9,6 +9,7 @@
 ## Material
 
 TODO: add overview of necessary files, video, etc
+TODO: UTF-8 encoding apostrophes?
 
 [:fontawesome-solid-file-pdf: Download the presentation](../assets/pdf/docker_dance.pdf){: .md-button }
 
@@ -40,9 +41,11 @@ Each row in the recipe corresponds to a **layer** of the final image.
 
 TODO: add image like e.g. https://www.google.com/url?q=https://houseofnasheats.com/wp-content/uploads/2019/02/Layered-Rainbow-Jello-11.jpg&sa=D&source=docs&ust=1685897875842731&usg=AOvVaw2Bc7qDiD4TfX0PN_ZJYk5v
 
-FROM: parent image. Typically, an “operating” system but you can also use an image of other parties as a starting point. This instruction creates the base layer.
+The **FROM** statement describes the parent image. Typically, an 'operating' system but you can also use an image of other parties as a starting point. This instruction creates the base layer.
 
+```sh
 FROM ubuntu:18.04
+```
 
 Recommendation: pin the version of the OS of the base layer
 
@@ -50,43 +53,80 @@ RUN: the command to execute inside the image filesystem.
 
 Think about it this way: every RUN line is essentially what you would run to install programs on a freshly installed Ubuntu OS. This command will be executed as root in the container.
 
+```sh
 RUN apt install wget
+```
 
 A basic recipe:
 
+```sh title="Dockerfile"
 FROM ubuntu:18.04
 
 RUN apt update && apt -y upgrade
 RUN apt install -y wget
+```
 			
 ### Anatomy of the commands
 
-Building Docker image
+**Building Docker image**
 		 								
-Implicitly looks for a Dockerfile file in the current directory:
+The build command implicitly looks for a file named Dockerfile in the current directory:
 
+```sh
 docker build .
-docker build --file Dockerfile .
-Syntax: –file / -f
-. stands for the context (in this case, current directory) of the build process. This makes sense if copying files from filesystem, for instance. IMPORTANT: Avoid contexts (directories) overpopulated with files (even if not actually used in the recipe).
-You can define a specific name for the image during the build process.
-Syntax: -t imagename:tag. If not defined :tag default is latest.
-docker build -t mytestimage:v1 .
-The last line of installation should be Successfully built …: then you are good to go.
 
-Check with docker images that you see the newly built image in the list…
-Then let’s check the ID of the image and run it!
+# or by specifying the exact file name
+
+docker build --file Dockerfile .
+```
+
+**Syntax**: -file / -f
+
+. stands for the context (in this case, current directory) of the build process. This makes sense if copying files from filesystem, for instance. 
+
+!!! info 
+
+    Avoid contexts (directories) overpopulated with files (even if not actually used in the recipe).
+
+You can define a specific name for the image during the build process.
+
+**Syntax**: -t imagename:tag. If not defined :tag default is latest.
+
+```sh
+docker build -t mytestimage:v1 .
+```
+
+Once the build process is finished, The last line of output should be `Successfully built ... `. Then you are good to go.
+
+As next step, we will check with the command `docker images` that you see the newly built image in the list of images.
+
+TODO: add output of the command as screenshot
+
+```sh
 docker images
+```
+Then let’s check the ID of the image and run it later. But right now, we investigate some additional statements for the recipes!
 
 Additional statements for the Dockerfile	
 
 TODO: add table with following content:
 
-| command | what does it do?                 | Example                                               |   |   |
-|---------|----------------------------------|-------------------------------------------------------|---|---|
-| LABEL   | Who is maintaining the container | LABEL  maintainer=”your name <your.email@domain.org>” |   |   |
-|         |                                  |                                                       |   |   |
-|         |                                  |                                                       |   |   |
+| command | what does it do?                 | Example                                               |
+|---------|----------------------------------|-------------------------------------------------------|
+| LABEL   | Who is maintaining the container image | LABEL  maintainer=”your name <your.email@domain.org>” |
+| WORKDIR        | all subsequent actions will be executed in that working directory. | WORKDIR ~ |
+| COPY    | lets you copy a local file or directory from your host (the machine from which you are building the image) | COPY ~/.bashrc . # COPY source destination  |
+| ADD     | same, but ADD works also for URLs, and for .tar archives that will be automatically extracted upon being copied. |  |
+| ARG     | available only while the image is built  | |
+| ENV     | available for the future running containers | |
+| ENTRYPOINT  | The ENTRYPOINT specifies a command that will always be executed when the container starts.  | |
+| CMD     | The CMD specifies arguments that will be fed to the ENTRYPOINT. | |
+
+**Further readings**
+
+Difference between ADD and COPY explained [here](https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-copy-and-add-commands-in-a-dockerfile) and [here](https://nickjanetakis.com/blog/docker-tip-2-the-difference-between-copy-and-add-in-a-dockerile).
+
+Difference between ARG and ENV explained [here](https://vsupalov.com/docker-arg-vs-env/).
 
 ### A more complex recipe
 
