@@ -109,7 +109,7 @@ Then let’s check the ID of the image and run it later. But right now, we inves
 
 Additional statements for the Dockerfile	
 
-TODO: add table with following content:
+TODO: refine table with following content:
 
 | command | what does it do?                 | Example                                               |
 |---------|----------------------------------|-------------------------------------------------------|
@@ -131,6 +131,10 @@ Difference between ARG and ENV explained [here](https://vsupalov.com/docker-arg-
 ### A more complex recipe
 
 A more complex recipe (save it in a text file named Dockerfile:
+
+TODO: check this part once R/Python scripts are available
+
+```sh title="Dockerfile"
 FROM ubuntu:18.04
 
 LABEL 
@@ -141,67 +145,98 @@ RUN apt-get install -y wget
 
 ENTRYPOINT ["/usr/bin/wget"]
 CMD ["https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png"]
+```
 
-
-Tips for Docker files
+**Tips for Docker files**
 						
-You should try to separate the Dockerfile into as many stages as possible, because this will allow for better caching
-apt-get:
-You must run apt-get update and apt-get install in the same command, otherwise you will encounter caching issues
-Remember to use apt-get install -y, because you will have no control over the process while it’s building
+You should try to separate the Dockerfile into as many stages as possible, because this will allow for better caching.
+
+For example for `apt-get`:
+
+You must run apt-get update and apt-get install in the same command, otherwise you will encounter caching issues.
+Remember to use apt-get install -y, because you will have no control over the process while it’s building.
 
 
-Useful resources:
+**Useful resources**
 
 [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 [Best practices](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
 [Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
 
-???? difficult examples from BioInformatics ???? see Biocontainers community
+TODO: add exercises difficult examples from BioInformatics ???? see Biocontainers community
 
 ### Running our Docker container
 
 Now we want to use what is inside the image.
-docker run creates a fresh container (active instance of the image) from a Docker (static) image, and runs it.
+
+`docker run` creates a fresh container (active instance of the image) from a Docker (static) image, and runs it.
 
 The format is:
+
+```sh
 docker run [docker options] <IMAGE NAME> [image arguments]
+```
+
 This means that arguments that affect the way Docker runs must always go before the image name, but arguments that are passed to the image itself must go after the image name.
+
+```sh
 docker run ubuntu:18.04 /bin/ls
+```
 
-TODO: add command which is from the example we use here
+TODO: add command which is from the built container we use above 
 
-Note: What happens if you execute ls in your current working directory: is the result the same?
+TODO: add command which is from the example we use in the current R/Python scripts 
 
-You can execute any program/command that is stored inside the image.
-docker run ubuntu:18.04 /bin/whoami
-docker run ubuntu:18.04 cat /etc/issue
-	 			
+**Exercise:** What happens if you execute ls in your current working directory: is the result the same?
+
+!!! info 
+    You can execute any program/command that is stored inside the image.
+
+    ```sh
+    docker run ubuntu:18.04 /bin/whoami
+    docker run ubuntu:18.04 cat /etc/issue
+    ```
+
+??? done "Answer"
+    Anything surprising happened?	
 								
-List running containers:
+**List running containers**
+
+```sh
 docker ps
+```
+
 List all containers (whether they are running or not):
+
+```sh
 docker ps -a
+```
 
-The IDs that are shown can be useful for other docker commands like docker stop and docker exec
+The IDs that are shown can be useful for other docker commands like `docker stop` and `docker exec`.
 
-Volumes
+### Volumes
 
 Docker containers are fully isolated. It is necessary to mount volumes in order to handle input/output files.
-By default, Docker containers cannot access data on the host system. This means
-You can’t use host data in your containers
-All data stored in the container will be lost when the container exits
+By default, Docker containers cannot access data on the host system. This means you cannot use host data in your containers. All data stored in the container will be lost when the container exits
+
+TODO: check about mount bind statements
+
 You can solve this in two ways:
+
 -v /path/in/host:/path/in/container: This bind mounts a host file or directory into the container. Writes to one will affect the other. Note that both paths have to be absolute paths, so you often want to use`pwd`/some/path
+
 -v volume_name:/path/in/container. This mounts a named volume into the container, which will live separately from the rest of your files. This is preferred, unless you need to access or edit the files from the host.
+
+```sh
 mkdir datatest
 touch datatest/test
 docker run --detach --volume $(pwd)/datatest:/scratch --name fastqc_container biocontainers/fastqc:v0.11.9_cv7 tail -f /dev/null
 docker exec -ti fastqc_container /bin/bash
 > ls -l /scratch
 > exit
+```
 
-TODO: Insert example exercise 
+TODO: Insert example exercises
 
 ### Container registries (e.g. Docker Hub)
 
