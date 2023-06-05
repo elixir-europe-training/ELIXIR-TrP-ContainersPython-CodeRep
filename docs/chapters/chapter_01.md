@@ -1,7 +1,7 @@
 ![Rocky Road Brownies](./../assets/images/Rocky_Road.jpeg){: style="width:2.7559055118110236in;height:1.8371686351706036in"}.  
 By Chocolate-Dessert-Recipes.com - Rocky Road Brownies, CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=48410887
 
-**[Teaching Outcomes]{.underline}**
+**__Teaching Outcomes__**
 
 -   Students able to list the issues relating to running software on
     users machines
@@ -9,7 +9,7 @@ By Chocolate-Dessert-Recipes.com - Rocky Road Brownies, CC BY 2.0, https://commo
 -   Students can name the pros & cons of native installations, VMs and
     Containers
 
-**[Teaching Experience(s)]{.underline}**
+**__Teaching Experience(s)__**
 
 -   Lecture
 
@@ -25,6 +25,7 @@ under the FAIR principles
 <https://force11.org/info/the-fair-data-principles/> ) -- what more do
 we have to do?
 
+### "Well it works on my machine..." How often do we hear that? ####
 ***Why is it so difficult to run other peoples' code?***
 
 This is a fair question -- over your career there will be many times you
@@ -32,7 +33,7 @@ will come across software that is potentially useful to you, that you
 download & install and find that it doesn't work (maybe with a cryptic
 error message for you to Google).
 
-[Potential barriers:]{.underline}
+__Potential barriers__
 
 -   Their computer has different hardware or operating system to yours.\
     Executable code is often created to run on a specific microprocessor
@@ -59,7 +60,7 @@ error message for you to Google).
 |   | -   Can require significant IT experience or support if issues are encountered    |
 |   | -   Could override/replace version of existing software on users PC          |
 
-**[Challenge]{.underline}**:
+**__Challenge__**:
 
 > In teams analyse the example R or Python programs with respect to
 > potential barriers to usage by others.\
@@ -72,12 +73,26 @@ error message for you to Google).
     our software including specific version numbers. Note versions are
     prone to change and so we would have to keep this 'recipe' up to
     date to ensure continued success.
+    
+ - Include Virtual environments in the instructions
 
 -   Create a Virtual Machine (VM)
 
 -   Create a software Container e.g. a Docker container.
 
-## 1.2 What is a Virtual Machine?
+## 1.2 What is a Virtual Environment?
+
+A virtual environment is a tool that lets you create an isolated tailored environment for a particular application. It enables you to have different versions of the same tools/packages or languages on the same machine by partitioning the environment. Basically when you switch to (activate) an environment then you only have access to the tools that you installed in that environment.    
+
+With Python we have an embarrassment of riches when it comes to virtual environment tools. It comes with the __venv__ tool but many others are available (conda, virtualev and poetry to name but a few). Each comes with its own advantages, disadvantages  and features.      
+
+| Pros  | Cons  |
+|---|---|
+| -    | -    |
+| -    | -    |
+| -    | -    |
+
+## 1.3 What is a Virtual Machine?
 
 Stated simply a virtual machine is software that emulates the hardware
 and software of a computer and runs this emulation on your (host)
@@ -87,8 +102,7 @@ and transferring data in and out of it.
 ![hypervisor host os of a virtual machine diagram
 ](./../assets/images/virtual.jpg){: style="width:6.2in;height:6.2in"}. 
 
--   Examples of software to host VMs Microsoft Hyper-V, Virtualbox (Mac
-    OS, Windows & Linux)
+-   Examples of software to host VMs: [Microsoft Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/), [Virtualbox (Mac OS, Windows & Linux)](https://www.virtualbox.org).  
 
 | Pros  | Cons  |
 |---|---|
@@ -97,7 +111,7 @@ and transferring data in and out of it.
 | -   Simulates hardware resources that may not be present on host hardware |   |
 
 
-## 1.3 What is a Container?
+## 1.4 What is a Container?
 
 Let's consider the analogy of shipping containers that are used
 throughout the world.
@@ -158,7 +172,7 @@ functions from the Host OS,
 
 \* We will cover creating a Dockerfile later in this course
 
-**[Challenge]{.underline}**:
+**__Challenge__**
 > Go to this Google quiz about the material we have covered in this
 > introduction {link\] and answer the questions (Your answers are
 > anonymised)
