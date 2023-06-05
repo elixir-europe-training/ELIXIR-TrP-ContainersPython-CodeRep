@@ -1,3 +1,7 @@
+![Rocky Road Brownies](./../assets/images/Rocky_Road.jpeg){width="2.7559055118110236in"
+height="1.8371686351706036in"}
+By Chocolate-Dessert-Recipes.com - Rocky Road Brownies, CC BY 2.0, https://commons.wikimedia.org/w/index.php?curid=48410887
+   
 **[Teaching Outcomes]{.underline}**
 
 -   Students able to list the issues relating to running software on
