@@ -12,40 +12,41 @@ Greek Mythology icons made by [max.icons](https://www.flaticon.com/authors/maxic
     :fontawesome-regular-bookmark: **Description**  
    This course explores several different approaches to provide an end user with a software environment that ensures successful execution of scientific analysis software in a reproducible manner. It then focuses upon an examplar - Software Containers (Specifically implemented using Docker).
     
-    </br>
-    
-    :fontawesome-solid-arrow-left: **Prerequisites**  
-    To be able to follow this course, learners should have knowledge in:  
-    &emsp;1. Familiarity with using a text editor to create and edit plain ASCII text files.   
-    &emsp;2. Basic experience in using command-line Linux.   
-    
-    &emsp;3. Additionally, students will find it beneficial to have an overview of how software is installed under Linux.   
-    
-    </br>
-    
-    :fontawesome-solid-arrow-right: **Learning Outcomes:**  
-    By the end of the course, learners will be able to:  
-    &emsp;1. State several approaches to reproducible software environments and critically debate the strengths and weaknesses of each approach.    
-    &emsp;2. Identify the roles of particular commands in a Dockerfile and create simple functional Docker containers.     
-    
-    </br>
-    
-    :fontawesome-solid-users: **Target Audience:** Researchers, undergraduate students, postgraduate students, etc...  
-    </br>
-    
-    :fontawesome-solid-stairs: **Level:** Beginner/Intermediate  
-    
-    :fontawesome-solid-lock: **License:** [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)  
-    
-    :fontawesome-solid-money-bill-1: **Funding:** This project has received funding from [name of funders].  
+</br>
 
-    [comment]: # (Property in Bioschema: description)
-    [comment]: # (Property in Bioschema: coursePrequsites)
-    [comment]: # (Property in Bioschema: teaches)
-    [comment]: # (Property in Bioschema: audience)
-    [comment]: # (Property in Bioschema: educationalLevel)
-    [comment]: # (Property in Biochema: licence)
-    [comment]: # (This is an example for CONVERGE)
+:fontawesome-solid-arrow-left: **Prerequisites**  
+To be able to follow this course, learners should have knowledge in:  
+
+1. Familiarity with using a text editor to create and edit plain ASCII text files.   
+2. Basic experience in using command-line Linux.   
+3. Additionally, students will find it beneficial to have an overview of how software is installed under Linux.   
+
+</br>
+
+:fontawesome-solid-arrow-right: **Learning Outcomes:**  
+By the end of the course, learners will be able to:  
+
+1. State several approaches to reproducible software environments and critically debate the strengths and weaknesses of each approach.    
+2. Identify the roles of particular commands in a Dockerfile and create simple functional Docker containers.     
+
+</br>
+
+:fontawesome-solid-users: **Target Audience:** Researchers, undergraduate students, postgraduate students, etc...  
+</br>
+
+:fontawesome-solid-stairs: **Level:** Beginner/Intermediate  
+
+:fontawesome-solid-lock: **License:** [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/)  
+
+:fontawesome-solid-money-bill-1: **Funding:** This project has received funding from [name of funders].  
+
+[comment]: # (Property in Bioschema: description)
+[comment]: # (Property in Bioschema: coursePrequsites)
+[comment]: # (Property in Bioschema: teaches)
+[comment]: # (Property in Bioschema: audience)
+[comment]: # (Property in Bioschema: educationalLevel)
+[comment]: # (Property in Biochema: licence)
+[comment]: # (This is an example for CONVERGE)
 
 #### Contributors
 
