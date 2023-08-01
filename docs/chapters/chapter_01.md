@@ -123,12 +123,21 @@ One complication is that you have to emember to 'activate' the specific environm
 The downside to this is that you need to choose the tool appropriate/best suited for your application and provide instructions for theend-user to install it (who may have other similar & potentially incompatible tools installed,).   
 
 !!! example "Virtual environment exercise"
-    * Use pip to install version n.nn of django package
+    * Use pip to install version 2.2.26 of django package
     * Create a directory with a virtual environment using 'venv'
-    * in the environment, install version o.oo of django
-    ??? success "Solution"
-        this is the soluiton to the question
-
+    * in the environment, install version 4.0.3 of django
+    * Turn the VE on and off and demonstrate that two different django environments are available.    
+    ??? success "Solution (linux)"
+        ```python -m pip install django==2.2.26   
+        python -m pip list    
+        python -m venv env_exercise    
+        cd env_exercise  
+        source bin/activate
+        python -m pip install django==4.0.3   
+        python -m pip list    
+        deactivate    
+        python -m pip list    
+        ```
 | Pros  | Cons  |
 |---|---|
 | Application environment does not affect users other programs | Need to know how to use |
