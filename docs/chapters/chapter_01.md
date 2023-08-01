@@ -93,11 +93,11 @@ With Python we have an embarrassment of riches when it comes to virtual environm
     
 _How do we use a virtual environment? (An example using venv)_
 1. Create the virtual environment   
-    ```python -m venv <directory>```
+    ```python -m venv <directory>```    
 
 2. Move into the environments directory and activate it    
     ```cd <directory>
-    source bin/activate```
+    source bin/activate```     
     
 4. Install whatever packages you need using the pip Python package manager (e.g. with 'pip install -r requirements.txt').    
    ``` python -m pip install <package>``` _or_    
