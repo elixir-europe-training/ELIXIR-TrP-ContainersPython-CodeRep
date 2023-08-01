@@ -84,8 +84,21 @@ __Potential barriers__
 
 A virtual environment is a tool that lets you create an isolated tailored environment for a particular application. It enables you to have different versions of the same tools/packages or languages on the same machine by partitioning the environment. Basically when you switch to (activate) an environment then you only have access to the tools that you installed in that environment.    
 
-With Python we have an embarrassment of riches when it comes to virtual environment tools. It comes with the __venv__ tool but many others are available (conda, virtualev and poetry to name but a few). Each comes with its own advantages, disadvantages  and features.      
+With Python we have an embarrassment of riches when it comes to virtual environment tools. It comes with the __venv__ tool but many others are available ([conda](https://docs.conda.io/en/latest/), [virtualenv](https://virtualenv.pypa.io/en/latest/) and [poetry](https://python-poetry.org) to name but a few). Each comes with its own advantages, disadvantages  and features.   
 
+!!! info "Which one do I use?"
+    That is a very good question and the answer is "It depends..."   
+    - venv is 'pre-baked' into python
+    - virtualenv has to be installed (e.g. 'pip install --user virtualenv' )
+    
+_How do we use a virtual environment? (An example using venv)_
+1. Create the virtual environment
+2. Move into the environments directory and activate it
+3. Install whatever packages you need using the pip Python package manager (e.g. with 'pip install -r requirements.txt').
+4. Copy in/Download your source code and any required data
+5. Run the application
+6. Deactivate the environment to return you to your default Python environment and packages e.g. to run your 'normal' software.
+   
 One complication is that you have to emember to 'activate' the specific environment for the selected application to have the correct supporting software infrastructure. That said there are (several) additional tools that activate the virtual environment when you move (cd) into the programs subdirectory an example of this sort of tool is [direnv](https://direnv.net).  
 The downside to this is that you need to choose the tool appropriate/best suited for your application and provide instructions for theend-user to install it (who may have other similar & potentially incompatible tools installed,).   
 
