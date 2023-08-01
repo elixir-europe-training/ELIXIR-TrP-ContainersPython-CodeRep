@@ -141,7 +141,7 @@ The downside to this is that you need to choose the tool appropriate/best suited
 | Pros  | Cons  |
 |---|---|
 | Application environment does not affect users other programs | Need to know how to use |
-| -    | Must remember to activate/deactivate    |
+| useful when developing (can create reuirements.txt)   | Must remember to activate/deactivate    |
 | -    | Extra resource usage memory & diskspace for python version & packages |
 | -    | use of more sopisticated environments e.g. virtualenv need installation  |
 
