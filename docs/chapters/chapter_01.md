@@ -84,13 +84,68 @@ __Potential barriers__
 
 A virtual environment is a tool that lets you create an isolated tailored environment for a particular application. It enables you to have different versions of the same tools/packages or languages on the same machine by partitioning the environment. Basically when you switch to (activate) an environment then you only have access to the tools that you installed in that environment.    
 
-With Python we have an embarrassment of riches when it comes to virtual environment tools. It comes with the __venv__ tool but many others are available (conda, virtualev and poetry to name but a few). Each comes with its own advantages, disadvantages  and features.      
+With Python we have an embarrassment of riches when it comes to virtual environment tools. It comes with the __venv__ tool but many others are available ([conda](https://docs.conda.io/en/latest/), [virtualenv](https://virtualenv.pypa.io/en/latest/) and [poetry](https://python-poetry.org) to name but a few). Each comes with its own advantages, disadvantages  and features.   
 
+!!! info "Which one do I use?"
+    That is a very good question and the answer is "It depends..."   
+    - venv is 'pre-baked' into python
+    - virtualenv has to be installed (e.g. 'pip install --user virtualenv' )
+    
+_How do we use a virtual environment? (An example using venv)_
+1. Create the virtual environment   
+    ```python -m venv <directory>```    
+
+2. Move into the environments directory and activate it    
+    ```cd <directory>
+    source bin/activate```     
+    
+4. Install whatever packages you need using the pip Python package manager (e.g. with 'pip install -r requirements.txt').    
+   ``` python -m pip install <package>``` _or_    
+   ```python -m pip install <package>==<version>``` _To install a particular version of a package_
+   
+6. Copy in/Download your source code and any required data    
+   ```cp <source location>/<application.py> <application.py>```     
+   
+8. Run the application    
+   ```python <application.py>```    
+   
+10. Deactivate the environment to return you to your default Python environment and packages e.g. to run your 'normal' software.
+    ```deactivate```    
+
+#### Operating System variations (Mainly Windows)   
+| Command  | Linux  | Windows  | MacOS  |
+|---|---|---|---|
+| Create VE  | python -m venv <directory>  | python -m venv <directory> | python -m venv <directory>  |
+| Activate VE  | source bin/activate  | Scripts\activate.bat or Scripts\Activate.ps1 (Powershell) | source bin/activate  |
+| Deactvate VE  |  deactivate  | deactivate   | deactivate   |
+
+One complication is that you have to emember to 'activate' the specific environment for the selected application to have the correct supporting software infrastructure. That said there are (several) additional tools that activate the virtual environment when you move (cd) into the programs subdirectory an example of this sort of tool is [direnv](https://direnv.net).  
+The downside to this is that you need to choose the tool appropriate/best suited for your application and provide instructions for theend-user to install it (who may have other similar & potentially incompatible tools installed,).   
+
+!!! example "Virtual environment exercise"
+    * Use pip to install version 2.2.26 of django package
+    * Create a directory with a virtual environment using 'venv'
+    * in the environment, install version 4.0.3 of django
+    * Turn the VE on and off and demonstrate that two different django environments are available.    
+    ??? success "Solution (linux)"
+        ```python -m pip install django==2.2.26   
+        python -m pip list    
+        python -m venv env_exercise    
+        cd env_exercise  
+        source bin/activate
+        python -m pip install django==4.0.3   
+        python -m pip list    
+        deactivate    
+        python -m pip list    
+        ```
 | Pros  | Cons  |
 |---|---|
-| -    | -    |
-| -    | -    |
-| -    | -    |
+| Lots of options to choose from | Lots of options to choose from |
+| Application environment does not affect users other programs | Need to know how to use |
+| useful when developing (can create requirements.txt)   | Must remember to activate/deactivate    |
+| -    | Extra resource usage memory & diskspace for python version & packages |
+| -    | use of more sopisticated environments e.g. virtualenv need installation  |
+
 
 ## 1.3 What is a Virtual Machine?
 
