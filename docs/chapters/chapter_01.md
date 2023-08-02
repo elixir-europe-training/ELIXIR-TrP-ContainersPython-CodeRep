@@ -12,10 +12,9 @@ By Chocolate-Dessert-Recipes.com - Rocky Road Brownies, CC BY 2.0, https://commo
 **__Teaching Experience(s)__**
 
 -   Lecture
-
 -   Google quiz
-
 -   Open class discussion of model programs
+-   Practical using local installation of Python   
 
 ## 1.1 Enabling use of your software by other Researchers
 
@@ -104,8 +103,8 @@ _How do we use a virtual environment? (An example using venv)_
    This creates the VE directory (if it doesn't exist already) along with symbolic links to the default version of the python interpreter (canm be over-ridden to use other versions) along with directories to store the VE-specific installed packages and scripts to activate & deactivate the environment.    
 
 3. Move into the environments directory and activate it
-   ```cd <directory>
-   source bin/activate```     
+   ```cd <directory>```
+   ```source bin/activate```     
     
 5. Install whatever packages you need using the pip Python package manager (e.g. with 'pip install -r requirements.txt').    
    ``` python -m pip install <package>``` _or_    
