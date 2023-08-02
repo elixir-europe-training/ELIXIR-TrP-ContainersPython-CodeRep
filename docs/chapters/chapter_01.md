@@ -88,8 +88,15 @@ With Python we have an embarrassment of riches when it comes to virtual environm
 
 !!! info "Which one do I use?"
     That is a very good question and the answer is "It depends..."   
-    - venv is 'pre-baked' into python
-    - virtualenv has to be installed (e.g. 'pip install --user virtualenv' )
+    Reasons to use venv:
+    - On Python 3.3 or later versions   
+    - Don't want install any more software (venv is 'baked' into python whereas virtualenv has to be installed (e.g. 'pip install --user virtualenv' ) i.e. likely to be on an application end-users python installation
+    - Wanting only a simple, lightweight and easy-to-use tool  
+    - Need the pip built-in support    
+    Reasons to use virtualenv: 
+    - You are stuck on an older version of Python (pre-3.3)
+    - Require virtual environements using specific versions of the Python interpreter   
+    - Need more control over the virtual environment setup than supplied by venv   
     
 _How do we use a virtual environment? (An example using venv)_   
 1. Create the virtual environment   
