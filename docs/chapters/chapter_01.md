@@ -91,11 +91,12 @@ With Python we have an embarrassment of riches when it comes to virtual environm
     - venv is 'pre-baked' into python
     - virtualenv has to be installed (e.g. 'pip install --user virtualenv' )
     
-_How do we use a virtual environment? (An example using venv)_
+_How do we use a virtual environment? (An example using venv)_   
 1. Create the virtual environment   
-    ```python -m venv <directory>```    
+    ```python -m venv <directory>```
+   This creates the <directory> (if it doesn't exist already) along with symbolic links to the default version of the python interpreter (canm be over-ridden to use other versions) along with directories to store the VE-specific installed packages and scripts to activate & deactivate the environment.    
 
-2. Move into the environments directory and activate it    
+3. Move into the environments directory and activate it    
     ```cd <directory>
     source bin/activate```     
     
@@ -123,7 +124,7 @@ One complication is that you have to emember to 'activate' the specific environm
 The downside to this is that you need to choose the tool appropriate/best suited for your application and provide instructions for theend-user to install it (who may have other similar & potentially incompatible tools installed,).   
 
 !!! example "Virtual environment exercise"
-    * Use pip to install version 2.2.26 of django package
+    * Use pip to install version 2.2.26 of [django web framework package](https://pypi.org/project/Django/)
     * Create a directory with a virtual environment using 'venv'
     * in the environment, install version 4.0.3 of django
     * Turn the VE on and off and demonstrate that two different django environments are available.    
