@@ -3,7 +3,7 @@
 **After having completed this chapter you will be able to:**
 
 - fetch and run Docker containers on their computer.
-*- interpret the instructions of a Dockerfile
+- interpret the instructions of a Dockerfile
 - create simple Docker containers to run simple python/R scripts.
 
 ## Material
@@ -15,7 +15,7 @@ TODO: UTF-8 encoding apostrophes?
 
 * Unix command line [E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
 
-## Docker Dance
+## 2.1 Docker Dance
 
 We will use Docker as an example to illustrate the development and use of containers.
 
@@ -31,15 +31,18 @@ TODO: add notes about good documentation of the recipe and how to freeze version
 
 The Dockerfile is the starting point of the Docker Dance which is schematically drawn here.
 
-TODO: add image with ELIXIR colors (build, tag, push, pull, save, load etc)
+![Docker Dance](./../assets/images/6090-g1689.png){: style="width:650px;"}
 
 Now, let's focus on the instructions for building Docker container images which are saved in a text file, named by default **Dockerfile**.
 
-**Basic instructions**
+This is a basic recipe with three statements, one FROM and two RUN statements.
 
-Each row in the recipe corresponds to a **layer** of the final image.
+```sh title="Dockerfile"
+FROM ubuntu:18.04
 
-TODO: add image like e.g. https://www.google.com/url?q=https://houseofnasheats.com/wp-content/uploads/2019/02/Layered-Rainbow-Jello-11.jpg&sa=D&source=docs&ust=1685897875842731&usg=AOvVaw2Bc7qDiD4TfX0PN_ZJYk5v
+RUN apt update && apt -y upgrade
+RUN apt install -y wget
+```
 
 The **FROM** statement describes the parent image. Typically, an 'operating' system but you can also use an image of other parties as a starting point. This instruction creates the base layer.
 
@@ -49,7 +52,7 @@ FROM ubuntu:18.04
 
 Recommendation: pin the version of the OS of the base layer
 
-RUN: the command to execute inside the image filesystem.
+The **RUN** statement specifies the command to execute inside the image filesystem.
 
 Think about it this way: every RUN line is essentially what you would run to install programs on a freshly installed Ubuntu OS. This command will be executed as root in the container.
 
@@ -57,16 +60,13 @@ Think about it this way: every RUN line is essentially what you would run to ins
 RUN apt install wget
 ```
 
-A basic recipe:
+Each row in the recipe corresponds to a **layer** of the final image.
 
-```sh title="Dockerfile"
-FROM ubuntu:18.04
-
-RUN apt update && apt -y upgrade
-RUN apt install -y wget
-```
+TODO: add image like e.g. https://www.google.com/url?q=https://houseofnasheats.com/wp-content/uploads/2019/02/Layered-Rainbow-Jello-11.jpg&sa=D&source=docs&ust=1685897875842731&usg=AOvVaw2Bc7qDiD4TfX0PN_ZJYk5v
 			
 ### Anatomy of the commands
+
+With this basic Dockerfile, we will already start the build process which creates an image. Just have a look at the sketch of the Docker Dance above.
 
 **Building Docker image**
 		 								
@@ -238,7 +238,7 @@ docker exec -ti fastqc_container /bin/bash
 
 TODO: Insert example exercises
 
-### Container registries (e.g. Docker Hub)
+## 2.2 Container registries (e.g. Docker Hub)
 
 Images can be stored locally or shared in a registry. Docker hub is the main public registry for Docker images.
 Let’s search the keyword “ubuntu”
@@ -251,7 +251,10 @@ TODO: insert image of the registries
 
 
 1. Get the latest image or latest release
+
+```sh
 docker pull ubuntu
+```
 
 TODO: add output
 
@@ -259,11 +262,12 @@ TODO: add output
 
 TODO: add screenshot
 
+```sh
 docker pull ubuntu:18.04
+```
 
 When you ran this command, Docker first looked for the image on your local machine, and when it couldn’t find it, pulled it down from a cloud registry of Docker images called Docker Hub
 		 			
-								
 What other repositories are possible?
 Have a look at the web site https://biocontainers.pro/ which is a specific directory of Bioinformatics related tools.
 the images are stored in Docker hub and/or Quay.io (RedHat registry)
@@ -273,12 +277,16 @@ Example: FastQC
 https://biocontainers.pro/#/tools/fastqc
 
 TODO: Open solution
+```sh
 docker pull biocontainers/fastqc:v0.11.9_cv7
+```
 
 Images can be listed by the command
+
+```sh
 docker images
 docker image ls
-
+```
 Each image has a unique IMAGE ID.
 
 TODO: add image with example
@@ -287,23 +295,6 @@ Where are these images stored? On Linux, they usually go to /var/lib/.
 Docker is very greedy in storage so regular cleaning is necessary. We will see later on how you can do the purging.
 Sometimes, it is also useful to get more information about the images. You can do this via
 
+```sh
 docker image inspect
-
-
- 
-
-## 2.1 First subtopic
-Here you can enter text and if you need to cite[@creative_commons_2022]
-
-!!! example "Challenge 1"
-
-    This is an example of text of Challenge 1
-
-    ??? success "Solution"
-
-        This is an example solution for Challenge 1.
-
-
-## 2.2 Second subtopic
-
-## 2.3 Third subtopic
+```
