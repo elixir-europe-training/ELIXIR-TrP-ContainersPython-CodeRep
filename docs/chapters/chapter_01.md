@@ -102,8 +102,8 @@ _How do we use a virtual environment? (An example using venv)_
     ```python -m venv <directory>```    
    This creates the VE directory (if it doesn't exist already) along with symbolic links to the default version of the python interpreter (canm be over-ridden to use other versions) along with directories to store the VE-specific installed packages and scripts to activate & deactivate the environment.    
 
-3. Move into the environments directory and activate it
-   ```cd <directory>```
+3. Move into the environments directory and activate it   
+   ```cd <directory>```   
    ```source bin/activate```     
     
 5. Install whatever packages you need using the pip Python package manager (e.g. with 'pip install -r requirements.txt').    
