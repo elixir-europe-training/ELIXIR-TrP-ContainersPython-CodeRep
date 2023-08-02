@@ -12,10 +12,9 @@ By Chocolate-Dessert-Recipes.com - Rocky Road Brownies, CC BY 2.0, https://commo
 **__Teaching Experience(s)__**
 
 -   Lecture
-
 -   Google quiz
-
 -   Open class discussion of model programs
+-   Practical using local installation of Python   
 
 ## 1.1 Enabling use of your software by other Researchers
 
@@ -88,18 +87,26 @@ With Python we have an embarrassment of riches when it comes to virtual environm
 
 !!! info "Which one do I use?"
     That is a very good question and the answer is "It depends..."   
-    - venv is 'pre-baked' into python
-    - virtualenv has to be installed (e.g. 'pip install --user virtualenv' )
+    Reasons to use venv:
+    - On Python 3.3 or later versions   
+    - Don't want install any more software (venv is 'baked' into python whereas virtualenv has to be installed (e.g. 'pip install --user virtualenv' ) i.e. likely to be on an application end-users python installation
+    - Wanting only a simple, lightweight and easy-to-use tool  
+    - Need the pip built-in support    
+    Reasons to use virtualenv: 
+    - You are stuck on an older version of Python (pre-3.3)
+    - Require virtual environements using specific versions of the Python interpreter   
+    - Need more control over the virtual environment setup than supplied by venv   
     
-_How do we use a virtual environment? (An example using venv)_
+_How do we use a virtual environment? (An example using venv)_   
 1. Create the virtual environment   
     ```python -m venv <directory>```    
+   This creates the VE directory (if it doesn't exist already) along with symbolic links to the default version of the python interpreter (canm be over-ridden to use other versions) along with directories to store the VE-specific installed packages and scripts to activate & deactivate the environment.    
 
-2. Move into the environments directory and activate it    
-    ```cd <directory>
-    source bin/activate```     
+3. Move into the environments directory and activate it   
+   ```cd <directory>```   
+   ```source bin/activate```     
     
-4. Install whatever packages you need using the pip Python package manager (e.g. with 'pip install -r requirements.txt').    
+5. Install whatever packages you need using the pip Python package manager (e.g. with 'pip install -r requirements.txt').    
    ``` python -m pip install <package>``` _or_    
    ```python -m pip install <package>==<version>``` _To install a particular version of a package_
    
@@ -123,7 +130,7 @@ One complication is that you have to emember to 'activate' the specific environm
 The downside to this is that you need to choose the tool appropriate/best suited for your application and provide instructions for theend-user to install it (who may have other similar & potentially incompatible tools installed,).   
 
 !!! example "Virtual environment exercise"
-    * Use pip to install version 2.2.26 of django package
+    * Use pip to install version 2.2.26 of [django web framework package](https://pypi.org/project/Django/)
     * Create a directory with a virtual environment using 'venv'
     * in the environment, install version 4.0.3 of django
     * Turn the VE on and off and demonstrate that two different django environments are available.    
@@ -142,7 +149,7 @@ The downside to this is that you need to choose the tool appropriate/best suited
 |---|---|
 | Lots of options to choose from | Lots of options to choose from |
 | Application environment does not affect users other programs | Need to know how to use |
-| useful when developing (can create requirements.txt)   | Must remember to activate/deactivate    |
+| useful when developing (can create requirements.txt e.g. python -m pip freeze > requirements.txt)   | Must remember to activate/deactivate    |
 | -    | Extra resource usage memory & diskspace for python version & packages |
 | -    | use of more sopisticated environments e.g. virtualenv need installation  |
 
