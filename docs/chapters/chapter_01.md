@@ -149,7 +149,7 @@ The downside to this is that you need to choose the tool appropriate/best suited
 |---|---|
 | Lots of options to choose from | Lots of options to choose from |
 | Application environment does not affect users other programs | Need to know how to use |
-| useful when developing (can create requirements.txt)   | Must remember to activate/deactivate    |
+| useful when developing (can create requirements.txt e.g. python -m pip freeze > requirements.txt)   | Must remember to activate/deactivate    |
 | -    | Extra resource usage memory & diskspace for python version & packages |
 | -    | use of more sopisticated environments e.g. virtualenv need installation  |
 
