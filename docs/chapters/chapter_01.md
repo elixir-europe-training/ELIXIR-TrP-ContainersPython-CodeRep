@@ -137,16 +137,16 @@ The downside to this is that you need to choose the tool appropriate/best suited
     * in the environment, install version 4.0.3 of django
     * Turn the VE on and off and demonstrate that two different django environments are available.    
     ??? success "Solution (linux)"
-        ```python -m pip install django==2.2.26   
-        python -m pip list    
-        python -m venv env_exercise    
-        cd env_exercise  
-        source bin/activate
-        python -m pip install django==4.0.3   
-        python -m pip list    
-        deactivate    
-        python -m pip list    
-        ```
+        ```python -m pip install django==2.2.26```   
+        ```python -m pip list```    
+        ```python -m venv env_exercise```    
+        ```cd env_exercise```  
+        ```source bin/activate```
+        ```python -m pip install django==4.0.3```   
+        ```python -m pip list```    
+        ```deactivate```    
+        ```python -m pip list```        
+        
 | Pros  | Cons  |
 |---|---|
 | Lots of options to choose from | Lots of options to choose from |
