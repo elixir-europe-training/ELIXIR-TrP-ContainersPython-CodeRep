@@ -58,7 +58,9 @@ With Python we have an embarrassment of riches when it comes to virtual environm
     That is a very good question and the answer is "It depends..."   
     Reasons to use venv:  
     - On Python 3.3 or later versions   
-    - Don't want install any more software (venv is 'baked' into python whereas virtualenv has to be installed (e.g. 'pip install --user virtualenv' ) i.e. likely to be on an application end-users python installation   
+    - Don't want install any more software (venv is usually 'baked' into a python installation   
+    whereas virtualenv has to be installed (e.g. 'pip install --user virtualenv' ) i.e. likely   
+    to be on an application end-users python installation.   
     - Wanting only a simple, lightweight and easy-to-use tool  
     - Need the pip built-in support    
     Reasons to use virtualenv:    
@@ -67,6 +69,7 @@ With Python we have an embarrassment of riches when it comes to virtual environm
     - Need more control over the virtual environment setup than supplied by venv      
     
 _How do we use a virtual environment? (An example using venv)_   
+
 1. Create the virtual environment   
     ```python -m venv <directory>```    
    This creates the VE directory (if it doesn't exist already) along with symbolic links to the default version of
@@ -75,7 +78,8 @@ _How do we use a virtual environment? (An example using venv)_
 
 2. Move into the environments directory and activate it   
    ```cd <directory>```   
-   ```source bin/activate```     
+   ```source bin/activate```    
+    __Notice how the command prompt now starts with the environment name.__       
     
 3. Install whatever packages you need using the pip Python package manager (e.g. with 'pip install -r requirements.txt').    
    ``` python -m pip install <package>``` _or_    
@@ -88,7 +92,15 @@ _How do we use a virtual environment? (An example using venv)_
    ```python <application.py>```    
    
 6. Deactivate the environment to return you to your default Python environment and packages e.g. to run your 'normal' software.
-    ```deactivate```    
+    ```deactivate```   
+   __Notice how the command prompt has reverted to it's previous form__       
+
+!!! info "Those commands don't work on my nachine!"
+    Weren't we supposed to be getting away from that sort of thing?   
+    Unfortunately, depending upon your Operating System and how it is setup/python is   
+    installed you many have to use 'python3' or 'pip3' in place of python or pip.     
+    You shoul make sure that your installed python is version 3.x as version 2 is no   
+    longer supported (Type 'python --version' to find out wehat you have).   
 
 #### Operating System variations (Mainly Windows)   
 | Command  | Linux  | Windows  | MacOS  |
@@ -183,6 +195,10 @@ A software container is defined by a manifest or recipe file that lists all of t
 
 We will cover creating a Dockerfile later in this course.
 
+!!! example "Introduction comprehension exercise"
+    ??? success "answer"
+    goes here    
+    
 **Challenge**
 
 > Go to this Google quiz about the material we have covered in this introduction and answer the questions (your answers are anonymised). We will then have a review of the class answers and address any misunderstandings highlighted by this exercise.
