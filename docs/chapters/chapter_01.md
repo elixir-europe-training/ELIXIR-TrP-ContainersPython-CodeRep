@@ -61,7 +61,7 @@ With Python we have an embarrassment of riches when it comes to virtual environm
     - Don't want install any more software (venv is 'baked' into python whereas virtualenv has to be installed (e.g. 'pip install --user virtualenv' ) i.e. likely to be on an application end-users python installation   
     - Wanting only a simple, lightweight and easy-to-use tool  
     - Need the pip built-in support    
-    Reasons to use virtualenv:    
+    Reasons to use virtualenv:   
     - You are stuck on an older version of Python (pre-3.3)   
     - Require virtual environements using specific versions of the Python interpreter   
     - Need more control over the virtual environment setup than supplied by venv      
