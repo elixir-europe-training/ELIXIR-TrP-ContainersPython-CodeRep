@@ -68,6 +68,6 @@ Please cite as:
 To run this lesson you need to install data from …
 
 ### Software setup
-To run this course you need to install… continue with software installation instructions
+To run this course you need to install Docker on your computer [Instructions here](https://docs.docker.com/get-docker/) and have access to a text editor program that can edit and save ASCII text documents (Not a word processor like Word).   
 
 
