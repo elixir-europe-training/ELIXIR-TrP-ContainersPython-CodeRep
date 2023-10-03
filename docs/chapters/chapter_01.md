@@ -2,28 +2,30 @@
 
 [Rocky Road Brownies](https://commons.wikimedia.org/w/index.php?curid=48410887) by Chocolate-Dessert-Recipes.com, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en)
 
-**Teaching Outcomes**
+## What you will learn in this module
 
-By the end of this lesson, you will be able to
+**Learning Outcomes**
 
-* List the issues relating to running software on users machines
-* Students can name the benefits and drawbacks of native installations, virtual machines (VMs) and containers
+By the end of this lesson, you will be able to: 
 
-**Teaching Experience(s)**
+* List common challenges when running code and reproducing results in different computing environments
+* Name the benefits and drawbacks of setting up reproducible environments for running code on native installations, virtual environments, virtual machines (VMs) and in containers
 
-* Lecture
-* Google quiz
-* Open class discussion of model programs
+**Learning Experiences**
 
-## Enabling use of your software by other researchers
-
-So far we have learnt how to program, how to document our code, how to test it and how to publish it to a repository (Findable & Accessible under the [FAIR principles](https://force11.org/info/the-fair-data-principles/)) - what more do we have to do?
+* Lecture (if taken in-person)
+* Quiz
+* Open class discussion of model programs (if taken in-person)
 
 ## "Well it works on my machine..." How often do we hear that?
 
-***Why is it so difficult to run other peoples' code?***
+So far we have learnt how to document our code, how to test it and how to publish it to a version-controlled repository (Findable & Accessible under the [FAIR principles](https://force11.org/info/the-fair-data-principles/)) - what more do we have to do? The following is the question we will tackle next: 
 
-This is a fair question - over your career there will be many times you will come across software that is potentially useful to you, that you download & install and find that it doesn't work (maybe with a cryptic error message for you to search for online).
+***Why is it so difficult to run other peoples' code on my computer?***
+
+This is a fair question - over your career you might come across software that is potentially useful to you, that you download and install, and find that it doesn't work (maybe with a cryptic error message for you to search for online).
+
+For example.... [Include an example of contacting the author of a paper who send you the script they used to produce a figure in their paper, only to find that the code is uncommented and doesn't run at all on your machine.]
 
 **Potential barriers**
 
