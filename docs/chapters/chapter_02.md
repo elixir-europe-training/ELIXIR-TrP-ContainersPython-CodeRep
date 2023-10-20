@@ -15,6 +15,32 @@ TODO: UTF-8 encoding apostrophes?
 
 * Unix command line [E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
 
+
+<div>
+<link rel="stylesheet" property="stylesheet" href="https://elixirtess.github.io/TeSS_widgets/css/tess-widget.css"/>
+<div id="tess-widget-materials-table" class="tess-widget tess-widget-faceted-table"></div>
+<script>
+function initTeSSWidgets() {
+    TessWidget.Materials(document.getElementById('tess-widget-materials-table'),
+        'FacetedTable',
+        {
+            opts: {
+                columns: [{name: 'Name', field: 'title'},
+                    {name: 'Description', field: 'description'}],
+                allowedFacets: ['scientific-topics', 'target-audience'],
+                facetOptionLimit: 5
+            },
+            params: {
+                pageSize: 5,
+                q: 'VIB Training',
+                country: ['Belgium']
+            }
+        });
+}
+</script>
+<script async="" defer="" src="https://elixirtess.github.io/TeSS_widgets/js/tess-widget-standalone.js" onload="initTeSSWidgets()"></script>
+</div>
+
 ## 2.1 Docker Dance
 
 We will use Docker as an example to illustrate the development and use of containers.
