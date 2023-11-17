@@ -1,7 +1,2 @@
 .DS_Store*
 site/
-
-# Virtual environment files
-.envrc
-.direnv/
-.tool-versions
