@@ -132,14 +132,15 @@ As next step, we will check with the command `docker images` that you see the ne
     ```sh
     docker images
     ```
-    
+
     ??? success "Solution"       
-	```sh
-	account@your-computer folder % docker images
-        REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
-        mytestimage                v1        48bdb8036e8c   7 minutes ago   96.9MB
-	```
-	Let’s check the ID of the image to run it later.
+	
+        ```sh
+        account@your-computer folder % docker images 
+        REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE 
+        mytestimage                v1        48bdb8036e8c   7 minutes ago   96.9MB 
+        ``` 
+        Let’s check the ID of the image to run it later.
 
 But right now, we investigate some additional statements for the recipes!
 
@@ -171,9 +172,9 @@ FROM ubuntu:18.04
 
 LABEL version="1.0"
 LABEL description="This is an example image\
-that should download a file once run."
+that should download a picture once run."
 
-WORKDIR ~
+WORKDIR /scratch 
 
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y wget
@@ -186,13 +187,14 @@ CMD ["https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png
     Let's also build a Docker image based on the `Dockerfile-ex2`. What is the syntax?
     
     ??? success "Solution"
-        ```
-	account@your-computer folder % docker build -t download-image:v1 -f Dockerfile-ex2 .
+         
+        ```sh
+        account@your-computer folder % docker build -t download-image:v1 -f Dockerfile-ex2 .
         ...
         account@your-computer folder % docker images
         REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
         download-image             v1        42f09c5ca259   34 seconds ago   96.9MB
-	```
+        ```
 
 **Tips for Docker files**
 						
@@ -217,17 +219,16 @@ docker run [docker options] <IMAGE NAME> [image arguments]
 
 This means that arguments that affect the way Docker runs must always go before the image name, but arguments that are passed to the image itself must go after the image name.
 
-
-
 !!! example "Exercise"
     You can execute any program/command that is stored inside the image.
-    What happens if you execute ls in your current working directory: is the result the same?
+    What happens if you execute `ls` in your current working directory: is the result the same?
     ```sh
     docker run mytestimage:v1 /bin/ls
     ```
 
     ??? done "Answer"
-    No, it is not. 	
+        
+        No, it is not. The listing of the working directory within the container will be displayed. In our case, this is `/`. 	
 
 !!! example "Exercise"
     You can execute any program/command that is stored inside the image.
@@ -237,66 +238,164 @@ This means that arguments that affect the way Docker runs must always go before 
     docker run mytestimage:v1 cat /etc/issue
     ```
     ??? done "Answer"
-    Anything surprising happened and why?	
+        Anything surprising happened and why?
+        The first command did not produce a valid output. Which command do you have to run to get a valid response? And what is the user? 	
 
-
-albot@Alexanders-MacBook-Pro toto % docker run 42f09c5ca259
---2023-12-30 13:59:48--  https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png
-Resolving cdn.wp.nginx.com (cdn.wp.nginx.com)... 104.18.10.5, 104.18.11.5
-Connecting to cdn.wp.nginx.com (cdn.wp.nginx.com)|104.18.10.5|:443... connected.
-HTTP request sent, awaiting response... 200 OK
-Length: 446827 (436K) [image/png]
-Saving to: 'docker-swarm-hero2.png'
-
-     0K .......... .......... .......... .......... .......... 11% 13.0M 0s
-    50K .......... .......... .......... .......... .......... 22% 12.1M 0s
-   100K .......... .......... .......... .......... .......... 34% 5.30M 0s
-   150K .......... .......... .......... .......... .......... 45% 6.02M 0s
-   200K .......... .......... .......... .......... .......... 57% 10.4M 0s
-   250K .......... .......... .......... .......... .......... 68% 9.34M 0s
-   300K .......... .......... .......... .......... .......... 80% 11.0M 0s
-   350K .......... .......... .......... .......... .......... 91% 2.73M 0s
-   400K .......... .......... .......... ......               100%  250M=0.06s
-
-2023-12-30 13:59:48 (7.41 MB/s) - 'docker-swarm-hero2.png' saved [446827/446827]
-
-       
 **List running containers**
+
+Let's run another command in the shell.
 
 ```sh
 docker ps
 ```
 
-List all containers (whether they are running or not):
+In this case, we would like list all running containers but we will get back an empty result.
+
+```sh
+account@your-computer ~ % docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+```
+
+This is normal since before each of the executed containers only ran a very short time. All commands were executed in milliseconds.  
+
+Now, let's list all containers whether they are running or not:
 
 ```sh
 docker ps -a
 ```
-The IDs that are shown can be useful for other docker commands like `docker stop` and `docker exec`.
+
+Now, the result is more insightful.
+
+```sh
+albot@Alexanders-MacBook-Pro ~ % docker ps -a
+CONTAINER ID   IMAGE               COMMAND                  CREATED          STATUS                      PORTS     NAMES
+6cdfeb6b412f   mytestimage:v1      "whoami"                 8 minutes ago    Exited (0) 5 minutes ago              determined_torvalds
+e7a143e1b594   mytestimage:v1      "cat /etc/issue"         9 minutes ago    Exited (0) 5 minutes ago              elated_lalande
+7fed0970b698   mytestimage:v1      "/bin/whoami"            10 minutes ago   Created                               frosty_noether
+```
+
+The IDs that are shown can be useful for other docker commands like `docker stop` and `docker exec` in case the containers will run longer. The containers with the IDs `6cdfeb6b412f` and `e7a143e1b594` have been run succesfully and now have the status `Excited`. The last one has only been created since we received an error message. We will not go into more details now. In a chapter later on, we will shortly touch on the containers which run e.g. web applications.
+
+But before we go on to second image we have created before, let's run an container interactively.
+
+```sh
+docker run -it mytestimage:v1
+```  
+
+!!! example "Exercise"
+    Verify what the operating system of the container is? One option is `cat /etc/os-release`. 
+
+    ??? done "Answer"
+        
+        ```sh
+        root@5a7f73d47ff5:/# cat /etc/os-release
+        NAME="Ubuntu"
+        VERSION="18.04.6 LTS (Bionic Beaver)"
+        ID=ubuntu
+        ID_LIKE=debian
+        PRETTY_NAME="Ubuntu 18.04.6 LTS"
+        VERSION_ID="18.04"
+        HOME_URL="https://www.ubuntu.com/"
+        SUPPORT_URL="https://help.ubuntu.com/"
+        BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+        PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+        VERSION_CODENAME=bionic
+        UBUNTU_CODENAME=bionic
+        ```
+
+!!! example "Exercise"
+    Run the command `whoami`, now in the container.
+
+    ??? done "Answer"
+        You might have seen before that you are indeed `root`. This also means that you can install other programms in this interactive shell. 
+
+Before we exit the shell in the container, we will have a quick look at the status of the container like we did above.
+
+!!! example "Exercise"
+    Please open another terminal and type `docker ps -a`. 
+
+    ??? done "Answer"
+
+        You will see that the current container `5a7f73d47ff5` has the status `Up`. So, it is indeed still running since we have started an interactive shell. 
+        ```sh
+        CONTAINER ID   IMAGE               COMMAND                  CREATED             STATUS                         PORTS     NAMES
+        5a7f73d47ff5   mytestimage:v1      "/bin/bash"              11 minutes ago      Up 11 minutes                            vigorous_taussig
+        6cdfeb6b412f   mytestimage:v1      "whoami"                 57 minutes ago      Exited (0) 57 minutes ago                determined_torvalds
+        e7a143e1b594   mytestimage:v1      "cat /etc/issue"         58 minutes ago      Exited (0) 58 minutes ago                elated_lalande
+        7fed0970b698   mytestimage:v1      "/bin/whoami"            58 minutes ago      Created                                  frosty_noether
+        ```
+
+Exit the interactive container by typing `exit` so that we return to the shell of our host. Let's come back to our second image we have created before.
+
+First identify the id of this image by running `docker images`. When preparing the course, the ID was `42f09c5ca259`.
+
+!!! example "Exercise"
+    Run this container without any specific command. You might recall that a default command is defined in the recipe.
+
+    ??? done "Answer"
+
+        ```sh
+        account@your-computer folder % docker run 42f09c5ca259
+        --2023-12-30 13:59:48--  https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png
+        Resolving cdn.wp.nginx.com (cdn.wp.nginx.com)... 104.18.10.5, 104.18.11.5
+        Connecting to cdn.wp.nginx.com (cdn.wp.nginx.com)|104.18.10.5|:443... connected.
+        HTTP request sent, awaiting response... 200 OK
+        Length: 446827 (436K) [image/png]
+        Saving to: 'docker-swarm-hero2.png'
+
+          0K .......... .......... .......... .......... .......... 11% 13.0M 0s
+         50K .......... .......... .......... .......... .......... 22% 12.1M 0s
+        100K .......... .......... .......... .......... .......... 34% 5.30M 0s
+        150K .......... .......... .......... .......... .......... 45% 6.02M 0s
+        200K .......... .......... .......... .......... .......... 57% 10.4M 0s
+        250K .......... .......... .......... .......... .......... 68% 9.34M 0s
+        300K .......... .......... .......... .......... .......... 80% 11.0M 0s
+        350K .......... .......... .......... .......... .......... 91% 2.73M 0s
+        400K .......... .......... .......... ......               100%  250M=0.06s
+         
+        2023-12-30 13:59:48 (7.41 MB/s) - 'docker-swarm-hero2.png' saved [446827/446827]
+        ```
+
+        As you see, the png file is downloaded but do you find it on the host? Probably no since the container is isolated from the host.
 
 ### Volumes
 
 Docker containers are fully isolated. It is necessary to mount volumes in order to handle input/output files.
-By default, Docker containers cannot access data on the host system. This means you cannot use host data in your containers. All data stored in the container will be lost when the container exits
+By default, Docker containers cannot access data on the host system. This means you cannot use host data in your containers. All data stored in the container will be lost when the container exits.
 
-TODO: check about mount bind statements
-
-You can solve this in two ways:
+You can solve this like this:
 
 -v /path/in/host:/path/in/container: This bind mounts a host file or directory into the container. Writes to one will affect the other. Note that both paths have to be absolute paths, so you often want to use`pwd`/some/path
 
--v volume_name:/path/in/container. This mounts a named volume into the container, which will live separately from the rest of your files. This is preferred, unless you need to access or edit the files from the host.
+!!! example "Exercise"
+    For this exercise, we will bind-mount the current directory of our user on the host machine to the `WORKDIR` as defined in the Dockerfile-ex2.
+    `docker run --volume $(pwd):/scratch download-image:v1`
 
-```sh
-mkdir datatest
-touch datatest/test
-docker run --detach --volume $(pwd)/datatest:/scratch --name fastqc_container biocontainers/fastqc:v0.11.9_cv7 tail -f /dev/null
-docker exec -ti fastqc_container /bin/bash
-> ls -l /scratch
-> exit
-```
+    ??? done "Answer"
 
-TODO: Insert example exercises
+        ```sh
+        --2023-12-30 16:55:20--  https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png
+        Resolving cdn.wp.nginx.com (cdn.wp.nginx.com)... 104.18.10.5, 104.18.11.5
+        Connecting to cdn.wp.nginx.com (cdn.wp.nginx.com)|104.18.10.5|:443... connected.
+        HTTP request sent, awaiting response... 200 OK
+        Length: 446827 (436K) [image/png]
+        Saving to: 'docker-swarm-hero2.png'
+
+          0K .......... .......... .......... .......... .......... 11% 13.0M 0s
+         50K .......... .......... .......... .......... .......... 22% 12.1M 0s
+        100K .......... .......... .......... .......... .......... 34% 5.30M 0s
+        150K .......... .......... .......... .......... .......... 45% 6.02M 0s
+        200K .......... .......... .......... .......... .......... 57% 10.4M 0s
+        250K .......... .......... .......... .......... .......... 68% 9.34M 0s
+        300K .......... .......... .......... .......... .......... 80% 11.0M 0s
+        350K .......... .......... .......... .......... .......... 91% 2.73M 0s
+        400K .......... .......... .......... ......               100%  250M=0.06s
+
+        2023-12-30 16:55:21 (7.41 MB/s) - 'docker-swarm-hero2.png' saved [446827/446827]
+        ```
+
+        As you see, the png file is downloaded and do you find it on the host in the current working directory? 
+        If all went fine, you should see the file `docker-swarm-hero2.png` in your current directory.
 
 ## 2.2 Container registries (e.g. Docker Hub)
 
@@ -309,14 +408,23 @@ There are a lot of alternatives to Docker hub for image registries depending on 
 
 TODO: insert image of the registries
 
-
 1. Get the latest image or latest release
 
 ```sh
 docker pull ubuntu
 ```
 
-TODO: add output
+In this case, the Ubuntu image with the tag `latest` is downloaded.
+
+```sh
+albot@Alexanders-MacBook-Pro toto % docker pull ubuntu
+Using default tag: latest
+latest: Pulling from library/ubuntu
+005e2837585d: Pull complete
+Digest: sha256:6042500cf4b44023ea1894effe7890666b0c5c7871ed83a97c36c76ae560bb9b
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest
+```
 
 2. Check the versions of Ubuntu present and fetch version 18.04 using tags
 
@@ -341,16 +449,6 @@ TODO: Open solution
 docker pull biocontainers/fastqc:v0.11.9_cv7
 ```
 
-Images can be listed by the command
-
-```sh
-docker images
-docker image ls
-```
-Each image has a unique IMAGE ID.
-
-TODO: add image with example
-
 Where are these images stored? On Linux, they usually go to /var/lib/.
 Docker is very greedy in storage, so regular cleaning is necessary. We will see later on how you can do the purging.
 Sometimes, it is also useful to get more information about the images. You can do this via
@@ -364,4 +462,3 @@ docker image inspect
 [Best practices for manual creation](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
 [Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
 
-TODO: add exercises difficult examples from BioInformatics ???? see Biocontainers community, check this part once R/Python scripts are available
