@@ -9,37 +9,11 @@
 ## Material
 
 TODO: add overview of necessary files, video, etc
-TODO: UTF-8 encoding apostrophes?
 
 [:fontawesome-solid-file-pdf: Download the presentation](../assets/pdf/docker_dance.pdf){: .md-button }
 
 * Unix command line [E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
 
-
-<div>
-<link rel="stylesheet" property="stylesheet" href="https://elixirtess.github.io/TeSS_widgets/css/tess-widget.css"/>
-<div id="tess-widget-materials-table" class="tess-widget tess-widget-faceted-table"></div>
-<script>
-function initTeSSWidgets() {
-    TessWidget.Materials(document.getElementById('tess-widget-materials-table'),
-        'FacetedTable',
-        {
-            opts: {
-                columns: [{name: 'Name', field: 'title'},
-                    {name: 'Description', field: 'description'}],
-                allowedFacets: ['scientific-topics', 'target-audience'],
-                facetOptionLimit: 5
-            },
-            params: {
-                pageSize: 5,
-                q: 'VIB Training',
-                country: ['Belgium']
-            }
-        });
-}
-</script>
-<script async="" defer="" src="https://elixirtess.github.io/TeSS_widgets/js/tess-widget-standalone.js" onload="initTeSSWidgets()"></script>
-</div>
 
 ## 2.1 Docker Dance
 
@@ -49,11 +23,11 @@ We will use Docker as an example to illustrate the development and use of contai
 
 Please follow the installation of the latest version of Docker Desktop for your operating system. It is described at [Get Docker](https://docs.docker.com/get-docker/)
 
-TODO: add screenshots of the desired end points per OS
+!!! Info
+    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) requires a paid subscription.
+    Note that 'commercial use' is interpreted quite broad. 
 
 ### Introducing the Dockerfile
-
-TODO: add notes about good documentation of the recipe and how to freeze versions of tools in a container image
 
 The Dockerfile is the starting point of the Docker Dance which is schematically drawn here.
 
@@ -61,7 +35,9 @@ The Dockerfile is the starting point of the Docker Dance which is schematically 
 
 Now, let's focus on the instructions for building Docker container images which are saved in a text file, named by default **Dockerfile**.
 
-This is a basic recipe with three statements, one FROM and two RUN statements.
+This is a basic recipe with three statements, one FROM and two RUN statements. 
+
+To follow along on your own, copy the content of the shown `Dockerfile` into a file named `Dockerfile` and save the file on your disk.
 
 ```sh title="Dockerfile"
 FROM ubuntu:18.04
@@ -76,7 +52,9 @@ The **FROM** statement describes the parent image. Typically, an 'operating' sys
 FROM ubuntu:18.04
 ```
 
-Recommendation: pin the version of the OS of the base layer
+!!! info "Recommendation" 
+    Pin the version of the OS of the base layer.
+    There is an [interesting publication](https://doi.org/10.1371/journal.pcbi.1008316) regarding recommendation when manually crafting Dockerfiles. Rule 5 points out the importance of pinning versions of the base image but also system libraries or other installed software. 
 
 The **RUN** statement specifies the command to execute inside the image filesystem.
 
@@ -88,15 +66,15 @@ RUN apt install wget
 
 Each row in the recipe corresponds to a **layer** of the final image.
 
-TODO: add image like e.g. https://www.google.com/url?q=https://houseofnasheats.com/wp-content/uploads/2019/02/Layered-Rainbow-Jello-11.jpg&sa=D&source=docs&ust=1685897875842731&usg=AOvVaw2Bc7qDiD4TfX0PN_ZJYk5v
+TODO: create illustration like e.g. https://docs.docker.com/build/guide/images/layers.png
 			
 ### Anatomy of the commands
 
-With this basic Dockerfile, we will already start the build process which creates an image. Just have a look at the sketch of the Docker Dance above.
+With this basic Dockerfile, we will already start the build process which creates an image. For reference, have a look at the sketch of the Docker Dance above.
 
 **Building Docker image**
 		 								
-The build command implicitly looks for a file named Dockerfile in the current directory:
+The build command implicitly looks for a file named `Dockerfile` in the current directory:
 
 ```sh
 docker build .
@@ -108,34 +86,62 @@ docker build --file Dockerfile .
 
 **Syntax**: -file / -f
 
-. stands for the context (in this case, current directory) of the build process. This makes sense if copying files from filesystem, for instance. 
+. stands for the context (in this case, current directory) of the build process. This makes sense if during the build process, we will copy files from local filesystem, for instance. 
 
-!!! info 
-
+!!! info
     Avoid contexts (directories) overpopulated with files (even if not actually used in the recipe).
 
 You can define a specific name for the image during the build process.
 
 **Syntax**: -t imagename:tag. If not defined :tag default is latest.
 
+!!! example "Exercise"
+    ```sh
+    docker build -t mytestimage:v1 .
+    ```
+The following output should be shown:
+
 ```sh
-docker build -t mytestimage:v1 .
+account@your-computer folder % docker build -f Dockerfile .
+[+] Building 11.3s (7/7) FINISHED                                                                                                                                                                                               docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                            0.0s
+ => => transferring dockerfile: 113B                                                                                                                                                                                                            0.0s
+ => [internal] load .dockerignore                                                                                                                                                                                                               0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                 0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:18.04                                                                                                                                                                                 1.6s
+ => [1/3] FROM docker.io/library/ubuntu:18.04@sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98                                                                                                                           3.4s
+ => => resolve docker.io/library/ubuntu:18.04@sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98                                                                                                                           0.0s
+ => => sha256:064a9bb4736de1b2446f528e4eb37335378392cf9b95043d3e9970e253861702 22.71MB / 22.71MB                                                                                                                                                2.6s
+ => => sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98 1.33kB / 1.33kB                                                                                                                                                  0.0s
+ => => sha256:f97a5103cca28097326814718e711c9c41b54853c26959d73495e40b1dd608f2 424B / 424B                                                                                                                                                      0.0s
+ => => sha256:d1a528908992e9b5bcff8329a22de1749007d0eeeccb93ab85dd5a822b8d46a0 2.31kB / 2.31kB                                                                                                                                                  0.0s
+ => => extracting sha256:064a9bb4736de1b2446f528e4eb37335378392cf9b95043d3e9970e253861702                                                                                                                                                       0.7s
+ => [2/3] RUN apt update && apt -y upgrade                                                                                                                                                                                                      3.9s
+ => [3/3] RUN apt install -y wget                                                                                                                                                                                                               2.3s
+ => exporting to image                                                                                                                                                                                                                          0.1s
+ => => exporting layers                                                                                                                                                                                                                         0.1s
+ => => writing image sha256:48bdb8036e8c97d6fde1e515291345425b78b3c33830768caad12ad98ea17b2c                                                                                                                                                    0.0s
 ```
 
-Once the build process is finished, The last line of output should be `Successfully built ... `. Then you are good to go.
+Once the build process is finished, the output should be `Building ... FINISHED`. Then you are good to go.
 
 As next step, we will check with the command `docker images` that you see the newly built image in the list of images.
 
-TODO: add output of the command as screenshot
+!!! example "Exercise"
+    ```sh
+    docker images
+    ```
+    ??? success "Solution"
+        ```
+	account@your-computer folder % docker images
+        REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+        mytestimage                v1        48bdb8036e8c   7 minutes ago   96.9MB
+	```
+	Let’s check the ID of the image to run it later.
 
-```sh
-docker images
-```
-Then let’s check the ID of the image and run it later. But right now, we investigate some additional statements for the recipes!
+But right now, we investigate some additional statements for the recipes!
 
 Additional statements for the Dockerfile	
-
-TODO: refine table with following content:
 
 | command | what does it do?                 | Example                                               |
 |---------|----------------------------------|-------------------------------------------------------|
@@ -154,16 +160,17 @@ Difference between ADD and COPY explained [here](https://stackoverflow.com/quest
 
 Difference between ARG and ENV explained [here](https://vsupalov.com/docker-arg-vs-env/).
 
-### A more complex recipe
+### A longer recipe
 
-A more complex recipe (save it in a text file named Dockerfile:
+Below is a longer recipe (save it in a text file named `Dockerfile-ex2`):
 
-TODO: check this part once R/Python scripts are available
-
-```sh title="Dockerfile"
+```sh title="Dockerfile-ex2"
 FROM ubuntu:18.04
 
-LABEL 
+LABEL version="1.0"
+LABEL description="This is an example image\
+that should download a file once run."
+
 WORKDIR ~
 
 RUN apt-get update && apt-get -y upgrade
@@ -173,6 +180,18 @@ ENTRYPOINT ["/usr/bin/wget"]
 CMD ["https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png"]
 ```
 
+!!! example "Exercise"
+    Let's also build a Docker image based on the `Dockerfile-ex2`. What is the syntax?
+    
+    ??? success "Solution"
+        ```
+	account@your-computer folder % docker build -t download-image:v1 -f Dockerfile-ex2 .
+        ...
+        account@your-computer folder % docker images
+        REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+        download-image             v1        42f09c5ca259   34 seconds ago   96.9MB
+	```
+
 **Tips for Docker files**
 						
 You should try to separate the Dockerfile into as many stages as possible, because this will allow for better caching.
@@ -181,15 +200,6 @@ For example for `apt-get`:
 
 You must run apt-get update and apt-get install in the same command, otherwise you will encounter caching issues.
 Remember to use apt-get install -y, because you will have no control over the process while it’s building.
-
-
-**Useful resources**
-
-[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
-[Best practices](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
-[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
-
-TODO: add exercises difficult examples from BioInformatics ???? see Biocontainers community
 
 ### Running our Docker container
 
@@ -205,27 +215,50 @@ docker run [docker options] <IMAGE NAME> [image arguments]
 
 This means that arguments that affect the way Docker runs must always go before the image name, but arguments that are passed to the image itself must go after the image name.
 
-```sh
-docker run ubuntu:18.04 /bin/ls
-```
 
-TODO: add command which is from the built container we use above 
 
-TODO: add command which is from the example we use in the current R/Python scripts 
+!!! example "Exercise"
+    You can execute any program/command that is stored inside the image.
+    What happens if you execute ls in your current working directory: is the result the same?
+    ```sh
+    docker run mytestimage:v1 /bin/ls
+    ```
 
-**Exercise:** What happens if you execute ls in your current working directory: is the result the same?
+    ??? done "Answer"
+    No, it is not. 	
 
-!!! info 
+!!! example "Exercise"
     You can execute any program/command that is stored inside the image.
 
     ```sh
-    docker run ubuntu:18.04 /bin/whoami
-    docker run ubuntu:18.04 cat /etc/issue
+    docker run mytestimage:v1 /bin/whoami
+    docker run mytestimage:v1 cat /etc/issue
     ```
+    ??? done "Answer"
+    Anything surprising happened and why?	
 
-??? done "Answer"
-    Anything surprising happened?	
-								
+
+albot@Alexanders-MacBook-Pro toto % docker run 42f09c5ca259
+--2023-12-30 13:59:48--  https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png
+Resolving cdn.wp.nginx.com (cdn.wp.nginx.com)... 104.18.10.5, 104.18.11.5
+Connecting to cdn.wp.nginx.com (cdn.wp.nginx.com)|104.18.10.5|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 446827 (436K) [image/png]
+Saving to: 'docker-swarm-hero2.png'
+
+     0K .......... .......... .......... .......... .......... 11% 13.0M 0s
+    50K .......... .......... .......... .......... .......... 22% 12.1M 0s
+   100K .......... .......... .......... .......... .......... 34% 5.30M 0s
+   150K .......... .......... .......... .......... .......... 45% 6.02M 0s
+   200K .......... .......... .......... .......... .......... 57% 10.4M 0s
+   250K .......... .......... .......... .......... .......... 68% 9.34M 0s
+   300K .......... .......... .......... .......... .......... 80% 11.0M 0s
+   350K .......... .......... .......... .......... .......... 91% 2.73M 0s
+   400K .......... .......... .......... ......               100%  250M=0.06s
+
+2023-12-30 13:59:48 (7.41 MB/s) - 'docker-swarm-hero2.png' saved [446827/446827]
+
+       
 **List running containers**
 
 ```sh
@@ -237,7 +270,6 @@ List all containers (whether they are running or not):
 ```sh
 docker ps -a
 ```
-
 The IDs that are shown can be useful for other docker commands like `docker stop` and `docker exec`.
 
 ### Volumes
@@ -292,7 +324,7 @@ TODO: add screenshot
 docker pull ubuntu:18.04
 ```
 
-When you ran this command, Docker first looked for the image on your local machine, and when it couldn’t find it, pulled it down from a cloud registry of Docker images called Docker Hub
+When you ran this command, Docker first looked for the image on your local machine, and when it couldn’t find it, pulled it down from a cloud registry of Docker images called Docker Hub.
 		 			
 What other repositories are possible?
 Have a look at the web site https://biocontainers.pro/ which is a specific directory of Bioinformatics related tools.
@@ -318,9 +350,16 @@ Each image has a unique IMAGE ID.
 TODO: add image with example
 
 Where are these images stored? On Linux, they usually go to /var/lib/.
-Docker is very greedy in storage so regular cleaning is necessary. We will see later on how you can do the purging.
+Docker is very greedy in storage, so regular cleaning is necessary. We will see later on how you can do the purging.
 Sometimes, it is also useful to get more information about the images. You can do this via
 
 ```sh
 docker image inspect
 ```
+**Useful resources**
+
+[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+[Best practices for manual creation](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
+[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
+
+TODO: add exercises difficult examples from BioInformatics ???? see Biocontainers community, check this part once R/Python scripts are available
