@@ -99,6 +99,7 @@ You can define a specific name for the image during the build process.
     ```sh
     docker build -t mytestimage:v1 .
     ```
+
 The following output should be shown:
 
 ```sh
@@ -127,14 +128,12 @@ Once the build process is finished, the output should be `Building ... FINISHED`
 
 As next step, we will check with the command `docker images` that you see the newly built image in the list of images.
 
-!!! example "Exercise"
-    
+!!! example "Exercise"    
     ```sh
     docker images
     ```
     
-    ??? success "Solution"
-        
+    ??? success "Solution"       
 	```sh
 	account@your-computer folder % docker images
         REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
