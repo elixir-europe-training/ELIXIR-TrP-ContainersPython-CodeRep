@@ -5,6 +5,7 @@ nav:
       - "1. The Rocky Road to Reproducibility": chapters/chapter_01.md
       - "2. The Docker Dance": chapters/chapter_02.md
       - "3. To Boldly Dock (Learning more about containers)": chapters/chapter_03.md
+      - "4. To Tie it together and run the Python script": chapters/chapter_04.md
       - "References": chapters/references.md
     - "Follow up training": follow_up_training.md
 
