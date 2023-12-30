@@ -456,6 +456,24 @@ Sometimes, it is also useful to get more information about the images. You can d
 ```sh
 docker image inspect
 ```
+
+And lastly to complete the Docker Dance, we shortly show how to upload own containers to the DockerHub registry.
+
+Note: You will have to use a public repository on DockerHub.
+
+First, you will have to create an account on DockerHub. 
+
+Usually, as first step before the upload of the image to the registry, you will use `docker login`. In this case, the command assumes that you'd like to login to DockerHub. 
+
+As you have seen before, we have created two images based on simple recipes. Imagine that you'd like to share them publically. You will use the command `docker push`.
+But before you need to rename the docker image so that the `push` command knows where the destination is.
+
+
+```sh
+docker tag download-image:v1 yourhubusername/download-image:v1
+docker push yourhubusername/download-image:v1
+```
+
 **Useful resources**
 
 [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
