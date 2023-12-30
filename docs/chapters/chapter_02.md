@@ -95,20 +95,51 @@ You can define a specific name for the image during the build process.
 
 **Syntax**: -t imagename:tag. If not defined :tag default is latest.
 
+!!! example "Exercise"
+    ```sh
+    docker build -t mytestimage:v1 .
+    ```
+The following output should be shown:
+
 ```sh
-docker build -t mytestimage:v1 .
+account@your-computer folder % docker build -f Dockerfile .
+[+] Building 11.3s (7/7) FINISHED                                                                                                                                                                                               docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                            0.0s
+ => => transferring dockerfile: 113B                                                                                                                                                                                                            0.0s
+ => [internal] load .dockerignore                                                                                                                                                                                                               0.0s
+ => => transferring context: 2B                                                                                                                                                                                                                 0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:18.04                                                                                                                                                                                 1.6s
+ => [1/3] FROM docker.io/library/ubuntu:18.04@sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98                                                                                                                           3.4s
+ => => resolve docker.io/library/ubuntu:18.04@sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98                                                                                                                           0.0s
+ => => sha256:064a9bb4736de1b2446f528e4eb37335378392cf9b95043d3e9970e253861702 22.71MB / 22.71MB                                                                                                                                                2.6s
+ => => sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98 1.33kB / 1.33kB                                                                                                                                                  0.0s
+ => => sha256:f97a5103cca28097326814718e711c9c41b54853c26959d73495e40b1dd608f2 424B / 424B                                                                                                                                                      0.0s
+ => => sha256:d1a528908992e9b5bcff8329a22de1749007d0eeeccb93ab85dd5a822b8d46a0 2.31kB / 2.31kB                                                                                                                                                  0.0s
+ => => extracting sha256:064a9bb4736de1b2446f528e4eb37335378392cf9b95043d3e9970e253861702                                                                                                                                                       0.7s
+ => [2/3] RUN apt update && apt -y upgrade                                                                                                                                                                                                      3.9s
+ => [3/3] RUN apt install -y wget                                                                                                                                                                                                               2.3s
+ => exporting to image                                                                                                                                                                                                                          0.1s
+ => => exporting layers                                                                                                                                                                                                                         0.1s
+ => => writing image sha256:48bdb8036e8c97d6fde1e515291345425b78b3c33830768caad12ad98ea17b2c                                                                                                                                                    0.0s
 ```
 
-Once the build process is finished, the last line of output should be `Successfully built ... `. Then you are good to go.
+Once the build process is finished, the output should be `Building ... FINISHED`. Then you are good to go.
 
 As next step, we will check with the command `docker images` that you see the newly built image in the list of images.
 
-TODO: add output of the command as screenshot
+!!! example "Exercise"
+    ```sh
+    docker images
+    ```
+    ??? success "Solution"
+        ```
+	account@your-computer folder % docker images
+        REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+        mytestimage                v1        48bdb8036e8c   7 minutes ago   96.9MB
+	```
+	Let’s check the ID of the image to run it later.
 
-```sh
-docker images
-```
-Then let’s check the ID of the image and run it later. But right now, we investigate some additional statements for the recipes!
+But right now, we investigate some additional statements for the recipes!
 
 Additional statements for the Dockerfile	
 
@@ -129,14 +160,17 @@ Difference between ADD and COPY explained [here](https://stackoverflow.com/quest
 
 Difference between ARG and ENV explained [here](https://vsupalov.com/docker-arg-vs-env/).
 
-### A more complex recipe
+### A longer recipe
 
 Below is a longer recipe (save it in a text file named `Dockerfile-ex2`):
 
-```sh title="Dockerfile"
+```sh title="Dockerfile-ex2"
 FROM ubuntu:18.04
 
-LABEL 
+LABEL version="1.0"
+LABEL description="This is an example image\
+that should download a file once run."
+
 WORKDIR ~
 
 RUN apt-get update && apt-get -y upgrade
@@ -145,6 +179,18 @@ RUN apt-get install -y wget
 ENTRYPOINT ["/usr/bin/wget"]
 CMD ["https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png"]
 ```
+
+!!! example "Exercise"
+    Let's also build a Docker image based on the `Dockerfile-ex2`. What is the syntax?
+    
+    ??? success "Solution"
+        ```
+	account@your-computer folder % docker build -t download-image:v1 -f Dockerfile-ex2 .
+        ...
+        account@your-computer folder % docker images
+        REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+        download-image             v1        42f09c5ca259   34 seconds ago   96.9MB
+	```
 
 **Tips for Docker files**
 						
@@ -169,26 +215,50 @@ docker run [docker options] <IMAGE NAME> [image arguments]
 
 This means that arguments that affect the way Docker runs must always go before the image name, but arguments that are passed to the image itself must go after the image name.
 
-```sh
-docker run ubuntu:18.04 /bin/ls
-```
 
-TODO: add command which is from the built container we use above 
 
-TODO: add command which is from the example we use in the current R/Python scripts 
+!!! example "Exercise"
+    You can execute any program/command that is stored inside the image.
+    What happens if you execute ls in your current working directory: is the result the same?
+    ```sh
+    docker run mytestimage:v1 /bin/ls
+    ```
 
-**Exercise:** What happens if you execute ls in your current working directory: is the result the same?
+    ??? done "Answer"
+    No, it is not. 	
 
-!!! info 
+!!! example "Exercise"
     You can execute any program/command that is stored inside the image.
 
     ```sh
-    docker run ubuntu:18.04 /bin/whoami
-    docker run ubuntu:18.04 cat /etc/issue
+    docker run mytestimage:v1 /bin/whoami
+    docker run mytestimage:v1 cat /etc/issue
     ```
     ??? done "Answer"
     Anything surprising happened and why?	
-								
+
+
+albot@Alexanders-MacBook-Pro toto % docker run 42f09c5ca259
+--2023-12-30 13:59:48--  https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png
+Resolving cdn.wp.nginx.com (cdn.wp.nginx.com)... 104.18.10.5, 104.18.11.5
+Connecting to cdn.wp.nginx.com (cdn.wp.nginx.com)|104.18.10.5|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 446827 (436K) [image/png]
+Saving to: 'docker-swarm-hero2.png'
+
+     0K .......... .......... .......... .......... .......... 11% 13.0M 0s
+    50K .......... .......... .......... .......... .......... 22% 12.1M 0s
+   100K .......... .......... .......... .......... .......... 34% 5.30M 0s
+   150K .......... .......... .......... .......... .......... 45% 6.02M 0s
+   200K .......... .......... .......... .......... .......... 57% 10.4M 0s
+   250K .......... .......... .......... .......... .......... 68% 9.34M 0s
+   300K .......... .......... .......... .......... .......... 80% 11.0M 0s
+   350K .......... .......... .......... .......... .......... 91% 2.73M 0s
+   400K .......... .......... .......... ......               100%  250M=0.06s
+
+2023-12-30 13:59:48 (7.41 MB/s) - 'docker-swarm-hero2.png' saved [446827/446827]
+
+       
 **List running containers**
 
 ```sh
@@ -200,7 +270,6 @@ List all containers (whether they are running or not):
 ```sh
 docker ps -a
 ```
-
 The IDs that are shown can be useful for other docker commands like `docker stop` and `docker exec`.
 
 ### Volumes
