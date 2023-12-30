@@ -112,8 +112,6 @@ Then let’s check the ID of the image and run it later. But right now, we inves
 
 Additional statements for the Dockerfile	
 
-TODO: refine table with following content:
-
 | command | what does it do?                 | Example                                               |
 |---------|----------------------------------|-------------------------------------------------------|
 | LABEL   | Who is maintaining the container image | LABEL  maintainer=”your name <your.email@domain.org>” |
@@ -133,9 +131,7 @@ Difference between ARG and ENV explained [here](https://vsupalov.com/docker-arg-
 
 ### A more complex recipe
 
-A more complex recipe (save it in a text file named Dockerfile:
-
-TODO: check this part once R/Python scripts are available
+Below is a longer recipe (save it in a text file named `Dockerfile-ex2`):
 
 ```sh title="Dockerfile"
 FROM ubuntu:18.04
@@ -158,15 +154,6 @@ For example for `apt-get`:
 
 You must run apt-get update and apt-get install in the same command, otherwise you will encounter caching issues.
 Remember to use apt-get install -y, because you will have no control over the process while it’s building.
-
-
-**Useful resources**
-
-[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
-[Best practices](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
-[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
-
-TODO: add exercises difficult examples from BioInformatics ???? see Biocontainers community
 
 ### Running our Docker container
 
@@ -199,9 +186,8 @@ TODO: add command which is from the example we use in the current R/Python scrip
     docker run ubuntu:18.04 /bin/whoami
     docker run ubuntu:18.04 cat /etc/issue
     ```
-
-??? done "Answer"
-    Anything surprising happened?	
+    ??? done "Answer"
+    Anything surprising happened and why?	
 								
 **List running containers**
 
@@ -269,7 +255,7 @@ TODO: add screenshot
 docker pull ubuntu:18.04
 ```
 
-When you ran this command, Docker first looked for the image on your local machine, and when it couldn’t find it, pulled it down from a cloud registry of Docker images called Docker Hub
+When you ran this command, Docker first looked for the image on your local machine, and when it couldn’t find it, pulled it down from a cloud registry of Docker images called Docker Hub.
 		 			
 What other repositories are possible?
 Have a look at the web site https://biocontainers.pro/ which is a specific directory of Bioinformatics related tools.
@@ -295,9 +281,16 @@ Each image has a unique IMAGE ID.
 TODO: add image with example
 
 Where are these images stored? On Linux, they usually go to /var/lib/.
-Docker is very greedy in storage so regular cleaning is necessary. We will see later on how you can do the purging.
+Docker is very greedy in storage, so regular cleaning is necessary. We will see later on how you can do the purging.
 Sometimes, it is also useful to get more information about the images. You can do this via
 
 ```sh
 docker image inspect
 ```
+**Useful resources**
+
+[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+[Best practices for manual creation](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
+[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
+
+TODO: add exercises difficult examples from BioInformatics ???? see Biocontainers community, check this part once R/Python scripts are available
