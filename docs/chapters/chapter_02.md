@@ -9,37 +9,11 @@
 ## Material
 
 TODO: add overview of necessary files, video, etc
-TODO: UTF-8 encoding apostrophes?
 
 [:fontawesome-solid-file-pdf: Download the presentation](../assets/pdf/docker_dance.pdf){: .md-button }
 
 * Unix command line [E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
 
-
-<div>
-<link rel="stylesheet" property="stylesheet" href="https://elixirtess.github.io/TeSS_widgets/css/tess-widget.css"/>
-<div id="tess-widget-materials-table" class="tess-widget tess-widget-faceted-table"></div>
-<script>
-function initTeSSWidgets() {
-    TessWidget.Materials(document.getElementById('tess-widget-materials-table'),
-        'FacetedTable',
-        {
-            opts: {
-                columns: [{name: 'Name', field: 'title'},
-                    {name: 'Description', field: 'description'}],
-                allowedFacets: ['scientific-topics', 'target-audience'],
-                facetOptionLimit: 5
-            },
-            params: {
-                pageSize: 5,
-                q: 'VIB Training',
-                country: ['Belgium']
-            }
-        });
-}
-</script>
-<script async="" defer="" src="https://elixirtess.github.io/TeSS_widgets/js/tess-widget-standalone.js" onload="initTeSSWidgets()"></script>
-</div>
 
 ## 2.1 Docker Dance
 
@@ -49,11 +23,11 @@ We will use Docker as an example to illustrate the development and use of contai
 
 Please follow the installation of the latest version of Docker Desktop for your operating system. It is described at [Get Docker](https://docs.docker.com/get-docker/)
 
-TODO: add screenshots of the desired end points per OS
+!!! Info
+    Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) requires a paid subscription.
+    Note that 'commercial use' is interpreted quite broad. 
 
 ### Introducing the Dockerfile
-
-TODO: add notes about good documentation of the recipe and how to freeze versions of tools in a container image
 
 The Dockerfile is the starting point of the Docker Dance which is schematically drawn here.
 
@@ -61,7 +35,9 @@ The Dockerfile is the starting point of the Docker Dance which is schematically 
 
 Now, let's focus on the instructions for building Docker container images which are saved in a text file, named by default **Dockerfile**.
 
-This is a basic recipe with three statements, one FROM and two RUN statements.
+This is a basic recipe with three statements, one FROM and two RUN statements. 
+
+To follow along on your own, copy the content of the shown `Dockerfile` into a file named `Dockerfile` and save the file on your disk.
 
 ```sh title="Dockerfile"
 FROM ubuntu:18.04
@@ -76,7 +52,9 @@ The **FROM** statement describes the parent image. Typically, an 'operating' sys
 FROM ubuntu:18.04
 ```
 
-Recommendation: pin the version of the OS of the base layer
+!!! info "Recommendation" 
+    Pin the version of the OS of the base layer.
+    There is an [interesting publication](https://doi.org/10.1371/journal.pcbi.1008316) regarding recommendation when manually crafting Dockerfiles. Rule 5 points out the importance of pinning versions of the base image but also system libraries or other installed software. 
 
 The **RUN** statement specifies the command to execute inside the image filesystem.
 
@@ -88,15 +66,15 @@ RUN apt install wget
 
 Each row in the recipe corresponds to a **layer** of the final image.
 
-TODO: add image like e.g. https://www.google.com/url?q=https://houseofnasheats.com/wp-content/uploads/2019/02/Layered-Rainbow-Jello-11.jpg&sa=D&source=docs&ust=1685897875842731&usg=AOvVaw2Bc7qDiD4TfX0PN_ZJYk5v
+TODO: create illustration like e.g. https://docs.docker.com/build/guide/images/layers.png
 			
 ### Anatomy of the commands
 
-With this basic Dockerfile, we will already start the build process which creates an image. Just have a look at the sketch of the Docker Dance above.
+With this basic Dockerfile, we will already start the build process which creates an image. For reference, have a look at the sketch of the Docker Dance above.
 
 **Building Docker image**
 		 								
-The build command implicitly looks for a file named Dockerfile in the current directory:
+The build command implicitly looks for a file named `Dockerfile` in the current directory:
 
 ```sh
 docker build .
@@ -108,10 +86,9 @@ docker build --file Dockerfile .
 
 **Syntax**: -file / -f
 
-. stands for the context (in this case, current directory) of the build process. This makes sense if copying files from filesystem, for instance. 
+. stands for the context (in this case, current directory) of the build process. This makes sense if during the build process, we will copy files from local filesystem, for instance. 
 
-!!! info 
-
+!!! info
     Avoid contexts (directories) overpopulated with files (even if not actually used in the recipe).
 
 You can define a specific name for the image during the build process.
@@ -122,7 +99,7 @@ You can define a specific name for the image during the build process.
 docker build -t mytestimage:v1 .
 ```
 
-Once the build process is finished, The last line of output should be `Successfully built ... `. Then you are good to go.
+Once the build process is finished, the last line of output should be `Successfully built ... `. Then you are good to go.
 
 As next step, we will check with the command `docker images` that you see the newly built image in the list of images.
 
