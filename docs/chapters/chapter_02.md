@@ -128,11 +128,14 @@ Once the build process is finished, the output should be `Building ... FINISHED`
 As next step, we will check with the command `docker images` that you see the newly built image in the list of images.
 
 !!! example "Exercise"
+    
     ```sh
     docker images
     ```
+    
     ??? success "Solution"
-        ```
+        
+	```sh
 	account@your-computer folder % docker images
         REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
         mytestimage                v1        48bdb8036e8c   7 minutes ago   96.9MB
