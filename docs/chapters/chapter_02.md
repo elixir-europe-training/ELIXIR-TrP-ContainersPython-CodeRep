@@ -10,7 +10,7 @@
 
 TODO: add overview of necessary files, video, etc
 
-[:fontawesome-solid-file-pdf: Show the presentation](https://liascript.github.io/?https://raw.githubusercontent.com/vibbits/material-liascript/master/slides-docker-introduction.md){: .md-button }
+[:fontawesome-solid-file-pdf: Show the presentation](https://liascript.github.io/course/?https://raw.githubusercontent.com/vibbits/material-liascript/master/slides-docker-introduction.md){: .md-button }
 
 * Unix command line [E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
 
