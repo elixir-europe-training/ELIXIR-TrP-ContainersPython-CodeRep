@@ -15,7 +15,24 @@ TODO: add overview of necessary files, video, etc
  
 ## 4.1 Running the script within a Jupyter Notebook 
 
-TODO: add these sections
+We will use Docker to start a JupyterNotebook within the JupyterLabs environment.
+
+Working with JupyterLabs as a Docker extension begins with opening the Docker Desktop. 
+
+Here are the steps to follow:
+
+- Choose Extensions in the left sidebar.
+- Switch to the Browse tab.
+- In the Categories drop-down, select Utility Tools.
+- Find Jupyter Notebook and then select Install.
+
+Wait a bit before the JupyterLabs extension is installed. You can start the extension by the JupyterNotebook icon on the left side of the Docker Desktop menu.
+
+
+
+```sh
+docker run --rm --volumes-from jupyter_embedded_dd_vm -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /home/jovyan/work
+```
 
 ## 4.2 Running the Python script on the command line 
 
