@@ -1,5 +1,2 @@
 .DS_Store*
 site/
-.direnv/
-.envrc
-.tool-versions

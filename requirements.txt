@@ -1,5 +1,5 @@
-mkdocs>=1.4
-mkdocs-bibtex>=2.9
-mkdocs-material>=9.1
-mkdocs-video>=1.5
-neoteroi-mkdocs>=1.0
+setuptools
+mkdocs-material
+mkdocs-bibtex
+neoteroi-mkdocs
+mkdocs-video
