@@ -404,10 +404,10 @@ Let’s search the keyword “ubuntu”
     docker pull ubuntu
     ```
 
-    ??? success "Solution"       
+    ??? done "Answer"       
 	
         ```sh
-	debian@debian:~$ sudo docker search ubuntu
+	debian@debian:~$ sudo docker search ubuntu    
         [sudo] password for debian: 
         NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
         ubuntu                           Ubuntu is a Debian-based Linux operating sys…   16831     [OK]       
