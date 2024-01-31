@@ -406,7 +406,8 @@ Let’s search the keyword “ubuntu”
 
     ??? success "Solution"       
 	
-        ```debian@debian:~$ sudo docker search ubuntu
+        ```sh
+	debian@debian:~$ sudo docker search ubuntu
         [sudo] password for debian: 
         NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
         ubuntu                           Ubuntu is a Debian-based Linux operating sys…   16831     [OK]       
@@ -436,6 +437,7 @@ Let’s search the keyword “ubuntu”
         ubuntu/cassandra                 Cassandra, an open source NoSQL distributed …   2                    
         debian@debian:~$ 
         ``` 
+	
 There are a lot of alternatives to Docker hub for image registries depending on the needs of the organisation or company. Some examples are shown below:
 
 TODO: insert image of the registries
