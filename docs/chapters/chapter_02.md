@@ -408,8 +408,8 @@ Let’s search the keyword “ubuntu”
 	
         ```sh
 	debian@debian:~$ sudo docker search ubuntu    
-        [sudo] password for debian: 
-        NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+        [sudo] password for debian:     
+        NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED    
         ubuntu                           Ubuntu is a Debian-based Linux operating sys…   16831     [OK]       
         websphere-liberty                WebSphere Liberty multi-architecture images …   296       [OK]       
         ubuntu-upstart                   DEPRECATED, as is Upstart (find other proces…   115       [OK]       
