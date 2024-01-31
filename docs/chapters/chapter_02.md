@@ -7,9 +7,6 @@
 - create simple Docker containers to run simple python/R scripts.
 
 ## Material
-
-TODO: add overview of necessary files, video, etc
-
 [:fontawesome-solid-file-pdf: Show the presentation](https://liascript.github.io/course/?https://raw.githubusercontent.com/vibbits/material-liascript/master/slides-docker-introduction.md){: .md-button }
 
 * Unix command line [E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
@@ -65,9 +62,8 @@ RUN apt install wget
 ```
 
 Each row in the recipe corresponds to a **layer** of the final image.
+![Dockerfile to image layers](./../assets/images/dockerfike2image.png){: style="width:650px;"}
 
-TODO: create illustration like e.g. https://docs.docker.com/build/guide/images/layers.png
-			
 ### Anatomy of the commands
 
 With this basic Dockerfile, we will already start the build process which creates an image. For reference, have a look at the sketch of the Docker Dance above.
@@ -410,9 +406,46 @@ TODO: insert image of the registries
 
 1. Get the latest image or latest release
 
-```sh
-docker pull ubuntu
-```
+
+
+
+!!! example "Exercise"    
+    ```sh
+    docker pull ubuntu
+    ```
+
+    ??? success "Solution"       
+	
+        ```debian@debian:~$ sudo docker search ubuntu
+[sudo] password for debian: 
+NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+ubuntu                           Ubuntu is a Debian-based Linux operating sys…   16831     [OK]       
+websphere-liberty                WebSphere Liberty multi-architecture images …   296       [OK]       
+ubuntu-upstart                   DEPRECATED, as is Upstart (find other proces…   115       [OK]       
+ubuntu/nginx                     Nginx, a high-performance reverse proxy & we…   111                  
+neurodebian                      NeuroDebian provides neuroscience research s…   106       [OK]       
+ubuntu/squid                     Squid is a caching proxy for the Web. Long-t…   76                   
+ubuntu/apache2                   Apache, a secure & extensible open-source HT…   70                   
+ubuntu/bind9                     BIND 9 is a very flexible, full-featured DNS…   69                   
+open-liberty                     Open Liberty multi-architecture images based…   62        [OK]       
+ubuntu/mysql                     MySQL open source fast, stable, multi-thread…   58                   
+ubuntu/prometheus                Prometheus is a systems and service monitori…   55                   
+ubuntu-debootstrap               DEPRECATED; use "ubuntu" instead                52        [OK]       
+ubuntu/kafka                     Apache Kafka, a distributed event streaming …   38                   
+ubuntu/postgres                  PostgreSQL is an open source object-relation…   34                   
+ubuntu/redis                     Redis, an open source key-value store. Long-…   22                   
+ubuntu/dotnet-aspnet             Chiselled Ubuntu runtime image for ASP.NET a…   17                   
+ubuntu/dotnet-runtime            Chiselled Ubuntu runtime image for .NET apps…   14                   
+ubuntu/jre                       Distroless Java runtime based on Ubuntu. Lon…   13                   
+ubuntu/dotnet-deps               Chiselled Ubuntu for self-contained .NET & A…   13                   
+ubuntu/zookeeper                 ZooKeeper maintains configuration informatio…   12                   
+ubuntu/grafana                   Grafana, a feature rich metrics dashboard & …   9                    
+ubuntu/prometheus-alertmanager   Alertmanager handles client alerts from Prom…   9                    
+ubuntu/memcached                 Memcached, in-memory keyvalue store for smal…   5                    
+ubuntu/cortex                    Cortex provides storage for Prometheus. Long…   4                    
+ubuntu/cassandra                 Cassandra, an open source NoSQL distributed …   2                    
+debian@debian:~$ 
+        ``` 
 
 In this case, the Ubuntu image with the tag `latest` is downloaded.
 
