@@ -62,7 +62,7 @@ RUN apt install wget
 ```
 
 Each row in the recipe corresponds to a **layer** of the final image.
-![Dockerfile to image layers](./../assets/images/dockerfike2image.png){: style="width:650px;"}
+![Dockerfile to image layers](./../assets/images/dockerfile2image.png){: style="width:480px;"}
 
 ### Anatomy of the commands
 
