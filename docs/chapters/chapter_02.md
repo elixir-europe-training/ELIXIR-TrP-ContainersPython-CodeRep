@@ -439,11 +439,11 @@ Let’s search the keyword “ubuntu”
 	
 There are a lot of alternatives to Docker hub for image registries depending on the needs of the organisation or company. Some examples are shown below:
 
-| Logo  | Name   | link |
-|---|---|---|
-|   | Quay.io  |  https://quay.io/search |
-|   | Amazon ECR   | https://aws.amazon.com/ecr/  |
-|   | Github CR  | https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry  |
+| Logo  | Name   |
+|---|---|
+|   | [Quay.io](https://quay.io/search) |
+|   | [Amazon ECR](https://aws.amazon.com/ecr/)  |
+|   | [Github CR]( https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)  |
 
 1. Get the latest image or latest release
 
@@ -483,7 +483,27 @@ https://biocontainers.pro/#/tools/fastqc
 
 TODO: Open solution
 ```sh
-docker pull biocontainers/fastqc:v0.11.9_cv7
+debian@debian:~$ sudo docker pull biocontainers/fastqc:v0.11.9_cv7
+v0.11.9_cv7: Pulling from biocontainers/fastqc
+9ff7e2e5f967: Pull complete 
+59856638ac9f: Pull complete 
+6f317d6d954b: Pull complete 
+a9dde5e2a643: Pull complete 
+675cac559d07: Pull complete 
+0e6dd20ee818: Pull complete 
+374c558e71da: Pull complete 
+0df3c64bb19a: Pull complete 
+e936d7784cf9: Pull complete 
+4dfd8d164cc5: Pull complete 
+473490461998: Pull complete 
+8f5e491552e6: Pull complete 
+a66ab3a674d9: Pull complete 
+18f922275a6f: Pull complete 
+6d0254e75eec: Pull complete 
+Digest: sha256:8ff2a75c6864edec10c92b3a085cc2f3b207107363c83772feab711d13022c3d
+Status: Downloaded newer image for biocontainers/fastqc:v0.11.9_cv7
+docker.io/biocontainers/fastqc:v0.11.9_cv7
+debian@debian:~$
 ```
 
 Where are these images stored? On Linux, they usually go to /var/lib/.
@@ -498,7 +518,7 @@ And lastly to complete the Docker Dance, we shortly show how to upload own conta
 
 Note: You will have to use a public repository on DockerHub.
 
-First, you will have to create an account on DockerHub. 
+First, you will have to [create an account on DockerHub](https://hub.docker.com/signup). 
 
 Usually, as first step before the upload of the image to the registry, you will use `docker login`. In this case, the command assumes that you'd like to login to DockerHub. 
 
@@ -513,7 +533,7 @@ docker push yourhubusername/download-image:v1
 
 **Useful resources**
 
-[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
-[Best practices for manual creation](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
-[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)
+[Dockerfile reference](https://docs.docker.com/engine/reference/builder/)   
+[Best practices for manual creation](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)   
+[Ten simple rules for writing Dockerfiles for reproducible data science](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316)   
 
