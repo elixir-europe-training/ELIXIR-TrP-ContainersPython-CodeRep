@@ -481,7 +481,6 @@ these images are normally created from [Bioconda](https://bioconda.github.io)
 Example: FastQC
 https://biocontainers.pro/#/tools/fastqc
 
-TODO: Open solution
 ```sh
 debian@debian:~$ sudo docker pull biocontainers/fastqc:v0.11.9_cv7
 v0.11.9_cv7: Pulling from biocontainers/fastqc
