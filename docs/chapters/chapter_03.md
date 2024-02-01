@@ -1,4 +1,12 @@
-__Further resources__zz   
+## Further resources      
+
+## Learning outcomes
+
+**After having completed this chapter you will be able to:**
+
+- Have an understanding of the challenges of building an efficient Docker container on your computer.
+- Be aware of resources on techniques and best practices to address these chjallenges
+
    
 ## 3.1 Where to go next in developing your Docker skills
 Our course could only cover the basics of creating and using containers in Docker. This section is intended to suggest options that you may find useful and where to get more information on them.    
@@ -12,9 +20,28 @@ _How do we get around/avoid this?_
 ### 3.2.1 Clever Dockerfile tricks
 We can combine statements from layers into 1 layer using &&    
 We can clean up temporary files e.g. if there is a build from source step we can use && ro have steps to delete the temporary and source files leaving only the executable and this will make that layer smaller when it is finalised into the container.   
+An example of this:
+```sh
+USER root
+ADD copy_course.sh /scripts/copy_course.sh
+RUN chmod +x /scripts/copy_course.sh 
+# need fastqc, samtools bwa bowtie picard-tools GATK jre wget git
+RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit \
+    picard-tools poppler-utils samtools sudo wget
+RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+#fix fastqc
+RUN mkdir /etc/fastqc && mkdir /etc/fastqc/Configuration
+ADD fastqc/* /etc/fastqc/Configuration/
+
+RUN mkdir $DOCS && mkdir $DATA &&  mkdir $WORK && mkdir /coursehome
+```
+
 _What are the issues with this?_    
-* Dockerfile Readability.    
-* Harder to debug Syntax errors during build step    
+* Dockerfile Readability - these 'tricks' can make it hard for the reader to understand 
+what the Dockerfile is doing. This can severly impact on Reproducibility & Resuabilirt
+(Last letter of FAIR principles).    
+* Harder to debug any Syntax errors during build step. If the build breaks - which part of 
+the line caused it to fail? How would you go about detrmining the cause?    
 
 ### 3.2.2 Using a different linux distribution e.g. Alpine
 There are "Slimline" distributions like [Alpine linux](https://en.wikipedia.org/wiki/Alpine_Linux). These originate from the world of embedded devices e.g. routers and data-loggers where storage space is at a premium and so are ideal for building small linux appliances.   
