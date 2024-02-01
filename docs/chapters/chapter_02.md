@@ -441,9 +441,9 @@ There are a lot of alternatives to Docker hub for image registries depending on 
 
 | Logo  | Name   |
 |---|---|
-|   | [Quay.io](https://quay.io/search) |
-|   | [Amazon ECR](https://aws.amazon.com/ecr/)  |
-|   | [Github CR]( https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)  |
+| ![Quay(./../assets/images/quayio.png) | [Quay.io](https://quay.io/search) |
+| ![Amazon(./../assets/images/amazon-ecr.png)   | [Amazon ECR](https://aws.amazon.com/ecr/)  |
+| ![Github(./../assets/images/github-ghcr.jpg)   | [Github CR]( https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)  |
 
 1. Get the latest image or latest release
 
