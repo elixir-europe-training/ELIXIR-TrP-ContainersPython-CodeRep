@@ -407,8 +407,7 @@ Let’s search the keyword “ubuntu”
     ??? done "Answer"       
 	
         ```sh
-	debian@debian:~$ sudo docker search ubuntu    
-        [sudo] password for debian:     
+        debian@debian:~$ docker search ubuntu
         NAME                             DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED    
         ubuntu                           Ubuntu is a Debian-based Linux operating sys…   16831     [OK]       
         websphere-liberty                WebSphere Liberty multi-architecture images …   296       [OK]       
@@ -440,11 +439,13 @@ Let’s search the keyword “ubuntu”
 	
 There are a lot of alternatives to Docker hub for image registries depending on the needs of the organisation or company. Some examples are shown below:
 
-TODO: insert image of the registries
+| Logo  | Name   | link |
+|---|---|---|
+|   | Quay.io  |  https://quay.io/search |
+|   | Amazon ECR   | https://aws.amazon.com/ecr/  |
+|   | Github CR  | https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry  |
 
 1. Get the latest image or latest release
-
-
 
 In this case, the Ubuntu image with the tag `latest` is downloaded.
 
@@ -460,10 +461,14 @@ docker.io/library/ubuntu:latest
 
 2. Check the versions of Ubuntu present and fetch version 18.04 using tags
 
-TODO: add screenshot
-
 ```sh
-docker pull ubuntu:18.04
+debian@debian:~$ docker pull ubuntu:18.04
+18.04: Pulling from library/ubuntu
+064a9bb4736d: Pull complete 
+Digest: sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98
+Status: Downloaded newer image for ubuntu:18.04
+docker.io/library/ubuntu:18.04
+debian@debian:~$ 
 ```
 
 When you ran this command, Docker first looked for the image on your local machine, and when it couldn’t find it, pulled it down from a cloud registry of Docker images called Docker Hub.
