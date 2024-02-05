@@ -60,4 +60,22 @@ In order to run the script, we need to bind mount the local directory where the 
 cd examples/
 docker run --rm -v $(pwd):/home/jovyan/work/ -w /home/jovyan jupyter/scipy-notebook:lab-4.0.6 python codereppy_min_batch.py
 ```
+------
+Mark
+
+```sh
+docker run -it --rm -p 10000:8888 -v "${PWD}":/home/jovyan/work quay.io/jupyter/datascience-notebook:2024-01-15
+
+ http://127.0.0.1:8888/lab?token=b71632b47d40d57e1173d211d1972c261b70b3bc4d503f50
+[I 2024-02-05 16:14:51.455 ServerApp] Skipped non-installed server(s): bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+c[I 2024-02-05 16:22:21.248 LabApp] 302 GET /lab?token=[secret] (@172.17.0.1) 1.28ms
+[I 2024-02-05 16:24:56.112 ServerApp] User f99ecbe86c6f4e8aa45a21dd895ac41f logged in.
+[I 2024-02-05 16:24:56.113 ServerApp] 302 POST /login?next=%2F (f99ecbe86c6f4e8aa45a21dd895ac41f@172.17.0.1) 2.04ms
+[I 2024-02-05 16:24:56.116 ServerApp] 302 GET / (@172.17.0.1) 0.29ms
+0.00s - Debugger warning: It seems that frozen modules are being used, which may
+0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+0.00s - to python to disable frozen modules.
+```
+
+open browser to url displayed in terminal 7 using token to login (displayed after token=)
   
