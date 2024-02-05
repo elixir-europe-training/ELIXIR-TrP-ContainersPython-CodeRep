@@ -36,7 +36,7 @@ ADD fastqc/* /etc/fastqc/Configuration/
 RUN mkdir $DOCS && mkdir $DATA &&  mkdir $WORK && mkdir /coursehome
 ```
 
-_What are the issues with this?_    
+_What are the issues with this approach?_    
 * Dockerfile Readability - these 'tricks' can make it hard for the reader to understand 
 what the Dockerfile is doing. This can severly impact on Reproducibility & Resuabilirt
 (Last letter of FAIR principles).    
@@ -44,16 +44,18 @@ what the Dockerfile is doing. This can severly impact on Reproducibility & Resua
 the line caused it to fail? How would you go about detrmining the cause?    
 
 ### 3.2.2 Using a different linux distribution e.g. Alpine
-There are "Slimline" distributions like [Alpine linux](https://en.wikipedia.org/wiki/Alpine_Linux). These originate from the world of embedded devices e.g. routers and data-loggers where storage space is at a premium and so are ideal for building small linux appliances.   
-* Downside - come with their own package managers (i.e. __apk__ not apt or yum) and so you will have to rewrite your installation recipes to use apk in the Dockerfile.   
+There are "Slimline" distributions like [Alpine linux](https://en.wikipedia.org/wiki/Alpine_Linux). These originate from the world of embedded devices e.g. routers and data-loggers where storage space is at a premium and so are ideal for building small linux appliances.
+A base Alpine linux distribution is only 4 megabytes in size. Tiny, when compared to the Gigabytes of a typical linux distribution!
+* Downside - come with their own package managers (i.e. __apk__ not apt or yum) and so you will have to rewrite your installation recipes to use apk in the Dockerfile. Also packages max not exist for certain software tools neccessitating compiling from source code (i.e. linux expertise required).
+Some example Bioinformatics Docker containers built on Alpine are at https://hub.docker.com/u/bioslimcontainers .       
 
 ### 3.2.3 Multi-stage builds
-An update in Docker, this process allows us to have a Dockerfile that has two images associated with it. One is a build stage where software is built and installed then the destination stage (which is what the end user will use) is an compact empty OS image that has just the built software copied to it.    
+An update in newer versions of Docker, this process allows us to have a Dockerfile that has two images associated with it. One is a build stage where software is built and installed then the destination stage (which is what the end user will use) is an compact empty OS image that has just the built software copied to it leaving behind all the (space occupying) detritus of the build process.    
 See here for the [Docker documentation on this](https://docs.docker.com/build/building/multi-stage/).   
 It's probably the best way to go for readable, compact containers.    
 
 ## 3.3 Publishing containers
-We used the Docker hub repository but there are other choices:   
+In our course we used the Dockerhub repository but there are other choices:   
 * [Quay,io](https://quay.io)   
 * [Github Container registry ](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)  
 * Many others free & commercial: AWS, Azure, Google, Gitlab, Harbor & Artifactory {See here](https://octopus.com/blog/top-8-container-registries)    
@@ -66,5 +68,8 @@ Good question : politics & cost are faactors. For a long time Docker had a gener
 More repositories are good for our reproducibilty agenda - we can host our containers on multiple services and be more resilient to service outages or vendors going out of business.
 * A lot of the providers have supplied Github Actions (Which are effectively scripts that run Githubs servers) to automate container builds from a github code repository and storing the finished container in their container registry. Providing a Continuous Integration/Continuous Delivery (CI/CD) route to maintaing your software.
 [See here for an article on  this for Githubs registry](https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token).
-* For publications you can use Zenodo to [create a DOI pointing to your containers](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content#).  
+* For publications you can use Zenodo to [create a DOI pointing to your containers](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content#).
+
+  # Applying our new Container skills
+  In our next an final section we will take the Elixir Reproducibility workflow and build it into a supportive container.   
 
