@@ -77,5 +77,15 @@ c[I 2024-02-05 16:22:21.248 LabApp] 302 GET /lab?token=[secret] (@172.17.0.1) 1.
 0.00s - to python to disable frozen modules.
 ```
 
-open browser to url displayed in terminal 7 using token to login (displayed after token=)
-  
+open browser to url displayed in terminal 7 using token to login (displayed after token=)     
+
+(base) jovyan@c481ec0bb643:~$ git clone https://github.com/elixir-europe-training/ELIXIR-TrP-ContainersPython-CodeRep.git
+Cloning into 'ELIXIR-TrP-ContainersPython-CodeRep'...
+remote: Enumerating objects: 745, done.
+remote: Counting objects: 100% (202/202), done.
+remote: Compressing objects: 100% (135/135), done.
+remote: Total 745 (delta 137), reused 80 (delta 58), pack-reused 543
+Receiving objects: 100% (745/745), 12.71 MiB | 837.00 KiB/s, done.
+Resolving deltas: 100% (397/397), done.
+(base) jovyan@c481ec0bb643:~$ 
+![Docker Dance](./../assets/images/docker-jup-nb.png){: style="width:650px;"}
