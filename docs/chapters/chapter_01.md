@@ -143,7 +143,7 @@ Stated simply a virtual machine (VM) is software that emulates the hardware and 
 
 ![hypervisor host os of a virtual machine diagram](./../assets/images/virtual.jpg){: style="width:6.2in;height:6.2in"}. 
 
-* Examples of software to host VMs: [Microsoft Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/), [Virtualbox (Mac OS, Windows & Linux)](https://www.virtualbox.org).  
+* Examples of software to host VMs: [Microsoft Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/), [Virtualbox (Mac OS, Windows & Linux)](https://www.virtualbox.org) [UTM (recommended for Apple Silicon e.g. M2 Macs)](https://github.com/utmapp/UTM).  
 
 | Pros  | Cons  |
 |---|---|
