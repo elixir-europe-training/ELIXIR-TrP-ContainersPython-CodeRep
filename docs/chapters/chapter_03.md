@@ -70,6 +70,6 @@ More repositories are good for our reproducibilty agenda - we can host our conta
 [See here for an article on  this for Githubs registry](https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token).
 * For publications you can use Zenodo to [create a DOI pointing to your containers](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content#).
 
-  # Applying our new Container skills
-  In our next an final section we will take the Elixir Reproducibility workflow and build it into a supportive container.   
+# Applying our new Container skills    
+In our next and final section we will take the Elixir Reproducibility workflow and build it into a supportive container.      
 
