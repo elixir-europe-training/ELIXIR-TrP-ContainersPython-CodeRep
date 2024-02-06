@@ -66,9 +66,9 @@ __Why use anything else?__
 Good question : politics & cost are faactors. For a long time Docker had a generous free tier ideal for learners and open source developers but they are now cutting back with an aim to monetise the Hub registry. Others have stepped in to try and take a share in the Market. Red Hats quay was an early contender but as stated above more have come to market especially the Cloud Computing service providers as they can run more Docker containers than VMs for the same server resources.  
 
 More repositories are good for our reproducibilty agenda - we can host our containers on multiple services and be more resilient to service outages or vendors going out of business.
-* A lot of the providers have supplied Github Actions (Which are effectively scripts that run Githubs servers) to automate container builds from a github code repository and storing the finished container in their container registry. Providing a Continuous Integration/Continuous Delivery (CI/CD) route to maintaing your software.
-[See here for an article on  this for Githubs registry](https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token).
-* For publications you can use Zenodo to [create a DOI pointing to your containers](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content#).
+* A lot of the providers have supplied Github Actions (Which are effectively scripts that run Githubs servers) to automate container builds from a github code repository and storing the finished container in their container registry. Providing a Continuous Integration/Continuous Delivery (CI/CD) route to maintaing your software.    
+[See here for an article on  this for Githubs registry](https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token).    
+* For publications you can use Zenodo to [create a DOI pointing to your containers](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content#).    
 
 # Applying our new Container skills    
 In our next and final section we will take the Elixir Reproducibility workflow and build it into a supportive container.      
