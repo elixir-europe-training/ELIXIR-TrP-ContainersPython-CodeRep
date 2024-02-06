@@ -70,6 +70,13 @@ More repositories are good for our reproducibilty agenda - we can host our conta
 [See here for an article on  this for Githubs registry](https://docs.github.com/en/packages/managing-github-packages-using-github-actions-workflows/publishing-and-installing-a-package-with-github-actions#upgrading-a-workflow-that-accesses-a-registry-using-a-personal-access-token).    
 * For publications you can use Zenodo to [create a DOI pointing to your containers](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content#).    
 
+## 3.4 Other ways to run containers    
+Docker is unpopular with adminstrators of High Performance Computing (Clusters) as it is possible for a container to run with root (i.e. super user/administrator) privileges.   
+If you wish to run your containers in these environments, here are a couple of options;   
+1. Singularity
+2. Podman
+   
+
 # Applying our new Container skills    
 In our next and final section we will take the Elixir Reproducibility workflow and build it into a supportive container.      
 
