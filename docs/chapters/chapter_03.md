@@ -73,8 +73,8 @@ More repositories are good for our reproducibilty agenda - we can host our conta
 ## 3.4 Other ways to run containers    
 Docker is unpopular with adminstrators of High Performance Computing (Clusters) as it is possible for a container to run with root (i.e. super user/administrator) privileges.   
 If you wish to run your containers in these environments, here are a couple of options;   
-1. Singularity
-2. Podman
+1. Apptainer (The software formerly known as Singularity) https://apptainer.org
+2. Podman https://podman-desktop.io
    
 
 # Applying our new Container skills    
