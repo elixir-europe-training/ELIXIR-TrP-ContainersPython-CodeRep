@@ -60,8 +60,8 @@ cd examples/
 docker run --rm -v $(pwd):/home/jovyan/work/ -w /home/jovyan jupyter/scipy-notebook:lab-4.0.6 python codereppy_min_batch.py
 ```
 _Another way of running things on the command line_   
-We will use a pre-built Docker image produced by the Jupyter project and will pull it from a quay.io registry (Jupyter appear to be moving away from Docker hub).    
-The raw Dockerfile is inspectable on [Github](https://github.com/jupyter/docker-stacks/blob/main/images/datascience-notebook/Dockerfile#L48 ).    
+We will use a pre-built Docker image produced by the Jupyter project and will pull it from a quay.io registry (Jupyter appear to be moving away from Docker hub). Futher details on this image and parameters to tailor behaviour when run can be found [here](https://jupyter-docker-stacks.readthedocs.io/en/latest/).       
+The raw Dockerfile used to construct this container is inspectable on [Github](https://github.com/jupyter/docker-stacks/blob/main/images/datascience-notebook/Dockerfile#L48 ).    
 NB We could take things further and use this as a source layer in our own dockerfile with the script and data to create a dedicated single purpose container (A topic for an advanced course).    
 
 ```sh
