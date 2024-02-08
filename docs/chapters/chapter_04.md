@@ -5,9 +5,9 @@
 - run the Python script using a Docker container on your computer.
 - run the Python script using a Juptyer Notebook container on your computer.
 
-We will be using the **Elixir CodeRep example workflow (Python version)** which can be found [here](https://github.com/elixir-europe-training/ELIXIR-TrP-CodeRep-Example-Python/tree/main). It is a simplified Machine Learning workflow that attempts to classifty     
-tumours as benign or malignant based upon characteristics in the data. More details on the scripts can be found on the 
-afore-mentioned CodeRep Github repository.   
+We will be using the **Elixir CodeRep example workflow (Python version)** which can be found [here](https://github.com/elixir-europe-training/ELIXIR-TrP-CodeRep-Example-Python/tree/main). It is a simplified Machine Learning workflow that attempts to classifty 
+tumours as benign or malignant based upon characteristics in the data.     
+More details on the scripts can be found on the afore-mentioned CodeRep Github repository.   
 
 As is often the case in Computing problems, when it comes to executing the workflow there are more than one single approach to 
 achieving the goal. We present a few here:   
@@ -105,7 +105,7 @@ More information about cleaning up Docker iamages [here](https://www.freecodecam
 
 !!! example "Discussionn exercise - how do these approaches differ? Why would we use one over another?"
     ??? success "answer"
-    They produce different outputs and require different levels of command line skills. Which would **you** choose?      
+        They produce different outputs and require different levels of command line skills. Which would **you** choose?      
     
 
 _Congratulations! You have reached the end of this course._ 
