@@ -5,15 +5,9 @@
 - run the Python script using a Docker container on your computer.
 - run the Python script using a Juptyer Notebook container on your computer.
 
-## Material
+As is often the case in Computing problems, there are more than a single approach to achieving the goal. We present a few here:   
 
-TODO: add overview of necessary files, video, etc
-
-[:fontawesome-solid-file-pdf: Download the presentation](../assets/pdf/docker_dance.pdf){: .md-button }
-
-* Unix command line [E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
- 
-## 4.1 Running the script within a Jupyter Notebook 
+## 4.1 Running the script within a Jupyter Notebook (via Docker Desktop)
 
 We will use Docker to start a JupyterNotebook within the JupyterLabs environment.
 
@@ -41,7 +35,7 @@ In case, you like to extract the output from the notebook, you could run the fol
 docker run --rm --volumes-from jupyter_embedded_dd_vm -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /home/jovyan/work
 ```
 
-## 4.2 Running the Python script on the command line 
+## 4.2 Running the Python script on the command line (2 examples)
 
 In order to run the script using a Docker container, we will use the same Docker image which is used for running the JupyterLab in the example above.
 
@@ -60,10 +54,11 @@ In order to run the script, we need to bind mount the local directory where the 
 cd examples/
 docker run --rm -v $(pwd):/home/jovyan/work/ -w /home/jovyan jupyter/scipy-notebook:lab-4.0.6 python codereppy_min_batch.py
 ```
-------
-Mark
+_Another way of running things on the command line_   
+We will use a pre-built Docker image produced by the Jupyter project and will pull it from a quay.io registry (Jupyter appear to be moving away from Docker hub).    
+The raw Dockerfile is inspectable on [Github](https://github.com/jupyter/docker-stacks/blob/main/images/datascience-notebook/Dockerfile#L48 ).    
+NB We could take things further and use this as a source layer in our own dockerfile with the script and data to create a dedicated single purpose container (A topic for an advanced course).    
 
-We will use a pre-built Docker image produced by the Jupyter project (The Dockerfile is inspectable on Github at https://github.com/jupyter/docker-stacks/blob/main/images/datascience-notebook/Dockerfile#L48 ).    
 ```sh
 docker run -it --rm -p 10000:8888 -v "${PWD}":/home/jovyan/work quay.io/jupyter/datascience-notebook:2024-01-15
 
@@ -92,5 +87,13 @@ Resolving deltas: 100% (397/397), done.
 ![Docker Dance](./../assets/images/docker-jup-nb.png){: style="width:650px;"}    
 
 When you have finished with docker you can clear the downloaded Docker images with:
+``` sh
 docker system prune -a
+```
+More information about cleaning up Docker iamages [here](https://www.freecodecamp.org/news/how-to-remove-all-docker-images-a-docker-cleanup-guide/)   
+
+
+_Congratulations! You have reached the end of this course._ 
+We hope that you have learned about this aspect of Reproducible Research and will be able to apply it to your own endeavours!    
+* The Elixir CodeRep Containers team *    
 
