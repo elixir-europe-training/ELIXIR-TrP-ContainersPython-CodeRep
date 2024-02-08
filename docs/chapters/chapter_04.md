@@ -63,6 +63,7 @@ docker run --rm -v $(pwd):/home/jovyan/work/ -w /home/jovyan jupyter/scipy-noteb
 ------
 Mark
 
+We will use a pre-built Docker image produced by the Jupyter project (The Dockerfile is inspectable on Github at https://github.com/jupyter/docker-stacks/blob/main/images/datascience-notebook/Dockerfile#L48 ).    
 ```sh
 docker run -it --rm -p 10000:8888 -v "${PWD}":/home/jovyan/work quay.io/jupyter/datascience-notebook:2024-01-15
 
