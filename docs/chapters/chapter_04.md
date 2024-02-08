@@ -73,9 +73,9 @@ c[I 2024-02-05 16:22:21.248 LabApp] 302 GET /lab?token=[secret] (@172.17.0.1) 1.
 0.00s - to python to disable frozen modules.
 ```
 
-Open byour web rowser to the URLdisplayed in terminal. At the login screen use the token (displayed after token= line in terminal)   .
-You will then be in a Jupyter Notebook.      
-_Example terminal output_   
+Open byour web rowser to the URL displayed in terminal. At the login screen use the token (displayed after token= line in terminal)   .
+You will then be in a Jupyter Notebook. As in previous examples navigate to the 'Other' screen and activate Terminal.          
+_Example Terminal output after git cloning workflow_   
 ``` sh
 (base) jovyan@c481ec0bb643:~$ git clone https://github.com/elixir-europe-training/ELIXIR-TrP-ContainersPython-CodeRep.git
 Cloning into 'ELIXIR-TrP-ContainersPython-CodeRep'...
@@ -90,12 +90,18 @@ Resolving deltas: 100% (397/397), done.
 
 ![Docker Dance](./../assets/images/docker-jup-nb.png){: style="width:650px;"}    
 
+You can now load and run the python file and see the graphs in the Notebook pane.    
+
 When you have finished with docker you can clear the downloaded Docker images with:
 ``` sh
 docker system prune -a
 ```
 More information about cleaning up Docker iamages [here](https://www.freecodecamp.org/news/how-to-remove-all-docker-images-a-docker-cleanup-guide/)   
 
+!!! example "Discussionn exercise - how do these approaches differ? Why would we use one over another?"
+    ??? success "answer"
+    They produce different outputs and require different levels of command line skills. Which would **you** choose?      
+    
 
 _Congratulations! You have reached the end of this course._ 
 We hope that you have learned about this aspect of Reproducible Research and will be able to apply it to your own endeavours!    
