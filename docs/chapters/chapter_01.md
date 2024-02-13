@@ -199,7 +199,7 @@ We will cover creating a Dockerfile later in this course.
     Your computer runs python 3.1 and you do not want to upgrade it. You need virtual environments for a    
     project and wish to use version 3.0 for your project. You should install virtualenv - TRUE or FALSE?
     ??? success "answer"
-    TRUE    
+        TRUE    
     
 
 !!! example "Introduction comprehension exercise 2"
@@ -207,5 +207,7 @@ We will cover creating a Dockerfile later in this course.
      that the end-user has this hardware on their computer. This cannot be solved by deploying a virtual   
      machine - TRUE or FALSE?
     ??? success "answer"
-    goes here    
+        FALSE A VM can emulate hardware e.g. a CD-ROM drive as well as software
+
+
     
