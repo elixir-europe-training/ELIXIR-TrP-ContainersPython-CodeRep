@@ -195,10 +195,17 @@ A software container is defined by a manifest or recipe file that lists all of t
 
 We will cover creating a Dockerfile later in this course.
 
-!!! example "Introduction comprehension exercise"
+!!! example "Introduction comprehension exercise 1"
+    Your computer runs python 3.1 and you do not want to upgrade it. You need virtual environments for a    
+    project and wish to use version 3.0 for your project. You should install virtualenv - TRUE or FALSE?
+    ??? success "answer"
+    TRUE    
+    
+
+!!! example "Introduction comprehension exercise 2"
+     Your software project will access a CD/DVD-ROM drive image containing data but you cannot guarantee    
+     that the end-user has this hardware on their computer. This cannot be solved by deploying a virtual   
+     machine - TRUE or FALSE?
     ??? success "answer"
     goes here    
     
-**Challenge**
-
-> Go to this Google quiz about the material we have covered in this introduction and answer the questions (your answers are anonymised). We will then have a review of the class answers and address any misunderstandings highlighted by this exercise.
