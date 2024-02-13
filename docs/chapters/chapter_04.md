@@ -110,5 +110,5 @@ More information about cleaning up Docker iamages [here](https://www.freecodecam
 
 _Congratulations! You have reached the end of this course._ 
 We hope that you have learned about this aspect of Reproducible Research and will be able to apply it to your own endeavours!    
-** The Elixir CodeRep Containers team **    
+**The Elixir CodeRep Containers team**    
 
