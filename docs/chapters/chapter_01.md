@@ -31,7 +31,7 @@ This is a fair question - over your career there will be many times you will com
 * Different Software versions
 * Users' Technical ability -- It's wrong to assume high IT experience or to expect them to attain it just to use your software (Raising the 'cost of entry' and dissuading them from using it).
 
-_A Summary of the Pros & Cons of providing detailed DIY instructions_   
+<center>___A Summary of the Pros & Cons of providing detailed DIY instructions___</center>   
 
 |  Pros    |  Cons |
 |---|---|
