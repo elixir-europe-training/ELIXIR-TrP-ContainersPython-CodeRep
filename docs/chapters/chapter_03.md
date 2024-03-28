@@ -1,18 +1,18 @@
-## Further resources      
+## To Boldly Dock....      
 
 ## Learning outcomes
 
 **After having completed this chapter you will be able to:**
 
-- Have an understanding of the challenges of building an efficient Docker container on your computer.
-- Be aware of resources on techniques and best practices to address these chjallenges
+> - Have an understanding of the challenges of building an efficient Docker container on your computer.
+> - Be aware of resources on techniques and best practices to address these chjallenges
 
    
 ## 3.1 Where to go next in developing your Docker skills
 Our course could only cover the basics of creating and using containers in Docker. This section is intended to suggest options that you may find useful and where to get more information on them.    
 
 ## 3.2 Shrinking containers
-As we put more functionality into our containers (and more layers in our Dockerfiles) they can get large (though they will still be smaller than VMs and can share common layers if we are running more than one container on a host).   
+As we put more functionality into our containers (and more layers in our Dockerfiles) they can get large (though they will still be smaller than VMs and can share common layers between different containers if we are running more than one container on a host).   
 Big containers take longer to download and spin up and consume more resources on repositories and target hosts.   
 
 _How do we get around/avoid this?_   
@@ -77,6 +77,6 @@ If you wish to run your containers in these environments, here are a couple of o
 2. Podman https://podman-desktop.io
    
 
-# Applying our new Container skills    
+# Next chapter: Applying our new Container skills to a real Python script    
 In our next and final section we will take the Elixir Reproducibility workflow and build it into a supportive container.      
 
