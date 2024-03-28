@@ -12,7 +12,7 @@
 * Unix command line [E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK179288/)
 
 
-## 2.1 Docker Dance
+## 2.1 Docker Dance (Creating containers using Docker)
 
 We will use Docker as an example to illustrate the development and use of containers.
 
