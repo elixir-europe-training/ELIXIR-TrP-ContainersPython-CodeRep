@@ -65,7 +65,7 @@ Please cite as:
 ## Setup
 
 ### Data setup
-To run this lesson you need to install data from …
+To run this lesson you need to install code and data from https://github.com/elixir-europe-training/ELIXIR-TrP-CodeRep-Example-Python 
 
 ### Software setup
 To run this course you need to install Docker on your computer [Instructions here](https://docs.docker.com/get-docker/) and have access to a text editor program that can edit and save ASCII text documents (Not a word processor like Word).   
