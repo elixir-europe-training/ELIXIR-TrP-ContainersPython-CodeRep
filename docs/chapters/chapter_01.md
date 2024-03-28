@@ -31,7 +31,7 @@ This is a fair question - over your career there will be many times you will com
 * Different Software versions
 * Users' Technical ability -- It's wrong to assume high IT experience or to expect them to attain it just to use your software (Raising the 'cost of entry' and dissuading them from using it).
 
-_A Summary of the Pros & Cons of providing detailed DIY instructions_
+_A Summary of the Pros & Cons of providing detailed DIY instructions_   
 |  Pros    |  Cons |
 |---|---|
 | Closest to the software authors' development environment  | Not always easy to capture exact pre-requisites     |
@@ -129,7 +129,7 @@ The downside to this is that you need to choose the tool appropriate/best suited
         ```deactivate```    
         ```python -m pip list```        
 
-_A Summary of the Pros & Cons of using virtual environments_
+_A Summary of the Pros & Cons of using virtual environments_  
 | Pros  | Cons  |
 |---|---|
 | Lots of options to choose from | Lots of options to choose from |
@@ -147,7 +147,7 @@ Stated simply a virtual machine (VM) is software that emulates the hardware and 
 
 * Examples of software to host VMs: [Microsoft Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/), [Virtualbox (Mac OS, Windows & Linux)](https://www.virtualbox.org) [UTM (recommended for Apple Silicon e.g. M2 Macs)](https://github.com/utmapp/UTM).  
 
-_A Summary of the Pros & Cons of using Virtual Machines_
+_A Summary of the Pros & Cons of using Virtual Machines_  
 | Pros  | Cons  |
 |---|---|
 | Does not affect Host OS | Can require a similar level of IT knowledge/expertise to create the software environment for VM |
@@ -189,7 +189,7 @@ A software container is defined by a manifest or recipe file that lists all of t
 
 ![container elements diagram](./../assets/images/container.jpg){: style="width:9.2in;height:5.0in"}. 
 
-_A Summary of the Pros & Cons of using Software Containers_
+_A Summary of the Pros & Cons of using Software Containers_  
 | Pros  | Cons  |
 |---|---|
 | Does not affect software installations on host computer i.e. install into *tabula rasa* environment. | Requires expertise training in creating the Dockerfiles |
