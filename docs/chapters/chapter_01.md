@@ -130,7 +130,7 @@ The downside to this is that you need to choose the tool appropriate/best suited
         ```deactivate```    
         ```python -m pip list```        
 
-_A Summary of the Pros & Cons of using virtual environments_  
+<center>___A Summary of the Pros & Cons of using virtual environments___</center>  
 
 | Pros  | Cons  |
 |---|---|
@@ -149,7 +149,7 @@ Stated simply a virtual machine (VM) is software that emulates the hardware and 
 
 * Examples of software to host VMs: [Microsoft Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/), [Virtualbox (Mac OS, Windows & Linux)](https://www.virtualbox.org) [UTM (recommended for Apple Silicon e.g. M2 Macs)](https://github.com/utmapp/UTM).  
 
-_A Summary of the Pros & Cons of using Virtual Machines_  
+<center>____A Summary of the Pros & Cons of using Virtual Machines___</center>  
 
 | Pros  | Cons  |
 |---|---|
@@ -192,7 +192,7 @@ A software container is defined by a manifest or recipe file that lists all of t
 
 ![container elements diagram](./../assets/images/container.jpg){: style="width:9.2in;height:5.0in"}. 
 
-_A Summary of the Pros & Cons of using Software Containers_  
+<center>___A Summary of the Pros & Cons of using Software Containers___</center>  
 
 | Pros  | Cons  |
 |---|---|
