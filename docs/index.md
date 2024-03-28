@@ -4,22 +4,22 @@
 
 [cards class_name="authors" cols="4"(./docs/assets/cards/author_cards.yaml)]
 
-Greek Mythology icons made by [max.icons](https://www.flaticon.com/authors/maxicons) from [www.flaticon.com](https://www.flaticon.com)
+Blank Sillouette from <a href="https://www.vecteezy.com/free-vector/user-icon">User Icon Vectors by Vecteezy</a>
 
 ## Lesson overview
 
 !!! overview ""
     :fontawesome-regular-bookmark: **Description**  
    This course explores several different approaches to provide an end user with a software environment that ensures successful execution of scientific analysis software in a reproducible manner. It then focuses upon an examplar - Software Containers (Specifically implemented using Docker).
+
     
-</br>
 
-:fontawesome-solid-arrow-left: **Prerequisites**  
-To be able to follow this course, learners should have knowledge in:  
+    :fontawesome-solid-arrow-left: **Prerequisites**  
+    To be able to follow this course, learners should have knowledge in:  
 
-1. Familiarity with using a text editor to create and edit plain ASCII text files.   
-2. Basic experience in using command-line Linux.   
-3. Additionally, students will find it beneficial to have an overview of how software is installed under Linux.   
+    1. Familiarity with using a text editor to create and edit plain ASCII text files.   
+    2. Basic experience in using command-line Linux.   
+    3. Additionally, students will find it beneficial to have an overview of how software is installed under Linux.   
 
 </br>
 
