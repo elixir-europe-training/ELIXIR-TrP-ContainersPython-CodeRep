@@ -14,14 +14,14 @@ Blank Sillouette from <a href="https://www.vecteezy.com/free-vector/user-icon">U
 
     
 
-    :fontawesome-solid-arrow-left: **Prerequisites**  
-    To be able to follow this course, learners should have knowledge in:  
+:fontawesome-solid-arrow-left: **Prerequisites**  
+To be able to follow this course, learners should have knowledge in:  
 
-    1. Familiarity with using a text editor to create and edit plain ASCII text files.   
-    2. Basic experience in using command-line Linux.   
-    3. Additionally, students will find it beneficial to have an overview of how software is installed under Linux.   
+1. Familiarity with using a text editor to create and edit plain ASCII text files.   
+2. Basic experience in using command-line Linux.   
+3. Additionally, students will find it beneficial to have an overview of how software is installed under Linux.   
 
-</br>
+
 
 :fontawesome-solid-arrow-right: **Learning Outcomes:**  
 By the end of the course, learners will be able to:  
