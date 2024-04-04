@@ -58,7 +58,7 @@ Greek Mythology icons made by [max.icons](https://www.flaticon.com/authors/maxic
 
 Please cite as:
 
-  1. Enter your citation here.
+  1. Mark Fernandes, Pen-Yuan Hsing, Naeem Muhammad, Alexander Botzki. (2024). The ELIXIR Code Reproducibility lesson - Software Containers for computational reproducibility. Zenodo DOI: {here}
   2. Geert van Geest, Elin Kronander, Jose Alejandro Romero Herrera, Nadja Žlender, & Alexia Cardona. (2023). The ELIXIR Training Lesson Template - Developing Training Together (v1.0.0-alpha). Zenodo. https://doi.org/10.5281/zenodo.7913092. 
 
 ---
