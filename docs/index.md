@@ -14,12 +14,6 @@
     
     :fontawesome-solid-arrow-left: **Prerequisites**  
     To be able to follow this course, learners should have knowledge in:  
-    &emsp;1. Basic programming skills in R    
-    &emsp;2. A familiarity in using the RStudio Integrated Development Environment    
-    
-    <br>
-    :fontawesome-solid-arrow-left: **Prerequisites**  
-    To be able to follow this course, learners should have knowledge in:  
 
     1. Familiarity with using a text editor to create and edit plain ASCII text files.   
     2. Basic experience in using command-line Linux.   
