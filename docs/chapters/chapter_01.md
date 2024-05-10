@@ -145,8 +145,9 @@ The downside to this is that you need to choose the tool appropriate/best suited
 ## What is a virtual machine?
 
 Stated simply a virtual machine (VM) is software that emulates the hardware and software of a computer and runs this emulation on your (host) computer. A layer, called the hypervisor, has the role of running the VM and transferring data in and out of it.
-
+<center>
 ![hypervisor host os of a virtual machine diagram](./../assets/images/virtual.jpg){: style="width:6.2in;height:6.2in"}. 
+</center>
 
 * Examples of software to host VMs: [Microsoft Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/), [Virtualbox (Mac OS, Windows & Linux)](https://www.virtualbox.org) [UTM (recommended for Apple Silicon e.g. M2 Macs)](https://github.com/utmapp/UTM).  
 
@@ -190,9 +191,9 @@ A software container is defined by a manifest or recipe file that lists all of t
 * Can be executed on Windows, MacOS & Linux
 * Standardised recipe for building and loading/running a container for all supported platforms
 * Multiple containers can be run on a host operating system
-
+<center>
 ![container elements diagram](./../assets/images/container.jpg){: style="width:9.2in;height:5.0in"}. 
-
+</center>
 <center>___A Summary of the Pros & Cons of using Software Containers___</center>  
 
 | Pros  | Cons  |
