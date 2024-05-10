@@ -4,8 +4,6 @@
 
 [cards class_name="authors" cols="4"(./docs/assets/cards/author_cards.yaml)]
 
-Blank Sillouette from <a href="https://www.vecteezy.com/free-vector/user-icon">User Icon Vectors by Vecteezy</a>
-
 ## Lesson overview
 
 !!! overview ""
@@ -71,6 +69,8 @@ To run this lesson you need to install code and data from [here](https://github.
 To run this course you need to install Docker on your computer [Instructions here](https://docs.docker.com/get-docker/) and have access to a text editor program that can edit and save ASCII text documents (Not a word processor like Word).   
 NB Course examples assume an Intel architecture computer (i386). The author has ssucessfully run the exercises on an Apple Silicon Macintosh
  by creating a UTM Debian linux Virtual machine with Intel emulation.   
+
+Blank Sillouette from <a href="https://www.vecteezy.com/free-vector/user-icon">User Icon Vectors by Vecteezy</a>
 
 
 
