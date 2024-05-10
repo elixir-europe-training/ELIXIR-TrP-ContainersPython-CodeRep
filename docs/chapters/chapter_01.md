@@ -175,7 +175,7 @@ Photo by [Ian Taylor](https://unsplash.com/@carrier_lost?utm_source=unsplash&ut
 
 Photo by [Michael SKOPAL](https://unsplash.com/@michael_skopal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/z5tiShyxZnc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-![](./../assets/images/container_ship.jpg){: style="width:4.2in;height:6.32in"}. 
+![](./../assets/images/container_ship.jpg){: style="width:4.8in;height:6.32in"}. 
 
 Photo by [Nathan Cima](https://unsplash.com/@nathan_cima?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/MHXJ9p64Jw8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
