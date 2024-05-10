@@ -192,7 +192,7 @@ A software container is defined by a manifest or recipe file that lists all of t
 * Standardised recipe for building and loading/running a container for all supported platforms
 * Multiple containers can be run on a host operating system
 <center>
-![container elements diagram](./../assets/images/container.jpg){: style="width:9.2in;height:5.0in"}. 
+![container elements diagram](./../assets/images/container.jpg){: style="width:9.2in;height:5.3in"}. 
 </center>
 <center>___A Summary of the Pros & Cons of using Software Containers___</center>  
 
