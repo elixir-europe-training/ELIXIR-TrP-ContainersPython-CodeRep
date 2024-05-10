@@ -1,5 +1,6 @@
+<center>
 ![Rocky Road Brownies](./../assets/images/Rocky_Road.jpeg){: style="width:2.7559055118110236in;height:1.8371686351706036in"}
-
+</center>
 [Rocky Road Brownies](https://commons.wikimedia.org/w/index.php?curid=48410887) by Chocolate-Dessert-Recipes.com, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/deed.en)
 
 **Teaching Outcomes**
