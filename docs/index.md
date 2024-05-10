@@ -8,6 +8,18 @@
 
 !!! overview ""
     :fontawesome-regular-bookmark: **Description**  
+    A course to introduce the theory, advantages and implementation of Literate Programming practices for R users working in RStudio to enhance the students abilities to produce reproducible code.    
+   
+    </br>
+    
+    :fontawesome-solid-arrow-left: **Prerequisites**  
+    To be able to follow this course, learners should have knowledge in:  
+    &emsp;1. Basic programming skills in R    
+    &emsp;2. A familiarity in using the RStudio Integrated Development Environment    
+    
+
+!!! overview ""
+    :fontawesome-regular-bookmark: **Description**  
    This course explores several different approaches to provide an end user with a software environment that ensures successful execution of scientific analysis software in a reproducible manner. It then focuses upon an examplar - Software Containers (Specifically implemented using Docker).
 
     
