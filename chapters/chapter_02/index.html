@@ -1,0 +1,1162 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "LearningResource",
+    "@id": "https://elixir-europe-training.github.io/ELIXIR-TrP-LessonTemplate-MkDocs/",
+    "http://purl.org/dc/terms/conformsTo": {
+        "@type": "CreativeWork",
+        "@id": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE"
+    },
+    "description": "Template for ELIXIR lessons",
+    "keywords": "FAIR, OPEN, Bioinformatics, Teaching",
+    "name": "ELIXIR Training Lesson template",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "educationLevel": "beginner",
+    "competencyRequired": "none",
+    "teaches": "nothing yet to teach"
+}
+</script>
+
+    
+      
+        <title>2. The Docker Dance - ELIXIR - Containers Lesson</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/neoteroi-mkdocs.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#learning-outcomes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+This lesson is under active development and considered pre-alpha.
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ELIXIR - Containers Lesson" class="md-header__button md-logo" aria-label="ELIXIR - Containers Lesson" data-md-component="logo">
+      
+  <img src="../../assets/images/white-orange-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ELIXIR - Containers Lesson
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2. The Docker Dance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/elixir-europe-training/ELIXIR-TrP-LessonTemplate-MkDocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    elixir-europe-training/ELIXIR-TrP-LessonTemplate-MkDocs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ELIXIR - Containers Lesson" class="md-nav__button md-logo" aria-label="ELIXIR - Containers Lesson" data-md-component="logo">
+      
+  <img src="../../assets/images/white-orange-logo.png" alt="logo">
+
+    </a>
+    ELIXIR - Containers Lesson
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/elixir-europe-training/ELIXIR-TrP-LessonTemplate-MkDocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    elixir-europe-training/ELIXIR-TrP-LessonTemplate-MkDocs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Course Content
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Course Content
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. The Rocky Road to Reproducibility
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    2. The Docker Dance
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    2. The Docker Dance
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning outcomes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material" class="md-nav__link">
+    <span class="md-ellipsis">
+      Material
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-docker-dance-creating-containers-using-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Docker Dance (Creating containers using Docker)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Docker Dance (Creating containers using Docker)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      Install Docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#introducing-the-dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducing the Dockerfile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anatomy-of-the-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anatomy of the commands
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-longer-recipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      A longer recipe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-our-docker-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running our Docker container
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volumes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-container-registries-eg-docker-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Container registries (e.g. Docker Hub)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. To Boldly Dock (Learning more about containers)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4. To Tie it together and run the Python script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../follow_up_training/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Follow up training
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>2. The Docker Dance</h1>
+
+<div><h2 id="learning-outcomes">Learning outcomes</h2>
+<p><strong>After having completed this chapter you will be able to:</strong></p>
+<ul>
+<li>fetch and run Docker containers on their computer.</li>
+<li>interpret the instructions of a Dockerfile</li>
+<li>create simple Docker containers to run simple python/R scripts.</li>
+</ul>
+<h2 id="material">Material</h2>
+<p><a class="md-button" href="https://liascript.github.io/course/?https://raw.githubusercontent.com/vibbits/material-liascript/master/slides-docker-introduction.md"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M0 64C0 28.7 28.7 0 64 0h160v128c0 17.7 14.3 32 32 32h128v144H176c-35.3 0-64 28.7-64 64v144H64c-35.3 0-64-28.7-64-64zm384 64H256V0zM176 352h32c30.9 0 56 25.1 56 56s-25.1 56-56 56h-16v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V368c0-8.8 7.2-16 16-16m32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24h-16v48zm96-80h32c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48h-32c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16m32 128c8.8 0 16-7.2 16-16v-64c0-8.8-7.2-16-16-16h-16v96zm80-112c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16s-7.2 16-16 16h-32v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16h-32v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V368"></path></svg></span> Show the presentation</a></p>
+<ul>
+<li>Unix command line <a href="https://www.ncbi.nlm.nih.gov/books/NBK179288/">E-utilities documentation</a></li>
+</ul>
+<h2 id="21-docker-dance-creating-containers-using-docker">2.1 Docker Dance (Creating containers using Docker)</h2>
+<p>We will use Docker as an example to illustrate the development and use of containers.</p>
+<h3 id="install-docker">Install Docker</h3>
+<p>Please follow the installation of the latest version of Docker Desktop for your operating system. It is described at <a href="https://docs.docker.com/get-docker/">Get Docker</a></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Commercial use of Docker Desktop in larger enterprises (more than 250 employees OR more than $10 million USD in annual revenue) requires a paid subscription.
+Note that ‘commercial use’ is interpreted quite broad. </p>
+</div>
+<h3 id="introducing-the-dockerfile">Introducing the Dockerfile</h3>
+<p>The Dockerfile is the starting point of the Docker Dance which is schematically drawn here.</p>
+<p><img alt="Docker Dance" src="../../assets/images/6090-g1689.png" style="width:650px;"></p>
+<p>Now, let’s focus on the instructions for building Docker container images which are saved in a text file, named by default <strong>Dockerfile</strong>.</p>
+<p>This is a basic recipe with three statements, one FROM and two RUN statements. </p>
+<p>To follow along on your own, copy the content of the shown <code>Dockerfile</code> into a file named <code>Dockerfile</code> and save the file on your disk.</p>
+<div class="highlight"><span class="filename">Dockerfile</span><pre><span></span><code>FROM<span class="w"> </span>ubuntu:18.04
+
+RUN<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>-y<span class="w"> </span>upgrade
+RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>wget
+</code></pre></div>
+<p>The <strong>FROM</strong> statement describes the parent image. Typically, an ‘operating’ system but you can also use an image of other parties as a starting point. This instruction creates the base layer.</p>
+<div class="highlight"><pre><span></span><code>FROM<span class="w"> </span>ubuntu:18.04
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Recommendation</p>
+<p>Pin the version of the OS of the base layer.
+There is an <a href="https://doi.org/10.1371/journal.pcbi.1008316">interesting publication</a> regarding recommendation when manually crafting Dockerfiles. Rule 5 points out the importance of pinning versions of the base image but also system libraries or other installed software. </p>
+</div>
+<p>The <strong>RUN</strong> statement specifies the command to execute inside the image filesystem.</p>
+<p>Think about it this way: every RUN line is essentially what you would run to install programs on a freshly installed Ubuntu OS. This command will be executed as root in the container.</p>
+<div class="highlight"><pre><span></span><code>RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>wget
+</code></pre></div>
+<p>Each row in the recipe corresponds to a <strong>layer</strong> of the final image.
+<img alt="Dockerfile to image layers" src="../../assets/images/dockerfile2image.png" style="width:480px;"></p>
+<h3 id="anatomy-of-the-commands">Anatomy of the commands</h3>
+<p>With this basic Dockerfile, we will already start the build process which creates an image. For reference, have a look at the sketch of the Docker Dance above.</p>
+<p><strong>Building Docker image</strong></p>
+<p>The build command implicitly looks for a file named <code>Dockerfile</code> in the current directory:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>.
+
+<span class="c1"># or by specifying the exact file name</span>
+
+docker<span class="w"> </span>build<span class="w"> </span>--file<span class="w"> </span>Dockerfile<span class="w"> </span>.
+</code></pre></div>
+<p><strong>Syntax</strong>: -file / -f</p>
+<p>. stands for the context (in this case, current directory) of the build process. This makes sense if during the build process, we will copy files from local filesystem, for instance. </p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Avoid contexts (directories) overpopulated with files (even if not actually used in the recipe).</p>
+</div>
+<p>You can define a specific name for the image during the build process.</p>
+<p><strong>Syntax</strong>: -t imagename:tag. If not defined :tag default is latest.</p>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>mytestimage:v1<span class="w"> </span>.
+</code></pre></div>
+</div>
+<p>The following output should be shown:</p>
+<div class="highlight"><pre><span></span><code>account@your-computer<span class="w"> </span>folder<span class="w"> </span>%<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>Dockerfile<span class="w"> </span>.
+<span class="o">[</span>+<span class="o">]</span><span class="w"> </span>Building<span class="w"> </span><span class="m">11</span>.3s<span class="w"> </span><span class="o">(</span><span class="m">7</span>/7<span class="o">)</span><span class="w"> </span>FINISHED<span class="w">                                                                                                                                                                                               </span>docker:desktop-linux
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>build<span class="w"> </span>definition<span class="w"> </span>from<span class="w"> </span>Dockerfile<span class="w">                                                                                                                                                                                            </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>dockerfile:<span class="w"> </span>113B<span class="w">                                                                                                                                                                                                            </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>.dockerignore<span class="w">                                                                                                                                                                                                               </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>transferring<span class="w"> </span>context:<span class="w"> </span>2B<span class="w">                                                                                                                                                                                                                 </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span>internal<span class="o">]</span><span class="w"> </span>load<span class="w"> </span>metadata<span class="w"> </span><span class="k">for</span><span class="w"> </span>docker.io/library/ubuntu:18.04<span class="w">                                                                                                                                                                                 </span><span class="m">1</span>.6s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span><span class="m">1</span>/3<span class="o">]</span><span class="w"> </span>FROM<span class="w"> </span>docker.io/library/ubuntu:18.04@sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98<span class="w">                                                                                                                           </span><span class="m">3</span>.4s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>resolve<span class="w"> </span>docker.io/library/ubuntu:18.04@sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98<span class="w">                                                                                                                           </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:064a9bb4736de1b2446f528e4eb37335378392cf9b95043d3e9970e253861702<span class="w"> </span><span class="m">22</span>.71MB<span class="w"> </span>/<span class="w"> </span><span class="m">22</span>.71MB<span class="w">                                                                                                                                                </span><span class="m">2</span>.6s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98<span class="w"> </span><span class="m">1</span>.33kB<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.33kB<span class="w">                                                                                                                                                  </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:f97a5103cca28097326814718e711c9c41b54853c26959d73495e40b1dd608f2<span class="w"> </span>424B<span class="w"> </span>/<span class="w"> </span>424B<span class="w">                                                                                                                                                      </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>sha256:d1a528908992e9b5bcff8329a22de1749007d0eeeccb93ab85dd5a822b8d46a0<span class="w"> </span><span class="m">2</span>.31kB<span class="w"> </span>/<span class="w"> </span><span class="m">2</span>.31kB<span class="w">                                                                                                                                                  </span><span class="m">0</span>.0s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>extracting<span class="w"> </span>sha256:064a9bb4736de1b2446f528e4eb37335378392cf9b95043d3e9970e253861702<span class="w">                                                                                                                                                       </span><span class="m">0</span>.7s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span><span class="m">2</span>/3<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt<span class="w"> </span>-y<span class="w"> </span>upgrade<span class="w">                                                                                                                                                                                                      </span><span class="m">3</span>.9s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">[</span><span class="m">3</span>/3<span class="o">]</span><span class="w"> </span>RUN<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>wget<span class="w">                                                                                                                                                                                                               </span><span class="m">2</span>.3s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>to<span class="w"> </span>image<span class="w">                                                                                                                                                                                                                          </span><span class="m">0</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>exporting<span class="w"> </span>layers<span class="w">                                                                                                                                                                                                                         </span><span class="m">0</span>.1s
+<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>writing<span class="w"> </span>image<span class="w"> </span>sha256:48bdb8036e8c97d6fde1e515291345425b78b3c33830768caad12ad98ea17b2c<span class="w">                                                                                                                                                    </span><span class="m">0</span>.0s
+</code></pre></div>
+<p>Once the build process is finished, the output should be <code>Building ... FINISHED</code>. Then you are good to go.</p>
+<p>As next step, we will check with the command <code>docker images</code> that you see the newly built image in the list of images.</p>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>images
+</code></pre></div>
+<details class="success">
+<summary>Solution</summary>
+<p></p><div class="highlight"><pre><span></span><code>account@your-computer<span class="w"> </span>folder<span class="w"> </span>%<span class="w"> </span>docker<span class="w"> </span>images<span class="w"> </span>
+REPOSITORY<span class="w">                 </span>TAG<span class="w">       </span>IMAGE<span class="w"> </span>ID<span class="w">       </span>CREATED<span class="w">         </span>SIZE<span class="w"> </span>
+mytestimage<span class="w">                </span>v1<span class="w">        </span>48bdb8036e8c<span class="w">   </span><span class="m">7</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">   </span><span class="m">96</span>.9MB<span class="w"> </span>
+</code></pre></div>
+Let’s check the ID of the image to run it later.
+</details>
+</div>
+<p>But right now, we investigate some additional statements for the recipes!</p>
+<p>Additional statements for the Dockerfile    </p>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>what does it do?</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LABEL</td>
+<td>Who is maintaining the container image</td>
+<td>LABEL  maintainer=”your name <a href="mailto:your.email@domain.org">your.email@domain.org</a>”</td>
+</tr>
+<tr>
+<td>WORKDIR</td>
+<td>all subsequent actions will be executed in that working directory.</td>
+<td>WORKDIR ~</td>
+</tr>
+<tr>
+<td>COPY</td>
+<td>lets you copy a local file or directory from your host (the machine from which you are building the image)</td>
+<td>COPY ~/.bashrc . # COPY source destination</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>same, but ADD works also for URLs, and for .tar archives that will be automatically extracted upon being copied.</td>
+<td></td>
+</tr>
+<tr>
+<td>ARG</td>
+<td>available only while the image is built</td>
+<td></td>
+</tr>
+<tr>
+<td>ENV</td>
+<td>available for the future running containers</td>
+<td></td>
+</tr>
+<tr>
+<td>ENTRYPOINT</td>
+<td>The ENTRYPOINT specifies a command that will always be executed when the container starts.</td>
+<td></td>
+</tr>
+<tr>
+<td>CMD</td>
+<td>The CMD specifies arguments that will be fed to the ENTRYPOINT.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Further readings</strong></p>
+<p>Difference between ADD and COPY explained <a href="https://stackoverflow.com/questions/24958140/what-is-the-difference-between-the-copy-and-add-commands-in-a-dockerfile">here</a> and <a href="https://nickjanetakis.com/blog/docker-tip-2-the-difference-between-copy-and-add-in-a-dockerile">here</a>.</p>
+<p>Difference between ARG and ENV explained <a href="https://vsupalov.com/docker-arg-vs-env/">here</a>.</p>
+<h3 id="a-longer-recipe">A longer recipe</h3>
+<p>Below is a longer recipe (save it in a text file named <code>Dockerfile-ex2</code>):</p>
+<div class="highlight"><span class="filename">Dockerfile-ex2</span><pre><span></span><code>FROM<span class="w"> </span>ubuntu:18.04
+
+LABEL<span class="w"> </span><span class="nv">version</span><span class="o">=</span><span class="s2">"1.0"</span>
+LABEL<span class="w"> </span><span class="nv">description</span><span class="o">=</span><span class="s2">"This is an example image\</span>
+<span class="s2">that should download a picture once run."</span>
+
+WORKDIR<span class="w"> </span>/scratch<span class="w"> </span>
+
+RUN<span class="w"> </span>apt-get<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>upgrade
+RUN<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>wget
+
+ENTRYPOINT<span class="w"> </span><span class="o">[</span><span class="s2">"/usr/bin/wget"</span><span class="o">]</span>
+CMD<span class="w"> </span><span class="o">[</span><span class="s2">"https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png"</span><span class="o">]</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<p>Let’s also build a Docker image based on the <code>Dockerfile-ex2</code>. What is the syntax?</p>
+<details class="success">
+<summary>Solution</summary>
+<div class="highlight"><pre><span></span><code>account@your-computer<span class="w"> </span>folder<span class="w"> </span>%<span class="w"> </span>docker<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>download-image:v1<span class="w"> </span>-f<span class="w"> </span>Dockerfile-ex2<span class="w"> </span>.
+...
+account@your-computer<span class="w"> </span>folder<span class="w"> </span>%<span class="w"> </span>docker<span class="w"> </span>images
+REPOSITORY<span class="w">                 </span>TAG<span class="w">       </span>IMAGE<span class="w"> </span>ID<span class="w">       </span>CREATED<span class="w">         </span>SIZE
+download-image<span class="w">             </span>v1<span class="w">        </span>42f09c5ca259<span class="w">   </span><span class="m">34</span><span class="w"> </span>seconds<span class="w"> </span>ago<span class="w">   </span><span class="m">96</span>.9MB
+</code></pre></div>
+</details>
+</div>
+<p><strong>Tips for Docker files</strong></p>
+<p>You should try to separate the Dockerfile into as many stages as possible, because this will allow for better caching.</p>
+<p>For example for <code>apt-get</code>:</p>
+<p>You must run apt-get update and apt-get install in the same command, otherwise you will encounter caching issues.
+Remember to use apt-get install -y, because you will have no control over the process while it’s building.</p>
+<h3 id="running-our-docker-container">Running our Docker container</h3>
+<p>Now we want to use what is inside the image.</p>
+<p><code>docker run</code> creates a fresh container (active instance of the image) from a Docker (static) image, and runs it.</p>
+<p>The format is:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span><span class="o">[</span>docker<span class="w"> </span>options<span class="o">]</span><span class="w"> </span>&lt;IMAGE<span class="w"> </span>NAME&gt;<span class="w"> </span><span class="o">[</span>image<span class="w"> </span>arguments<span class="o">]</span>
+</code></pre></div>
+<p>This means that arguments that affect the way Docker runs must always go before the image name, but arguments that are passed to the image itself must go after the image name.</p>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<p>You can execute any program/command that is stored inside the image.
+What happens if you execute <code>ls</code> in your current working directory: is the result the same?
+</p><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>mytestimage:v1<span class="w"> </span>/bin/ls
+</code></pre></div>
+<details class="done">
+<summary>Answer</summary>
+<p>No, it is not. The listing of the working directory within the container will be displayed. In our case, this is <code>/</code>.   </p>
+</details>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<p>You can execute any program/command that is stored inside the image.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>mytestimage:v1<span class="w"> </span>/bin/whoami
+docker<span class="w"> </span>run<span class="w"> </span>mytestimage:v1<span class="w"> </span>cat<span class="w"> </span>/etc/issue
+</code></pre></div>
+<details class="done">
+<summary>Answer</summary>
+<p>Anything surprising happened and why?
+The first command did not produce a valid output. Which command do you have to run to get a valid response? And what is the user?   </p>
+</details>
+</div>
+<p><strong>List running containers</strong></p>
+<p>Let’s run another command in the shell.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps
+</code></pre></div>
+<p>In this case, we would like list all running containers but we will get back an empty result.</p>
+<div class="highlight"><pre><span></span><code>account@your-computer<span class="w"> </span>~<span class="w"> </span>%<span class="w"> </span>docker<span class="w"> </span>ps
+CONTAINER<span class="w"> </span>ID<span class="w">   </span>IMAGE<span class="w">     </span>COMMAND<span class="w">   </span>CREATED<span class="w">   </span>STATUS<span class="w">    </span>PORTS<span class="w">     </span>NAMES
+</code></pre></div>
+<p>This is normal since before each of the executed containers only ran a very short time. All commands were executed in milliseconds.  </p>
+<p>Now, let’s list all containers whether they are running or not:</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>ps<span class="w"> </span>-a
+</code></pre></div>
+<p>Now, the result is more insightful.</p>
+<div class="highlight"><pre><span></span><code>albot@Alexanders-MacBook-Pro<span class="w"> </span>~<span class="w"> </span>%<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>-a
+CONTAINER<span class="w"> </span>ID<span class="w">   </span>IMAGE<span class="w">               </span>COMMAND<span class="w">                  </span>CREATED<span class="w">          </span>STATUS<span class="w">                      </span>PORTS<span class="w">     </span>NAMES
+6cdfeb6b412f<span class="w">   </span>mytestimage:v1<span class="w">      </span><span class="s2">"whoami"</span><span class="w">                 </span><span class="m">8</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">    </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">5</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">              </span>determined_torvalds
+e7a143e1b594<span class="w">   </span>mytestimage:v1<span class="w">      </span><span class="s2">"cat /etc/issue"</span><span class="w">         </span><span class="m">9</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">    </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">5</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">              </span>elated_lalande
+7fed0970b698<span class="w">   </span>mytestimage:v1<span class="w">      </span><span class="s2">"/bin/whoami"</span><span class="w">            </span><span class="m">10</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">   </span>Created<span class="w">                               </span>frosty_noether
+</code></pre></div>
+<p>The IDs that are shown can be useful for other docker commands like <code>docker stop</code> and <code>docker exec</code> in case the containers will run longer. The containers with the IDs <code>6cdfeb6b412f</code> and <code>e7a143e1b594</code> have been run succesfully and now have the status <code>Excited</code>. The last one has only been created since we received an error message. We will not go into more details now. In a chapter later on, we will shortly touch on the containers which run e.g. web applications.</p>
+<p>But before we go on to second image we have created before, let’s run an container interactively.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>mytestimage:v1
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<p>Verify what the operating system of the container is? One option is <code>cat /etc/os-release</code>. </p>
+<details class="done">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code>root@5a7f73d47ff5:/#<span class="w"> </span>cat<span class="w"> </span>/etc/os-release
+<span class="nv">NAME</span><span class="o">=</span><span class="s2">"Ubuntu"</span>
+<span class="nv">VERSION</span><span class="o">=</span><span class="s2">"18.04.6 LTS (Bionic Beaver)"</span>
+<span class="nv">ID</span><span class="o">=</span>ubuntu
+<span class="nv">ID_LIKE</span><span class="o">=</span>debian
+<span class="nv">PRETTY_NAME</span><span class="o">=</span><span class="s2">"Ubuntu 18.04.6 LTS"</span>
+<span class="nv">VERSION_ID</span><span class="o">=</span><span class="s2">"18.04"</span>
+<span class="nv">HOME_URL</span><span class="o">=</span><span class="s2">"https://www.ubuntu.com/"</span>
+<span class="nv">SUPPORT_URL</span><span class="o">=</span><span class="s2">"https://help.ubuntu.com/"</span>
+<span class="nv">BUG_REPORT_URL</span><span class="o">=</span><span class="s2">"https://bugs.launchpad.net/ubuntu/"</span>
+<span class="nv">PRIVACY_POLICY_URL</span><span class="o">=</span><span class="s2">"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"</span>
+<span class="nv">VERSION_CODENAME</span><span class="o">=</span>bionic
+<span class="nv">UBUNTU_CODENAME</span><span class="o">=</span>bionic
+</code></pre></div>
+</details>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<p>Run the command <code>whoami</code>, now in the container.</p>
+<details class="done">
+<summary>Answer</summary>
+<p>You might have seen before that you are indeed <code>root</code>. This also means that you can install other programms in this interactive shell. </p>
+</details>
+</div>
+<p>Before we exit the shell in the container, we will have a quick look at the status of the container like we did above.</p>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<p>Please open another terminal and type <code>docker ps -a</code>. </p>
+<details class="done">
+<summary>Answer</summary>
+<p>You will see that the current container <code>5a7f73d47ff5</code> has the status <code>Up</code>. So, it is indeed still running since we have started an interactive shell. 
+</p><div class="highlight"><pre><span></span><code>CONTAINER<span class="w"> </span>ID<span class="w">   </span>IMAGE<span class="w">               </span>COMMAND<span class="w">                  </span>CREATED<span class="w">             </span>STATUS<span class="w">                         </span>PORTS<span class="w">     </span>NAMES
+5a7f73d47ff5<span class="w">   </span>mytestimage:v1<span class="w">      </span><span class="s2">"/bin/bash"</span><span class="w">              </span><span class="m">11</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">      </span>Up<span class="w"> </span><span class="m">11</span><span class="w"> </span>minutes<span class="w">                            </span>vigorous_taussig
+6cdfeb6b412f<span class="w">   </span>mytestimage:v1<span class="w">      </span><span class="s2">"whoami"</span><span class="w">                 </span><span class="m">57</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">      </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">57</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">                </span>determined_torvalds
+e7a143e1b594<span class="w">   </span>mytestimage:v1<span class="w">      </span><span class="s2">"cat /etc/issue"</span><span class="w">         </span><span class="m">58</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">      </span>Exited<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span><span class="m">58</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">                </span>elated_lalande
+7fed0970b698<span class="w">   </span>mytestimage:v1<span class="w">      </span><span class="s2">"/bin/whoami"</span><span class="w">            </span><span class="m">58</span><span class="w"> </span>minutes<span class="w"> </span>ago<span class="w">      </span>Created<span class="w">                                  </span>frosty_noether
+</code></pre></div>
+</details>
+</div>
+<p>Exit the interactive container by typing <code>exit</code> so that we return to the shell of our host. Let’s come back to our second image we have created before.</p>
+<p>First identify the id of this image by running <code>docker images</code>. When preparing the course, the ID was <code>42f09c5ca259</code>.</p>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<p>Run this container without any specific command. You might recall that a default command is defined in the recipe.</p>
+<details class="done">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code>account@your-computer<span class="w"> </span>folder<span class="w"> </span>%<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>42f09c5ca259
+--2023-12-30<span class="w"> </span><span class="m">13</span>:59:48--<span class="w">  </span>https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png
+Resolving<span class="w"> </span>cdn.wp.nginx.com<span class="w"> </span><span class="o">(</span>cdn.wp.nginx.com<span class="o">)</span>...<span class="w"> </span><span class="m">104</span>.18.10.5,<span class="w"> </span><span class="m">104</span>.18.11.5
+Connecting<span class="w"> </span>to<span class="w"> </span>cdn.wp.nginx.com<span class="w"> </span><span class="o">(</span>cdn.wp.nginx.com<span class="o">)</span><span class="p">|</span><span class="m">104</span>.18.10.5<span class="p">|</span>:443...<span class="w"> </span>connected.
+HTTP<span class="w"> </span>request<span class="w"> </span>sent,<span class="w"> </span>awaiting<span class="w"> </span>response...<span class="w"> </span><span class="m">200</span><span class="w"> </span>OK
+Length:<span class="w"> </span><span class="m">446827</span><span class="w"> </span><span class="o">(</span>436K<span class="o">)</span><span class="w"> </span><span class="o">[</span>image/png<span class="o">]</span>
+Saving<span class="w"> </span>to:<span class="w"> </span><span class="s1">'docker-swarm-hero2.png'</span>
+
+<span class="w">  </span>0K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">11</span>%<span class="w"> </span><span class="m">13</span>.0M<span class="w"> </span>0s
+<span class="w"> </span>50K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">22</span>%<span class="w"> </span><span class="m">12</span>.1M<span class="w"> </span>0s
+100K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">34</span>%<span class="w"> </span><span class="m">5</span>.30M<span class="w"> </span>0s
+150K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">45</span>%<span class="w"> </span><span class="m">6</span>.02M<span class="w"> </span>0s
+200K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">57</span>%<span class="w"> </span><span class="m">10</span>.4M<span class="w"> </span>0s
+250K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">68</span>%<span class="w"> </span><span class="m">9</span>.34M<span class="w"> </span>0s
+300K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">80</span>%<span class="w"> </span><span class="m">11</span>.0M<span class="w"> </span>0s
+350K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">91</span>%<span class="w"> </span><span class="m">2</span>.73M<span class="w"> </span>0s
+400K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>......<span class="w">               </span><span class="m">100</span>%<span class="w">  </span><span class="nv">250M</span><span class="o">=</span><span class="m">0</span>.06s
+
+<span class="m">2023</span>-12-30<span class="w"> </span><span class="m">13</span>:59:48<span class="w"> </span><span class="o">(</span><span class="m">7</span>.41<span class="w"> </span>MB/s<span class="o">)</span><span class="w"> </span>-<span class="w"> </span><span class="s1">'docker-swarm-hero2.png'</span><span class="w"> </span>saved<span class="w"> </span><span class="o">[</span><span class="m">446827</span>/446827<span class="o">]</span>
+</code></pre></div>
+<p>As you see, the png file is downloaded but do you find it on the host? Probably no since the container is isolated from the host.</p>
+</details>
+</div>
+<h3 id="volumes">Volumes</h3>
+<p>Docker containers are fully isolated. It is necessary to mount volumes in order to handle input/output files.
+By default, Docker containers cannot access data on the host system. This means you cannot use host data in your containers. All data stored in the container will be lost when the container exits.</p>
+<p>You can solve this like this:</p>
+<p>-v /path/in/host:/path/in/container: This bind mounts a host file or directory into the container. Writes to one will affect the other. Note that both paths have to be absolute paths, so you often want to use<code>pwd</code>/some/path</p>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<p>For this exercise, we will bind-mount the current directory of our user on the host machine to the <code>WORKDIR</code> as defined in the Dockerfile-ex2.
+<code>docker run --volume $(pwd):/scratch download-image:v1</code></p>
+<details class="done">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code>--2023-12-30<span class="w"> </span><span class="m">16</span>:55:20--<span class="w">  </span>https://cdn.wp.nginx.com/wp-content/uploads/2016/07/docker-swarm-hero2.png
+Resolving<span class="w"> </span>cdn.wp.nginx.com<span class="w"> </span><span class="o">(</span>cdn.wp.nginx.com<span class="o">)</span>...<span class="w"> </span><span class="m">104</span>.18.10.5,<span class="w"> </span><span class="m">104</span>.18.11.5
+Connecting<span class="w"> </span>to<span class="w"> </span>cdn.wp.nginx.com<span class="w"> </span><span class="o">(</span>cdn.wp.nginx.com<span class="o">)</span><span class="p">|</span><span class="m">104</span>.18.10.5<span class="p">|</span>:443...<span class="w"> </span>connected.
+HTTP<span class="w"> </span>request<span class="w"> </span>sent,<span class="w"> </span>awaiting<span class="w"> </span>response...<span class="w"> </span><span class="m">200</span><span class="w"> </span>OK
+Length:<span class="w"> </span><span class="m">446827</span><span class="w"> </span><span class="o">(</span>436K<span class="o">)</span><span class="w"> </span><span class="o">[</span>image/png<span class="o">]</span>
+Saving<span class="w"> </span>to:<span class="w"> </span><span class="s1">'docker-swarm-hero2.png'</span>
+
+<span class="w">  </span>0K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">11</span>%<span class="w"> </span><span class="m">13</span>.0M<span class="w"> </span>0s
+<span class="w"> </span>50K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">22</span>%<span class="w"> </span><span class="m">12</span>.1M<span class="w"> </span>0s
+100K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">34</span>%<span class="w"> </span><span class="m">5</span>.30M<span class="w"> </span>0s
+150K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">45</span>%<span class="w"> </span><span class="m">6</span>.02M<span class="w"> </span>0s
+200K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">57</span>%<span class="w"> </span><span class="m">10</span>.4M<span class="w"> </span>0s
+250K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">68</span>%<span class="w"> </span><span class="m">9</span>.34M<span class="w"> </span>0s
+300K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">80</span>%<span class="w"> </span><span class="m">11</span>.0M<span class="w"> </span>0s
+350K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span><span class="m">91</span>%<span class="w"> </span><span class="m">2</span>.73M<span class="w"> </span>0s
+400K<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>..........<span class="w"> </span>......<span class="w">               </span><span class="m">100</span>%<span class="w">  </span><span class="nv">250M</span><span class="o">=</span><span class="m">0</span>.06s
+
+<span class="m">2023</span>-12-30<span class="w"> </span><span class="m">16</span>:55:21<span class="w"> </span><span class="o">(</span><span class="m">7</span>.41<span class="w"> </span>MB/s<span class="o">)</span><span class="w"> </span>-<span class="w"> </span><span class="s1">'docker-swarm-hero2.png'</span><span class="w"> </span>saved<span class="w"> </span><span class="o">[</span><span class="m">446827</span>/446827<span class="o">]</span>
+</code></pre></div>
+<p>As you see, the png file is downloaded and do you find it on the host in the current working directory? 
+If all went fine, you should see the file <code>docker-swarm-hero2.png</code> in your current directory.</p>
+</details>
+</div>
+<h2 id="22-container-registries-eg-docker-hub">2.2 Container registries (e.g. Docker Hub)</h2>
+<p>Images can be stored locally or shared in a registry. Docker hub is the main public registry for Docker images.
+Let’s search the keyword “ubuntu”</p>
+<div class="admonition example">
+<p class="admonition-title">Exercise</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>pull<span class="w"> </span>ubuntu
+</code></pre></div>
+<details class="done">
+<summary>Answer</summary>
+<div class="highlight"><pre><span></span><code>debian@debian:~$<span class="w"> </span>docker<span class="w"> </span>search<span class="w"> </span>ubuntu
+NAME<span class="w">                             </span>DESCRIPTION<span class="w">                                     </span>STARS<span class="w">     </span>OFFICIAL<span class="w">   </span>AUTOMATED<span class="w">    </span>
+ubuntu<span class="w">                           </span>Ubuntu<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>Debian-based<span class="w"> </span>Linux<span class="w"> </span>operating<span class="w"> </span>sys…<span class="w">   </span><span class="m">16831</span><span class="w">     </span><span class="o">[</span>OK<span class="o">]</span><span class="w">       </span>
+websphere-liberty<span class="w">                </span>WebSphere<span class="w"> </span>Liberty<span class="w"> </span>multi-architecture<span class="w"> </span>images<span class="w"> </span>…<span class="w">   </span><span class="m">296</span><span class="w">       </span><span class="o">[</span>OK<span class="o">]</span><span class="w">       </span>
+ubuntu-upstart<span class="w">                   </span>DEPRECATED,<span class="w"> </span>as<span class="w"> </span>is<span class="w"> </span>Upstart<span class="w"> </span><span class="o">(</span>find<span class="w"> </span>other<span class="w"> </span>proces…<span class="w">   </span><span class="m">115</span><span class="w">       </span><span class="o">[</span>OK<span class="o">]</span><span class="w">       </span>
+ubuntu/nginx<span class="w">                     </span>Nginx,<span class="w"> </span>a<span class="w"> </span>high-performance<span class="w"> </span>reverse<span class="w"> </span>proxy<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>we…<span class="w">   </span><span class="m">111</span><span class="w">                  </span>
+neurodebian<span class="w">                      </span>NeuroDebian<span class="w"> </span>provides<span class="w"> </span>neuroscience<span class="w"> </span>research<span class="w"> </span>s…<span class="w">   </span><span class="m">106</span><span class="w">       </span><span class="o">[</span>OK<span class="o">]</span><span class="w">       </span>
+ubuntu/squid<span class="w">                     </span>Squid<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>caching<span class="w"> </span>proxy<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>Web.<span class="w"> </span>Long-t…<span class="w">   </span><span class="m">76</span><span class="w">                   </span>
+ubuntu/apache2<span class="w">                   </span>Apache,<span class="w"> </span>a<span class="w"> </span>secure<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>extensible<span class="w"> </span>open-source<span class="w"> </span>HT…<span class="w">   </span><span class="m">70</span><span class="w">                   </span>
+ubuntu/bind9<span class="w">                     </span>BIND<span class="w"> </span><span class="m">9</span><span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>very<span class="w"> </span>flexible,<span class="w"> </span>full-featured<span class="w"> </span>DNS…<span class="w">   </span><span class="m">69</span><span class="w">                   </span>
+open-liberty<span class="w">                     </span>Open<span class="w"> </span>Liberty<span class="w"> </span>multi-architecture<span class="w"> </span>images<span class="w"> </span>based…<span class="w">   </span><span class="m">62</span><span class="w">        </span><span class="o">[</span>OK<span class="o">]</span><span class="w">       </span>
+ubuntu/mysql<span class="w">                     </span>MySQL<span class="w"> </span>open<span class="w"> </span><span class="nb">source</span><span class="w"> </span>fast,<span class="w"> </span>stable,<span class="w"> </span>multi-thread…<span class="w">   </span><span class="m">58</span><span class="w">                   </span>
+ubuntu/prometheus<span class="w">                </span>Prometheus<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>systems<span class="w"> </span>and<span class="w"> </span>service<span class="w"> </span>monitori…<span class="w">   </span><span class="m">55</span><span class="w">                   </span>
+ubuntu-debootstrap<span class="w">               </span>DEPRECATED<span class="p">;</span><span class="w"> </span>use<span class="w"> </span><span class="s2">"ubuntu"</span><span class="w"> </span>instead<span class="w">                </span><span class="m">52</span><span class="w">        </span><span class="o">[</span>OK<span class="o">]</span><span class="w">       </span>
+ubuntu/kafka<span class="w">                     </span>Apache<span class="w"> </span>Kafka,<span class="w"> </span>a<span class="w"> </span>distributed<span class="w"> </span>event<span class="w"> </span>streaming<span class="w"> </span>…<span class="w">   </span><span class="m">38</span><span class="w">                   </span>
+ubuntu/postgres<span class="w">                  </span>PostgreSQL<span class="w"> </span>is<span class="w"> </span>an<span class="w"> </span>open<span class="w"> </span><span class="nb">source</span><span class="w"> </span>object-relation…<span class="w">   </span><span class="m">34</span><span class="w">                   </span>
+ubuntu/redis<span class="w">                     </span>Redis,<span class="w"> </span>an<span class="w"> </span>open<span class="w"> </span><span class="nb">source</span><span class="w"> </span>key-value<span class="w"> </span>store.<span class="w"> </span>Long-…<span class="w">   </span><span class="m">22</span><span class="w">                   </span>
+ubuntu/dotnet-aspnet<span class="w">             </span>Chiselled<span class="w"> </span>Ubuntu<span class="w"> </span>runtime<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>ASP.NET<span class="w"> </span>a…<span class="w">   </span><span class="m">17</span><span class="w">                   </span>
+ubuntu/dotnet-runtime<span class="w">            </span>Chiselled<span class="w"> </span>Ubuntu<span class="w"> </span>runtime<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>.NET<span class="w"> </span>apps…<span class="w">   </span><span class="m">14</span><span class="w">                   </span>
+ubuntu/jre<span class="w">                       </span>Distroless<span class="w"> </span>Java<span class="w"> </span>runtime<span class="w"> </span>based<span class="w"> </span>on<span class="w"> </span>Ubuntu.<span class="w"> </span>Lon…<span class="w">   </span><span class="m">13</span><span class="w">                   </span>
+ubuntu/dotnet-deps<span class="w">               </span>Chiselled<span class="w"> </span>Ubuntu<span class="w"> </span><span class="k">for</span><span class="w"> </span>self-contained<span class="w"> </span>.NET<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>A…<span class="w">   </span><span class="m">13</span><span class="w">                   </span>
+ubuntu/zookeeper<span class="w">                 </span>ZooKeeper<span class="w"> </span>maintains<span class="w"> </span>configuration<span class="w"> </span>informatio…<span class="w">   </span><span class="m">12</span><span class="w">                   </span>
+ubuntu/grafana<span class="w">                   </span>Grafana,<span class="w"> </span>a<span class="w"> </span>feature<span class="w"> </span>rich<span class="w"> </span>metrics<span class="w"> </span>dashboard<span class="w"> </span><span class="p">&amp;</span><span class="w"> </span>…<span class="w">   </span><span class="m">9</span><span class="w">                    </span>
+ubuntu/prometheus-alertmanager<span class="w">   </span>Alertmanager<span class="w"> </span>handles<span class="w"> </span>client<span class="w"> </span>alerts<span class="w"> </span>from<span class="w"> </span>Prom…<span class="w">   </span><span class="m">9</span><span class="w">                    </span>
+ubuntu/memcached<span class="w">                 </span>Memcached,<span class="w"> </span><span class="k">in</span>-memory<span class="w"> </span>keyvalue<span class="w"> </span>store<span class="w"> </span><span class="k">for</span><span class="w"> </span>smal…<span class="w">   </span><span class="m">5</span><span class="w">                    </span>
+ubuntu/cortex<span class="w">                    </span>Cortex<span class="w"> </span>provides<span class="w"> </span>storage<span class="w"> </span><span class="k">for</span><span class="w"> </span>Prometheus.<span class="w"> </span>Long…<span class="w">   </span><span class="m">4</span><span class="w">                    </span>
+ubuntu/cassandra<span class="w">                 </span>Cassandra,<span class="w"> </span>an<span class="w"> </span>open<span class="w"> </span><span class="nb">source</span><span class="w"> </span>NoSQL<span class="w"> </span>distributed<span class="w"> </span>…<span class="w">   </span><span class="m">2</span><span class="w">                    </span>
+debian@debian:~$<span class="w"> </span>
+</code></pre></div>
+</details>
+</div>
+<p>There are a lot of alternatives to Docker hub for image registries depending on the needs of the organisation or company. Some examples are shown below:</p>
+<table>
+<thead>
+<tr>
+<th>Logo</th>
+<th>Name</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="Quay" src="../../assets/images/quayio.png"></td>
+<td><a href="https://quay.io/search">Quay.io</a></td>
+</tr>
+<tr>
+<td><img alt="Amazon" src="../../assets/images/amazon-ecr.png"></td>
+<td><a href="https://aws.amazon.com/ecr/">Amazon ECR</a></td>
+</tr>
+<tr>
+<td><img alt="Github" src="../../assets/images/github-ghcr.jpg"></td>
+<td><a href="https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry">Github CR</a></td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>Get the latest image or latest release</li>
+</ol>
+<p>In this case, the Ubuntu image with the tag <code>latest</code> is downloaded.</p>
+<div class="highlight"><pre><span></span><code>albot@Alexanders-MacBook-Pro<span class="w"> </span>toto<span class="w"> </span>%<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>ubuntu
+Using<span class="w"> </span>default<span class="w"> </span>tag:<span class="w"> </span>latest
+latest:<span class="w"> </span>Pulling<span class="w"> </span>from<span class="w"> </span>library/ubuntu
+005e2837585d:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span>
+Digest:<span class="w"> </span>sha256:6042500cf4b44023ea1894effe7890666b0c5c7871ed83a97c36c76ae560bb9b
+Status:<span class="w"> </span>Downloaded<span class="w"> </span>newer<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>ubuntu:latest
+docker.io/library/ubuntu:latest
+</code></pre></div>
+<ol start="2">
+<li>Check the versions of Ubuntu present and fetch version 18.04 using tags</li>
+</ol>
+<div class="highlight"><pre><span></span><code>debian@debian:~$<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>ubuntu:18.04
+<span class="m">18</span>.04:<span class="w"> </span>Pulling<span class="w"> </span>from<span class="w"> </span>library/ubuntu
+064a9bb4736d:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+Digest:<span class="w"> </span>sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98
+Status:<span class="w"> </span>Downloaded<span class="w"> </span>newer<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>ubuntu:18.04
+docker.io/library/ubuntu:18.04
+debian@debian:~$<span class="w"> </span>
+</code></pre></div>
+<p>When you ran this command, Docker first looked for the image on your local machine, and when it couldn’t find it, pulled it down from a cloud registry of Docker images called Docker Hub.</p>
+<p>What other repositories are possible?
+Have a look at the web site https://biocontainers.pro/ which is a specific directory of Bioinformatics related tools.
+the images are stored in Docker hub and/or Quay.io (RedHat registry)
+these images are normally created from <a href="https://bioconda.github.io">Bioconda</a></p>
+<p>Example: FastQC
+https://biocontainers.pro/#/tools/fastqc</p>
+<div class="highlight"><pre><span></span><code>debian@debian:~$<span class="w"> </span>sudo<span class="w"> </span>docker<span class="w"> </span>pull<span class="w"> </span>biocontainers/fastqc:v0.11.9_cv7
+v0.11.9_cv7:<span class="w"> </span>Pulling<span class="w"> </span>from<span class="w"> </span>biocontainers/fastqc
+9ff7e2e5f967:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+59856638ac9f:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+6f317d6d954b:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+a9dde5e2a643:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+675cac559d07:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+0e6dd20ee818:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+374c558e71da:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+0df3c64bb19a:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+e936d7784cf9:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+4dfd8d164cc5:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+<span class="m">473490461998</span>:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+8f5e491552e6:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+a66ab3a674d9:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+18f922275a6f:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+6d0254e75eec:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
+Digest:<span class="w"> </span>sha256:8ff2a75c6864edec10c92b3a085cc2f3b207107363c83772feab711d13022c3d
+Status:<span class="w"> </span>Downloaded<span class="w"> </span>newer<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>biocontainers/fastqc:v0.11.9_cv7
+docker.io/biocontainers/fastqc:v0.11.9_cv7
+debian@debian:~$
+</code></pre></div>
+<p>Where are these images stored? On Linux, they usually go to /var/lib/.
+Docker is very greedy in storage, so regular cleaning is necessary. We will see later on how you can do the purging.
+Sometimes, it is also useful to get more information about the images. You can do this via</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>image<span class="w"> </span>inspect
+</code></pre></div>
+<p>And lastly to complete the Docker Dance, we shortly show how to upload own containers to the DockerHub registry.</p>
+<p>Note: You will have to use a public repository on DockerHub.</p>
+<p>First, you will have to <a href="https://hub.docker.com/signup">create an account on DockerHub</a>. </p>
+<p>Usually, as first step before the upload of the image to the registry, you will use <code>docker login</code>. In this case, the command assumes that you’d like to login to DockerHub. </p>
+<p>As you have seen before, we have created two images based on simple recipes. Imagine that you’d like to share them publically. You will use the command <code>docker push</code>.
+But before you need to rename the docker image so that the <code>push</code> command knows where the destination is.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>tag<span class="w"> </span>download-image:v1<span class="w"> </span>yourhubusername/download-image:v1
+docker<span class="w"> </span>push<span class="w"> </span>yourhubusername/download-image:v1
+</code></pre></div>
+<p><strong>Useful resources</strong></p>
+<p><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile reference</a> <br>
+<a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316">Best practices for manual creation</a> <br>
+<a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1008316">Ten simple rules for writing Dockerfiles for reproducible data science</a>   </p></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../chapter_01/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 1. The Rocky Road to Reproducibility">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                1. The Rocky Road to Reproducibility
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../chapter_03/" class="md-footer__link md-footer__link--next" aria-label="Next: 3. To Boldly Dock (Learning more about containers)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                3. To Boldly Dock (Learning more about containers)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      By the ELIXIR Training Platform
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.footer", "toc.integrate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>

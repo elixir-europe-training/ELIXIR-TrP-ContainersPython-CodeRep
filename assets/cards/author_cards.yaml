@@ -1,0 +1,23 @@
+- title: Pen-Yuan Hsing
+  content: |
+    [:custom-orcid:](https://orcid.org/0000-0002-5394-879X/) [:simple-github:](https://github.com/penyuan/)<br>
+    University of Bristol, United Kingdom.
+  image: ./assets/images/cards/sillouette.jpg
+
+- title: Alexander Botzki
+  content: |
+    [:custom-orcid:](https://orcid.org/0000-0001-6691-4233/) [:simple-github:](https://github.com/abotzki) [:simple-linkedin:](https://www.linkedin.com/in/alexander-botzki-1323b42/)<br>
+    Alexander Botzki, VIB Technology Training, VIB, Belgium
+  image: ./assets/images/cards/alex_portrait.jpg
+
+- title: Mark Fernandes
+  content: |
+    [:custom-orcid:](https://orcid.org/0000-0002-4643-984X/) [:simple-github:](https://github.com/mfernandes61) [:simple-linkedin:](https://www.linkedin.com/in/mark-fernandes-a5533641/)<br>
+    Mark Fernandes, Teaching Associate, Bioinformatics Training Facility, Dept. of Genetics, University of Cambridge
+  image: ./assets/images/cards/mark_photo.jpg
+  
+- title: Naeem Muhammad
+  content: |
+    [:custom-orcid:](http://orcid.org/0000-0003-4475-0164/) [:simple-github:](https://github.com/naeemmuhammad/) [:simple-linkedin:](https://www.linkedin.com/in/naeemmuhammad/)<br>
+    Naeem Muhammad, Research Data Manager, Research Coordination Office, KU Leuven, Belgium.
+  image: ./assets/images/cards/naeem_photo.png  

@@ -1,0 +1,691 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "LearningResource",
+    "@id": "https://elixir-europe-training.github.io/ELIXIR-TrP-LessonTemplate-MkDocs/",
+    "http://purl.org/dc/terms/conformsTo": {
+        "@type": "CreativeWork",
+        "@id": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE"
+    },
+    "description": "Template for ELIXIR lessons",
+    "keywords": "FAIR, OPEN, Bioinformatics, Teaching",
+    "name": "ELIXIR Training Lesson template",
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "educationLevel": "beginner",
+    "competencyRequired": "none",
+    "teaches": "nothing yet to teach"
+}
+</script>
+
+    
+      
+        <title>4. To Tie it together and run the Python script - ELIXIR - Containers Lesson</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/neoteroi-mkdocs.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#learning-outcomes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+This lesson is under active development and considered pre-alpha.
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ELIXIR - Containers Lesson" class="md-header__button md-logo" aria-label="ELIXIR - Containers Lesson" data-md-component="logo">
+      
+  <img src="../../assets/images/white-orange-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ELIXIR - Containers Lesson
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. To Tie it together and run the Python script
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/elixir-europe-training/ELIXIR-TrP-LessonTemplate-MkDocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    elixir-europe-training/ELIXIR-TrP-LessonTemplate-MkDocs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ELIXIR - Containers Lesson" class="md-nav__button md-logo" aria-label="ELIXIR - Containers Lesson" data-md-component="logo">
+      
+  <img src="../../assets/images/white-orange-logo.png" alt="logo">
+
+    </a>
+    ELIXIR - Containers Lesson
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/elixir-europe-training/ELIXIR-TrP-LessonTemplate-MkDocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    elixir-europe-training/ELIXIR-TrP-LessonTemplate-MkDocs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Course Content
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Course Content
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1. The Rocky Road to Reproducibility
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2. The Docker Dance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chapter_03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. To Boldly Dock (Learning more about containers)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    4. To Tie it together and run the Python script
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    4. To Tie it together and run the Python script
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-outcomes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning outcomes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-running-the-script-within-a-jupyter-notebook-via-docker-desktop" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Running the script within a Jupyter Notebook (via Docker Desktop)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-running-the-python-script-on-the-command-line-2-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Running the Python script on the command line (2 examples)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../references/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    References
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../follow_up_training/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Follow up training
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>4. To Tie it together and run the Python script</h1>
+
+<div><h2 id="learning-outcomes">Learning outcomes</h2>
+<p><strong>After having completed this chapter you will be able to:</strong></p>
+<ul>
+<li>run the Python script using a Docker container on your computer.</li>
+<li>run the Python script using a Juptyer Notebook container on your computer.</li>
+</ul>
+<p>We will be using the <strong>Elixir CodeRep example workflow (Python version)</strong> which can be found <a href="https://github.com/elixir-europe-training/ELIXIR-TrP-CodeRep-Example-Python/tree/main">here</a>. It is a simplified Machine Learning workflow that attempts to classifty 
+tumours as benign or malignant based upon characteristics in the data.   <br>
+More details on the scripts can be found on the afore-mentioned CodeRep Github repository.   </p>
+<p>As is often the case in Computing problems, when it comes to executing the workflow there are more than one single approach to 
+achieving the goal. We present a few here:   </p>
+<h2 id="41-running-the-script-within-a-jupyter-notebook-via-docker-desktop">4.1 Running the script within a Jupyter Notebook (via Docker Desktop)</h2>
+<p>We will use Docker to start a JupyterNotebook within the JupyterLabs environment.</p>
+<p>Working with JupyterLabs as a Docker extension begins with opening the Docker Desktop. </p>
+<p>Here are the steps to follow:</p>
+<ul>
+<li>Choose Extensions in the left sidebar.</li>
+<li>Switch to the Browse tab.</li>
+<li>In the Categories drop-down, select Utility Tools.</li>
+<li>Find Jupyter Notebook and then select Install.</li>
+</ul>
+<p>Wait a bit before the JupyterLabs extension is installed. You can start the extension by the JupyterNotebook icon on the left side of the Docker Desktop menu.</p>
+<p>Open a Terminal by clicking the Terminal icon under the Other category. Clone the directory by using <code>git clone</code>.
+</p><div class="highlight"><pre><span></span><code>git clone https://github.com/elixir-europe-training/ELIXIR-TrP-ContainersPython-CodeRep.git
+</code></pre></div>
+<p>Open the Jupyter notebook in the <code>examples</code> directory of the said repository. You should be able to execute the Python code using the notebook.</p>
+<p>In case, you like to extract the output from the notebook, you could run the following docker command. Obviously, you could also download the content via the interface.</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--volumes-from<span class="w"> </span>jupyter_embedded_dd_vm<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/backup<span class="w"> </span>ubuntu<span class="w"> </span>tar<span class="w"> </span>cvf<span class="w"> </span>/backup/backup.tar<span class="w"> </span>/home/jovyan/work
+</code></pre></div>
+<h2 id="42-running-the-python-script-on-the-command-line-2-examples">4.2 Running the Python script on the command line (2 examples)</h2>
+<p>In order to run the script using a Docker container, we will use the same Docker image which is used for running the JupyterLab in the example above.</p>
+<div class="admonition exercise">
+<p class="admonition-title">Exercise</p>
+</div>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>images
+docker<span class="w"> </span>image<span class="w"> </span>inspect<span class="w"> </span>jupyter/scipy-notebook:lab-4.0.6<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Working
+</code></pre></div>
+<p>Furthermore, please clone the above repo again on your local computer. Switch to the examples directory.</p>
+<p>In order to run the script, we need to bind mount the local directory where the script and two python files are. Furthermore, we need to specify a working directory upon running the container (and we also need to specify a user and group ID for Linux hosts).</p>
+<p></p><div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>examples/
+docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/home/jovyan/work/<span class="w"> </span>-w<span class="w"> </span>/home/jovyan<span class="w"> </span>jupyter/scipy-notebook:lab-4.0.6<span class="w"> </span>python<span class="w"> </span>codereppy_min_batch.py
+</code></pre></div>
+<em>Another way of running things on the command line</em> <br>
+We will use a pre-built Docker image produced by the Jupyter project and will pull it from a quay.io registry (Jupyter appear to be moving away from Docker hub). Futher details on this image and parameters to tailor behaviour when run can be found <a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/">here</a>.     <br>
+The raw Dockerfile used to construct this container is inspectable on <a href="https://github.com/jupyter/docker-stacks/blob/main/images/datascience-notebook/Dockerfile#L48">Github</a>.  <br>
+NB We could take things further and use this as a source layer in our own dockerfile with the script and data to create a dedicated single purpose container (A topic for an advanced course).    
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">10000</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="s2">"</span><span class="si">${</span><span class="nv">PWD</span><span class="si">}</span><span class="s2">"</span>:/home/jovyan/work<span class="w"> </span>quay.io/jupyter/datascience-notebook:2024-01-15
+
+<span class="w"> </span>http://127.0.0.1:8888/lab?token<span class="o">=</span>b71632b47d40d57e1173d211d1972c261b70b3bc4d503f50
+<span class="o">[</span>I<span class="w"> </span><span class="m">2024</span>-02-05<span class="w"> </span><span class="m">16</span>:14:51.455<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>Skipped<span class="w"> </span>non-installed<span class="w"> </span>server<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>bash-language-server,<span class="w"> </span>dockerfile-language-server-nodejs,<span class="w"> </span>javascript-typescript-langserver,<span class="w"> </span>jedi-language-server,<span class="w"> </span>julia-language-server,<span class="w"> </span>pyright,<span class="w"> </span>python-language-server,<span class="w"> </span>python-lsp-server,<span class="w"> </span>r-languageserver,<span class="w"> </span>sql-language-server,<span class="w"> </span>texlab,<span class="w"> </span>typescript-language-server,<span class="w"> </span>unified-language-server,<span class="w"> </span>vscode-css-languageserver-bin,<span class="w"> </span>vscode-html-languageserver-bin,<span class="w"> </span>vscode-json-languageserver-bin,<span class="w"> </span>yaml-language-server
+c<span class="o">[</span>I<span class="w"> </span><span class="m">2024</span>-02-05<span class="w"> </span><span class="m">16</span>:22:21.248<span class="w"> </span>LabApp<span class="o">]</span><span class="w"> </span><span class="m">302</span><span class="w"> </span>GET<span class="w"> </span>/lab?token<span class="o">=[</span>secret<span class="o">]</span><span class="w"> </span><span class="o">(</span>@172.17.0.1<span class="o">)</span><span class="w"> </span><span class="m">1</span>.28ms
+<span class="o">[</span>I<span class="w"> </span><span class="m">2024</span>-02-05<span class="w"> </span><span class="m">16</span>:24:56.112<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span>User<span class="w"> </span>f99ecbe86c6f4e8aa45a21dd895ac41f<span class="w"> </span>logged<span class="w"> </span><span class="k">in</span>.
+<span class="o">[</span>I<span class="w"> </span><span class="m">2024</span>-02-05<span class="w"> </span><span class="m">16</span>:24:56.113<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span><span class="m">302</span><span class="w"> </span>POST<span class="w"> </span>/login?next<span class="o">=</span>%2F<span class="w"> </span><span class="o">(</span>f99ecbe86c6f4e8aa45a21dd895ac41f@172.17.0.1<span class="o">)</span><span class="w"> </span><span class="m">2</span>.04ms
+<span class="o">[</span>I<span class="w"> </span><span class="m">2024</span>-02-05<span class="w"> </span><span class="m">16</span>:24:56.116<span class="w"> </span>ServerApp<span class="o">]</span><span class="w"> </span><span class="m">302</span><span class="w"> </span>GET<span class="w"> </span>/<span class="w"> </span><span class="o">(</span>@172.17.0.1<span class="o">)</span><span class="w"> </span><span class="m">0</span>.29ms
+<span class="m">0</span>.00s<span class="w"> </span>-<span class="w"> </span>Debugger<span class="w"> </span>warning:<span class="w"> </span>It<span class="w"> </span>seems<span class="w"> </span>that<span class="w"> </span>frozen<span class="w"> </span>modules<span class="w"> </span>are<span class="w"> </span>being<span class="w"> </span>used,<span class="w"> </span>which<span class="w"> </span>may
+<span class="m">0</span>.00s<span class="w"> </span>-<span class="w"> </span>make<span class="w"> </span>the<span class="w"> </span>debugger<span class="w"> </span>miss<span class="w"> </span>breakpoints.<span class="w"> </span>Please<span class="w"> </span>pass<span class="w"> </span>-Xfrozen_modules<span class="o">=</span>off
+<span class="m">0</span>.00s<span class="w"> </span>-<span class="w"> </span>to<span class="w"> </span>python<span class="w"> </span>to<span class="w"> </span>disable<span class="w"> </span>frozen<span class="w"> </span>modules.
+</code></pre></div>
+<p>Open byour web rowser to the URL displayed in terminal. At the login screen use the token (displayed after token= line in terminal)   .
+You will then be in a Jupyter Notebook. As in previous examples navigate to the ‘Other’ screen and activate Terminal.        <br>
+<em>Example Terminal output after git cloning workflow</em> <br>
+</p><div class="highlight"><pre><span></span><code><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>jovyan@c481ec0bb643:~$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/elixir-europe-training/ELIXIR-TrP-ContainersPython-CodeRep.git
+Cloning<span class="w"> </span>into<span class="w"> </span><span class="s1">'ELIXIR-TrP-ContainersPython-CodeRep'</span>...
+remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">745</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">202</span>/202<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">135</span>/135<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">745</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">137</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">58</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">543</span>
+Receiving<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">745</span>/745<span class="o">)</span>,<span class="w"> </span><span class="m">12</span>.71<span class="w"> </span>MiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">837</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">397</span>/397<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+<span class="o">(</span>base<span class="o">)</span><span class="w"> </span>jovyan@c481ec0bb643:~$
+</code></pre></div>
+<p><img alt="Docker Dance" src="../../assets/images/docker-jup-nb.png" style="width:650px;">    </p>
+<p>You can now load and run the python file and see the graphs in the Notebook pane.    </p>
+<p>When you have finished with docker you can clear the downloaded Docker images with:
+</p><div class="highlight"><pre><span></span><code>docker<span class="w"> </span>system<span class="w"> </span>prune<span class="w"> </span>-a
+</code></pre></div>
+More information about cleaning up Docker iamages <a href="https://www.freecodecamp.org/news/how-to-remove-all-docker-images-a-docker-cleanup-guide/">here</a>   
+<div class="admonition example">
+<p class="admonition-title">Discussionn exercise - how do these approaches differ? Why would we use one over another?</p>
+<details class="success">
+<summary>answer</summary>
+<p>They produce different outputs and require different levels of command line skills. Which would <strong>you</strong> choose?      </p>
+</details>
+</div>
+<p><em>Congratulations! You have reached the end of this course.</em> 
+We hope that you have learned about this aspect of Reproducible Research and will be able to apply it to your own endeavours!  <br>
+<strong>The Elixir CodeRep Containers team</strong>    </p></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../chapter_03/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3. To Boldly Dock (Learning more about containers)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                3. To Boldly Dock (Learning more about containers)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../references/" class="md-footer__link md-footer__link--next" aria-label="Next: References">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                References
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      By the ELIXIR Training Platform
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.footer", "toc.integrate"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
+      
+    
+  </body>
+</html>
