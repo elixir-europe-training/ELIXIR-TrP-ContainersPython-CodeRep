@@ -1,3 +1,6 @@
+# 
+docs_dir: docs_build
+
 site_name: ELIXIR - Containers Lesson
 nav:
     - About: index.md
