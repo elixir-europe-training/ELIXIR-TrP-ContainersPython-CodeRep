@@ -23,6 +23,9 @@ theme:
     - toc.integrate
   font: 
     text: Lato
+  palette:
+    primary: custom
+    accent: custom
 
 # Repository
 repo_name: elixir-europe-training/ELIXIR-TrP-LessonTemplate-MkDocs
