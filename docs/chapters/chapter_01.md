@@ -148,7 +148,7 @@ The downside to this is that you need to choose the tool appropriate/best suited
 
 Stated simply a virtual machine (VM) is software that emulates the hardware and software of a computer and runs this emulation on your (host) computer. A layer, called the hypervisor, has the role of running the VM and transferring data in and out of it.
 <center>
-![hypervisor host os of a virtual machine diagram](./../assets/images/virtual.jpg){: style="width:6.2in;height:6.2in"}. 
+![hypervisor host os of a virtual machine diagram](../assets/images/virtual.jpg){: style="width:6.2in;height:6.2in"}. 
 </center>
 
 * Examples of software to host VMs: [Microsoft Hyper-V](https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/about/), [Virtualbox (Mac OS, Windows & Linux)](https://www.virtualbox.org) [UTM (recommended for Apple Silicon e.g. M2 Macs)](https://github.com/utmapp/UTM).  
@@ -165,19 +165,19 @@ Stated simply a virtual machine (VM) is software that emulates the hardware and 
 
 Let's consider the analogy of shipping containers that are used throughout the world.
 
-![A large orange truck drives down the road Description automatically generated with medium confidence](./../assets/images/container_lorry.jpg){: style="width:4.46in;height:5.6in"}. 
+![A large orange truck drives down the road Description automatically generated with medium confidence](../assets/images/container_lorry.jpg){: style="width:4.46in;height:5.6in"}. 
 
 Photo by [Nur Alamin](https://unsplash.com/@nuralamin12?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/xifUN_Mkf8Y?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-![A picture containing sky, outdoor, outdoor object Description automatically generated](./../assets/images/container_ship2.jpg){: style="width:5.6in;height:3.6in"}. 
+![A picture containing sky, outdoor, outdoor object Description automatically generated](../assets/images/container_ship2.jpg){: style="width:5.6in;height:3.6in"}. 
 
 Photo by [Ian Taylor](https://unsplash.com/@carrier_lost?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/jOqJbvo1P9g?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-![](./../assets/images/container_train.jpg){: style="width:5.5in;height:3.6in"}. 
+![](../assets/images/container_train.jpg){: style="width:5.5in;height:3.6in"}. 
 
 Photo by [Michael SKOPAL](https://unsplash.com/@michael_skopal?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/z5tiShyxZnc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
-![](./../assets/images/container_ship.jpg){: style="width:4.8in;height:6.32in"}. 
+![](../assets/images/container_ship.jpg){: style="width:4.8in;height:6.32in"}. 
 
 Photo by [Nathan Cima](https://unsplash.com/@nathan_cima?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/photos/MHXJ9p64Jw8?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
@@ -194,7 +194,7 @@ A software container is defined by a manifest or recipe file that lists all of t
 * Standardised recipe for building and loading/running a container for all supported platforms
 * Multiple containers can be run on a host operating system
 <center>
-![container elements diagram](./../assets/images/container.jpg){: style="width:9.9in;height:5.9n"}. 
+![container elements diagram](../assets/images/container.jpg){: style="width:9.9in;height:5.9n"}. 
 </center>
 <center>___A Summary of the Pros & Cons of using Software Containers___</center>  
 
