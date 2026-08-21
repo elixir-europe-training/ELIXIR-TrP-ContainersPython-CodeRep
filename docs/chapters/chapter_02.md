@@ -1,3 +1,5 @@
+# The Docker Dance
+
 ## Learning outcomes
 
 **After having completed this chapter you will be able to:**
@@ -28,7 +30,7 @@ Please follow the installation of the latest version of Docker Desktop for your 
 
 The Dockerfile is the starting point of the Docker Dance which is schematically drawn here.
 
-![Docker Dance](./../assets/images/6090-g1689.png){: style="width:650px;"}
+![Docker Dance](../assets/images/6090-g1689.png){: style="width:650px;"}
 
 Now, let's focus on the instructions for building Docker container images which are saved in a text file, named by default **Dockerfile**.
 
