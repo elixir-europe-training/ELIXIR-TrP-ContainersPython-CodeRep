@@ -33,12 +33,8 @@ repo_url: https://github.com/elixir-europe-training/ELIXIR-TrP-LessonTemplate-Mk
 edit_uri: edit/main/docs/
 
 plugins:
-  - tags:
-      tags_file: keywords.md
   - search
-  - bibtex:
-      bib_file: "references.bib"
-  - mkdocs-video # embed videos to the docs
+
 
   
 # Footer
